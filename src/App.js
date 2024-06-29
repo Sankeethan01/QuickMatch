@@ -1,21 +1,27 @@
-import Constrution from './Pages/Construction/Construction'
+import Constrution from './Pages/MainWebPages/Construction/Construction'
 import "./App.css";
-import ContactPage from "./Pages/ContactPage/ContactPage";
-import HomePage from "./Pages/HomePage/HomePage";
+import ContactPage from "./Pages/MainWebPages/ContactPage/ContactPage";
+import HomePage from "./Pages/MainWebPages/HomePage/HomePage";
 import IntroPage from "./Pages/IntroPage/IntroPage";
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
-import AdminHome from './Pages/AdminHome/AdminHome';
-import CustomerList from './Pages/CustomerList/CustomerList';
-import AdminSettings from './Pages/AdminSettings/AdminSettings';
-import ServiceProviderList from './Pages/ServiceProviderList/ServiceProviderList';
-import BookingList from './Pages/BookingList/BookingList';
-import AdminVerification from './Pages/AdminVerification/AdminVerification';
-import AdminFeedback from './Pages/AdminFeedback/AdminFeedback';
-import AdminMessages from './Pages/AdminMessages/AdminMessages';
-import AdminMonitoring from './Pages/AdminMonitoring/AdminMonitoring';
-import Electric from './Pages/Electric/Electric';
-import Electronic from './Pages/Electronic/Electronic';
-import Eventmanagement from './Pages/Eventmanagement/Eventmanagement';
+import AdminHome from './Pages/AdminDashboard/AdminHome/AdminHome';
+import CustomerList from './Pages/AdminDashboard/CustomerList/CustomerList';
+import AdminSettings from './Pages/AdminDashboard/AdminSettings/AdminSettings';
+import ServiceProviderList from './Pages/AdminDashboard/ServiceProviderList/ServiceProviderList';
+import BookingList from './Pages/AdminDashboard/BookingList/BookingList';
+import AdminVerification from './Pages/AdminDashboard/AdminVerification/AdminVerification';
+import AdminFeedback from './Pages/AdminDashboard/AdminFeedback/AdminFeedback';
+import AdminMessages from './Pages/AdminDashboard/AdminMessages/AdminMessages';
+import AdminMonitoring from './Pages/AdminDashboard/AdminMonitoring/AdminMonitoring';
+import Electric from './Pages/MainWebPages/Electric/Electric';
+import Electronic from './Pages/MainWebPages/Electronic/Electronic';
+import Eventmanagement from './Pages/MainWebPages/Eventmanagement/Eventmanagement';
+import ProviderHome from './Pages/ServiceProviderDashboard/ProviderHome/ProviderHome';
+import ProviderFeedback from './Pages/ServiceProviderDashboard/ProviderFeedback/ProviderFeedback';
+import ProviderNotifications from './Pages/ServiceProviderDashboard/ProviderNotifications/ProviderNotifications';
+import ProviderFinance from './Pages/ServiceProviderDashboard/ProviderFinance/ProviderFinance';
+import CustomerMain from './Pages/CustomerDashboard/CustomerMain/CustomerMain';
+import CustomerNotification from './Pages/CustomerDashboard/CustomerNotifications/CustomerNotification';
 
 
 function App() {
@@ -39,6 +45,12 @@ function App() {
           <Route path="/adminfeedbacks" exact Component={AdminFeedback} />
           <Route path="/adminmessages" exact Component={AdminMessages} />
           <Route path="/adminmonitoring" exact Component={AdminMonitoring} />
+          <Route path='/providerhome' exact Component={ProviderHome} />
+          <Route path='/providerfeedback' exact Component={ProviderFeedback} />
+          <Route path='/providernotifications' exact Component={ProviderNotifications} />
+          <Route path='/providerfinance' exact Component={ProviderFinance} />
+          <Route path='/customerhome' exact Component={CustomerMain} />
+          <Route path='/customernotifications' exact Component={CustomerNotification} />
         </Routes>
        </Router>
     </div>

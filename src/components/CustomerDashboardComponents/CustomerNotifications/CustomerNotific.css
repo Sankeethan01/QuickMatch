@@ -1,0 +1,129 @@
+/* src/ServiceAcceptPage.css */
+
+/* Container for the entire service accept page */
+.service-accept-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading style */
+.service-accept-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-family: 'Arial, sans-serif';
+    font-size: 2em;
+}
+
+/* Container for the list of service requests */
+.service-accept-container .requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Individual service request item */
+.service-accept-container .request-item {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Verdana, sans-serif';
+}
+
+.service-accept-container .request-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Paragraph styles within each service request item */
+.service-accept-container .request-item p {
+    margin: 5px 0;
+    color: #34495e;
+    line-height: 1.5;
+}
+
+/* Strong tag style for labels */
+.service-accept-container .request-item p strong {
+    display: inline-block;
+    width: 200px;
+    font-weight: 600;
+    color: #2980b9;
+}
+ 
+.service-accept-container .request-item h4{
+    color: rgb(14, 13, 13);
+    margin-top: 5px;
+}
+.service-accept-container .request-item h4 span{
+    color: #0818f8;
+    font-weight: bold;
+    background-color: #beebd1;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Container for action buttons aligned to the right */
+.service-accept-container .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Button styles */
+.service-accept-container .accept-button,
+.decline-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.service-accept-container .accept-button {
+    background-color: #27ae60;
+    color: #ffffff;
+}
+
+.service-accept-container .decline-button {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+/* Accepted status style */
+.service-accept-container .status {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.service-accept-container .status.accepted {
+    color: #27ae60;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .service-accept-container .request-item p strong {
+        width: 150px;
+    }
+
+    .service-accept-container .accept-button,
+    .decline-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .service-accept-container .actions {
+        justify-content: flex-start;
+        /* Align buttons to the left on smaller screens for better accessibility */
+        gap: 10px;
+    }
+}

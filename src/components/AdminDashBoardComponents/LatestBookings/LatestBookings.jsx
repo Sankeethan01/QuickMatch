@@ -14,8 +14,8 @@ const LatestBookings = () => {
     <table className="widgetLgTable">
       <tr className="widgetLgTr">
         <th className="widgetLgTh">Customer</th>
-        <th className="widgetLgTh">Date of Booking</th>
-        <th className="widgetLgTh">Service Name</th>
+        <th className="widgetLgTh one" >Date of Booking</th>
+        <th className="widgetLgTh one">Service Name</th>
         <th className="widgetLgTh">Status of Service</th>
       </tr>
       <tr className="widgetLgTr">

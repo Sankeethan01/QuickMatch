@@ -1,0 +1,43 @@
+.feedback-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-item {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.feedback-item:last-child {
+    border-bottom: none;
+}
+
+.feedback-title {
+    text-align: center;
+    color: #333;
+}
+
+.customer-name {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.review-text {
+    margin-bottom: 0.5rem;
+}
+
+.star-rating {
+    color: #ffb400;
+}
+
+@media (max-width:900px){
+    .feedback-container{
+        max-width: 600px;
+        margin: 10px;
+    }
+}

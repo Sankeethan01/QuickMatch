@@ -1,0 +1,27 @@
+
+.iframes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 50px 50px;
+    height: 100%;
+    
+}
+.monitor{
+    flex-basis: 100%;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    border: 2px solid black;
+    height: 90vh;
+    margin: 30px 40px;
+}
+@media (max-width:600px){
+    .iframes{
+        margin: 20px 20px;
+    }
+    .monitor{
+        margin-bottom: 30px;
+        margin: 20px 20px;
+    }
+}

@@ -1,8 +1,9 @@
 .featured-info {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .featured-info .featuredItem {
@@ -29,7 +30,7 @@
 }
 
 .featuredInfoContainer {
-  margin: 10px 0px;
+  margin: 30px 0px;
   display: flex;
   align-items: center;
   justify-content: center;

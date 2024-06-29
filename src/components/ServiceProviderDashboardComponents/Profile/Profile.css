@@ -1,0 +1,123 @@
+/* ProfilePage.css */
+
+/* Main container for the profile page */
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Profile card styling */
+.profile-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Profile picture styling */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    /* Center profile picture */
+}
+
+/* Profile details styling */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-details p {
+    margin: 0.5rem 0;
+}
+
+.profile-details strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Form label styling */
+.profile-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+/* Form input styling */
+.profile-form input,
+.profile-form textarea,
+.profile-form select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.profile-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Form input file styling */
+.profile-form input[type="file"] {
+    margin-top: 0.5rem;
+}
+
+/* Save button styling */
+.save-button,
+.edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-button:hover,
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Save button specific */
+.save-button {
+    margin-top: 1rem;
+    align-self: flex-end;
+    /* Align Save button to the right */
+}
+
+/* Edit button specific */
+.edit-button {
+    align-self: flex-end;
+}
+
+/* Certificate images styling */
+.certificate-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+
+.certificate-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
