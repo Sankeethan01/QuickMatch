@@ -1,0 +1,96 @@
+.provider-card{
+   flex-basis: 30%;
+   margin-bottom: 30px;
+}
+.provider-card .root-card{
+    border: 1px solid rgb(244, 232, 232);
+    border-radius: 5px;
+    padding: 5px;
+}
+.provider-card .root-card .card-container{
+    background-color: #353b48;
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px -10px rgb(0, 0, 0,0.75);
+    color: #b3b8cd;
+    padding: 30px 10px;
+    text-align: center;
+    position: relative;
+}
+.provider-card .root-card .card-container .pro{
+    color: black;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 7px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.provider-card .root-card .card-container .online{
+    background-color:greenyellow;
+}
+.provider-card .root-card .card-container .offline{
+    background-color:#febb0b;
+}
+
+.provider-card .root-card .card-container .card-img{
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 7px;
+}
+
+.provider-card .root-card .card-container .experience{
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.provider-card .root-card .card-container h3{
+    color: #93de08d7;
+    margin: 10px 0;
+}
+.provider-card .root-card .card-container h4,h5{
+    margin: 10px 0;
+}
+.provider-card .root-card .card-container .primary{
+    background-color: transparent;
+    border: 2px solid rgb(242, 242, 251);
+    border-radius: 9px;
+    margin-bottom: 10px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    padding: 5px 15px;
+     cursor: pointer;
+     margin-top: 10px;
+}
+.provider-card .root-card .card-container .primary:hover{
+    background-color: rgb(20, 146, 11);
+    color: rgb(236, 240, 235);
+    border-color: rgb(251, 251, 251); 
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif; 
+    transition:ease-in;
+    transition-duration: 0.5s;
+}
+
+@media (max-width:1000px){
+    .provider-card{
+        flex-basis: 40%;
+        margin-bottom: 30px;
+     }
+}
+@media (max-width:800px){
+    .provider-card{
+        flex-basis: 60%;
+        margin-bottom: 30px;
+     }
+}
+@media (max-width:600px){
+    .provider-card{
+        flex-basis: 80%;
+        margin-bottom: 30px;
+     }
+}

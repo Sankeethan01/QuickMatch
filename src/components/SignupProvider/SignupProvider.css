@@ -1,0 +1,19 @@
+.signup-container{
+    width: 350px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+.signup-container a{
+    color: darkblue;
+    font-size: 12px;
+  }
+  .signup-container .cancel-btn{
+    cursor: pointer;
+    font-size: 2rem;
+    
+  }

@@ -1,0 +1,73 @@
+.Bookingdetails {
+    background-color: whitesmoke;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: -2px 0px 7px 5px rgb(4 1 1 / 10%);
+    border-radius: 20px;
+  }
+  
+  .Bookingdetails p {
+  
+    margin: auto;
+    font-family: auto;
+    font-size: 20px;
+  
+  }
+  
+  .DetailsSubmitbutton {
+  
+    background-color: #e30a0a;
+    color: rgb(255, 254, 254);
+    border: 2px solid rgb(234, 194, 194);
+    float: inline-end;
+    padding: 8px 25px;
+    border-radius: 10px;
+  
+  }
+  
+  .DetailsSubmitbutton:hover {
+  
+    background-color: rgb(10, 169, 60);
+    color: rgb(236, 243, 238);
+    border: 2px solid rgb(10, 169, 60);
+    float: inline-end;
+    padding: 8px 25px;
+    border-radius: 10px;
+  
+  
+  }
+  
+  
+  .bookingpayment {
+  
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-content: center;
+  }
+  
+  .paynowbutton {
+  
+    background-color: #f9fcf9;
+    color: #077b07;
+    border-color: #020202;
+    margin: 10px;
+  }
+  
+  .payconfirmbutton {
+  
+    background-color: #f9fcf9;
+    color: #077b07;
+    border-color: #020202;
+  
+  }
+  
+  .Paymentpage {
+    margin: 10px;
+    box-shadow: -2px 0px 7px 5px rgb(4 1 1 / 10%);
+    padding: 20px;
+    border-radius: 20px;
+  }

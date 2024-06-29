@@ -1,0 +1,70 @@
+.featured-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.featured-info .featuredItem {
+  flex: 1;
+  margin: 40px 20px;
+  padding: 30px;
+  border-radius: 10px;
+  flex-basis: 20%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 25px -10px rgba(31, 37, 162, 0.75);
+}
+.featuredItem:hover{
+    transform: scale(1.1);
+    background-color: rgb(211, 214, 227);
+}
+
+.featuredTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #353e54a3;
+  
+}
+
+.featuredInfoContainer {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featuredValue {
+  font-size: 50px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.featuredIncome{
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.featuredInfoContainer .customer-icon {
+  color: rgb(13, 96, 240);
+  margin-left: 10px;
+  font-size: 50px;
+}
+
+.featuredInfoContainer .provider-icon {
+  color: rgb(211, 15, 71);
+  margin-left: 10px;
+  font-size: 50px;
+}
+.featuredInfoContainer .service-icon{
+    color: hsl(123, 94%, 30%);
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+.featuredInfoContainer .money-icon{
+    color: hsla(204, 4%, 28%, 0.773);
+    margin-left: 10px;
+    font-size: 50px;
+}

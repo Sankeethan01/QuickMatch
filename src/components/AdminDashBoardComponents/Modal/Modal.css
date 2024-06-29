@@ -1,0 +1,94 @@
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    margin: 0;
+    z-index: 50;
+  }
+  
+  .modalContainer {
+    width: 400px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }
+  .modalContainer .cancel-btn{
+    cursor: pointer;
+    font-size: 1.8rem;
+  }
+  .modalContainer .title {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    flex: 40%;
+    border-bottom: 1px solid black;
+  }
+
+  .modalContainer .title p{
+    padding-top: 0px;
+  }
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .modalContainer .title img{
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .modalContainer .body {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 5px 5px;
+   gap: 1px;
+  }
+  .modalContainer .body .small-head{
+    color: rgb(97, 97, 107);
+  }
+
+  .modalContainer .body .icon{
+    width: 20px;
+    padding-right: 5px;
+  }
+  .modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer .footer button {
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #cancelBtn {
+    background-color: crimson;
+  }
+  

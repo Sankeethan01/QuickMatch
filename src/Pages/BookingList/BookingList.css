@@ -1,0 +1,42 @@
+.booking-table{
+    padding: 30px;
+    width: 100%;
+}
+.booking-table .bookingListService{
+    display: flex;
+    align-items: center;
+}
+
+.booking-table .userListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+.table-action{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-left: 3px;
+}
+
+.table-action .action-button{
+    background: rgb(57, 57, 203);
+    color: white;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+.action-button .button-link{
+    text-decoration: none;
+    color: white;
+}
+.table-action .action-button:hover{
+    background: white;
+    border: 1px solid darkblue;
+}
+.action-button .button-link:hover{
+    color: darkblue;
+}

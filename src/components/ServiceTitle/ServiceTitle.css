@@ -1,0 +1,13 @@
+.service-title{
+    margin-top: 150px;
+    text-align: center;
+    
+}
+.service-title .service-name{
+       font-size: 3.5rem;
+       font-weight: bold;
+       font-family:monospace;
+}
+.service-title .service-name span{
+  font-weight: 10;
+}

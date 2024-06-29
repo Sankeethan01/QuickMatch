@@ -1,0 +1,33 @@
+.bookingpayment {
+
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-content: center;
+  }
+  
+  .paynowbutton {
+  
+    background-color: #f9fcf9;
+    color: #077b07;
+    border-color: #020202;
+    margin: 10px;
+  }
+  
+  .payconfirmbutton {
+  
+    background-color: #f9fcf9;
+    color: #077b07;
+    border-color: #020202;
+  
+  }
+  
+  .Paymentpage {
+    margin: 10px;
+    box-shadow: -2px 0px 7px 5px rgb(4 1 1 / 10%);
+    padding: 20px;
+    border-radius: 20px;
+  }

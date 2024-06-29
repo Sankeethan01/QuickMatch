@@ -1,0 +1,81 @@
+.new-users{
+    flex: 1;
+    box-shadow: 5px 5px 25px -10px rgba(31, 37, 162, 0.75);
+    padding: 20px;
+    margin:20px;
+    border-radius: 5px;
+}
+
+.widgetSmTitle{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.widgetSmImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.new-user-img{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.widgetSmList{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widgetSmListItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.widgetSmUser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widgetSmUsername{
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.widgetSmUserTitle{
+    font-weight: 300;
+}
+
+.widgetSmButton{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    background-color: #eeeef7;
+    color: #0a2290;
+    cursor: pointer;
+    font-weight: 600;
+}
+.widgetSmButton .link{
+    color: #0a2290;
+    text-decoration: none;
+}
+.widgetSmButton .link:hover{
+    color: white;
+}
+.widgetSmButton:hover{
+    background-color: #0a2290;
+    color: rgb(247, 240, 240);
+}
+
+.zoom-icon{
+    font-size: 20px !important;
+    margin-right: 5px;
+}

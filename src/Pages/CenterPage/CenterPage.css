@@ -1,0 +1,233 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .User-container {
+    padding: 20px;
+  }
+  
+  .User-container .header-section {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    position: relative;
+  }
+  
+  .User-container .header-section {
+    background: linear-gradient(176deg, #442c83, #2f3133);
+    padding: 30px;
+    border-radius: 8px;
+    color: #fffbfb;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .User-container .header-section h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-family: fangsong;
+  }
+  
+  .User-container .header-section .profile-img {
+    width: 150px;
+    
+    border-radius: 50%;
+    border: 4px solid white;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .User-container .info-section {
+    margin-top: 20px;
+    padding: 30px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
+  }
+  
+  .User-container .info-section h3 {
+    font-size: 130pxrem;
+    color: #091a70;
+    margin-bottom: 10px;
+  }
+  
+  .User-container .info-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .User-container .review {
+    margin-top: 20px;
+    text-align: center;
+    color: #d5750e;
+  }
+  
+  .User-container .reviews-section .review-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .User-container .reviews-section .review-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .User-container .reviews-section .card-title {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .User-container .reviews-section .cardtext1 {
+    font-size: 20px;
+    color: #777;
+    text-align: center;
+  
+  }
+  
+  .User-container .reviews-section .cardtext2 {
+    font-size: 20px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: -20px;
+  
+  }
+  
+  .User-container .Details {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .User-container .Details p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .User-container .Details p strong {
+    color: #007bff;
+  }
+  
+  .User-container .bookbutton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .User-container .submitbutton {
+  
+    margin-top: 20px;
+    background-color: rgb(25, 143, 7);
+    color: rgb(249, 248, 248);
+    border-color: rgb(204, 210, 204);
+  
+  }
+  
+  .User-container .submitbutton:hover {
+  
+    background-color: white;
+    color: rgb(16, 17, 16);
+    border-color: rgb(231, 237, 231);
+  }
+  
+  
+  /* Review Card */
+  
+  .cardreview {
+    margin-top: 20px;
+  }
+  
+  .reviews-section {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .review-card {
+    background-color: #fff;
+  
+    border-radius: 8px;
+    box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .review-card .card-body {
+    padding: 20px;
+  }
+  
+  .review-card .card-title {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .cardtext1 {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .cardtext2 {
+    font-size: 1.1rem;
+    color: #777;
+  }
+  
+  .rating-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .rating-stars .stars {
+    color: #ffc107;
+    /* Star color */
+    font-size: 1.2rem;
+  }
+  
+  .rating-stars .stars:not(:last-child) {
+    margin-right: 5px;
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .available {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .details p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 990px) {
+  
+    .info-section {
+      margin-top: 50px;
+      padding: 30px;
+      background: #f7f7f7;
+      border-radius: 8px;
+      box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
+    }
+  }

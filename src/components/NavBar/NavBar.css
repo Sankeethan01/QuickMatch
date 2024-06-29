@@ -1,0 +1,58 @@
+.nav .middle{
+    margin-left: auto;
+}
+.nav .title{
+    margin-top: auto;
+    margin-left: 10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+}
+.nav{
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    background:#F0F8FF;
+    top: 0;
+    left: 0;
+}
+.nav .logo{
+    cursor: pointer;
+}
+.login-btn{
+    outline: none;
+    background: darkblue;
+    color: white;
+    cursor: pointer;
+    padding: 6px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.login-btn:hover{
+    background: transparent;
+    color: darkblue;
+    border: 2px solid darkblue;
+}
+.signin-btn{
+    outline: none;
+    border: 2px solid darkblue;
+    background: transparent;
+    color: darkblue;
+    cursor: pointer;
+    padding: 6px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.signin-btn:hover{
+    background-color: transparent;
+    color: black;
+    border:2px solid black;
+}
+.action-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
