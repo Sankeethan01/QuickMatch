@@ -28,10 +28,12 @@ const PopupMessage = ({ data, onclose }) => {
           <p className="small-head">Message</p>
 
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            corrupti id eos ipsa suscipit illo autem excepturi nobis dolorum ex
-            maxime voluptate, eius recusandae modi repudiandae possimus tenetur
-            incidunt? Earum!
+          Hi QuickMatch Team,
+
+I love the app! Could you add a feature to save favorite service providers? It would make rebooking much easier. Thanks for considering this suggestion!
+
+Best, 
+ {data.username}
           </p>
         </div>
         <div className="footer-btn">

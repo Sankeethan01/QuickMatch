@@ -13,6 +13,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import './CustomerNav.css'
 
 
 
@@ -79,10 +80,18 @@ const CustomerNav = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <img src={user} alt="" />
-            <h3> Customer 02</h3>
+       
+          <Box sx={style} className="full-box">
+            <div className="profile-box">
+              <img src={user} alt="" />
+              <h3> Customer 02</h3>
+              <h4>customer02@gmail.com</h4>
+              <h4>Jaffna</h4>
+            </div>
+            
           </Box>
+         
+          
         </Fade>
       </Modal>
   </>

@@ -14,7 +14,7 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
-  boxShadow: 24,
+  boxShadow: 30,
   p: 4,
 };
 
@@ -43,7 +43,7 @@ export default function TransitionsModal({username,email,user}) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={style} className="boxxx">
              <div className='feedback-write'>
               <h4>Username : {username}</h4>
               <h4>Email : {email}</h4>

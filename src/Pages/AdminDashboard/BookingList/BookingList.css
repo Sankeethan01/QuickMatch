@@ -3,6 +3,8 @@
 }
 .table-grid{
    margin: 10px 50px;
+   box-shadow: 1px 1px 5px 5px #060b26;
+   
 }
 .booking-table .bookingListService{
     display: flex;
@@ -22,7 +24,7 @@
 }
 
 .table-action .action-button{
-    background: rgb(57, 57, 203);
+    background: #060b26;
     color: white;
     border: none;
     outline: none;

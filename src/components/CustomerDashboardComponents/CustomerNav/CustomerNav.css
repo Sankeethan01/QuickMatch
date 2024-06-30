@@ -1,0 +1,22 @@
+.profile-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+   
+}
+.profile-box img{
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.profile-box h4{
+    font-size: .9rem;
+}
+.full-box{
+    box-shadow: 1px 1px 8px 7px black !important;
+    border-radius: 10px !important;
+  
+}

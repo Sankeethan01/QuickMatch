@@ -29,10 +29,7 @@ const PopupFeedback = ({ data, onclose }) => {
           <p className="small-head">Feedback</p>
 
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
-            corrupti id eos ipsa suscipit illo autem excepturi nobis dolorum ex
-            maxime voluptate, eius recusandae modi repudiandae possimus tenetur
-            incidunt? Earum!
+          QuickMatch is fantastic! The app is user-friendly, and finding and booking service providers is quick and easy. The quality of service providers is excellent. Highly recommend QuickMatch for hassle-free service bookings!
           </p>
         </div>
         <div className="footer-btn">

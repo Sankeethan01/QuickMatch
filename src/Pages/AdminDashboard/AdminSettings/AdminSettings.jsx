@@ -81,7 +81,7 @@ const AdminSettings = () => {
                       />
                     </div>
                     <div className="userUpdateItem">
-                      <label>Phone</label>
+                      <label>Contact No</label>
                       <input
                         type="text"
                         placeholder="+76 411 1147"
