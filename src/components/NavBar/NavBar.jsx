@@ -31,14 +31,14 @@ const NavigationBar = () => {
             />
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" className="toggle-icon"/>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto middle">
-              <Nav.Link><Link to="carousel" smooth={true} offset={-50} duration={500}>Home</Link></Nav.Link>
-              <Nav.Link><Link to="services" smooth={true} offset={-300} duration={500}>Services</Link></Nav.Link>
-              <Nav.Link><Link to="about" smooth={true} offset={-300} duration={500}>About</Link></Nav.Link>
-              <Nav.Link><Link to="review" smooth={true} offset={-300} duration={500}>Reviews</Link></Nav.Link>
-              <Nav.Link><Link to="contact" smooth={true} offset={-280} duration={500}>Contact</Link></Nav.Link>
+              <Nav.Link><Link to="carousel" className="nav-link" smooth={true} offset={-50} duration={500}>Home</Link></Nav.Link>
+              <Nav.Link><Link to="services" className="nav-link" smooth={true} offset={-300} duration={500}>Services</Link></Nav.Link>
+              <Nav.Link><Link to="about" className="nav-link" smooth={true} offset={-300} duration={500}>About</Link></Nav.Link>
+              <Nav.Link><Link to="review" className="nav-link" smooth={true} offset={-300} duration={500}>Reviews</Link></Nav.Link>
+              <Nav.Link><Link to="contact" className="nav-link" smooth={true} offset={-280} duration={500}>Contact</Link></Nav.Link>
             </Nav>
             <Nav>
               <div className="action-btn">

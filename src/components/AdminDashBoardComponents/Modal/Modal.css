@@ -69,14 +69,14 @@
     width: 20px;
     padding-right: 5px;
   }
-  .modalContainer .footer {
+  .modalContainer .footer-btn {
     flex: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .modalContainer .footer button {
+  .modalContainer .footer-btn button {
     width: 150px;
     height: 45px;
     margin: 10px;

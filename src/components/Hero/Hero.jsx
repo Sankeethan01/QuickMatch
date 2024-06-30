@@ -2,8 +2,8 @@ import React from 'react'
 import './Hero.css'
 
 import Carousel from 'react-bootstrap/Carousel';
-import hero2 from '../../assets/hero2.jpg'
 import hero3 from '../../assets/hero3.jpg'
+import hero1 from '../../assets/hero1.jpg'
 
 const Hero = () => {
   return (
@@ -15,18 +15,18 @@ const Hero = () => {
         <div className="hero-text">
           <h2 className="title">QuickMatch</h2>
             <h1>We Find You better Services</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque facilis praesentium in reiciendis recusandae ea necessitatibus error repellendus, voluptatum pariatur saepe quasi, cumque nam eligendi laborum fugiat, dolor sed dolore.</p>
+            <p>QuickMatch is a web app that helps users find the best service providers for three categories. Users can browse, compare, and book their preferred providers, ensuring they receive top-quality service efficiently and conveniently. Enjoy a smooth, hassle-free experience with QuickMatch.</p>
             <button className="btn">Explore More</button>
          </div>
         </div>
       </Carousel.Item>
       <Carousel.Item>
       <div className='intro'>
-        <img  src={hero2}  alt=''/>
+        <img  src={hero1}  alt=''/>
         <div className="hero-text">
             <h2 className="title">QuickMatch</h2>
             <h1>We Find You better Services</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque facilis praesentium in reiciendis recusandae ea necessitatibus error repellendus, voluptatum pariatur saepe quasi, cumque nam eligendi laborum fugiat, dolor sed dolore.</p>
+            <p>QuickMatch is a web app that helps users find the best service providers for three category. Users can browse, compare, and book their preferred providers, ensuring they receive top-quality service efficiently and conveniently. Enjoy a smooth, hassle-free experience with QuickMatch.</p>
             <button className="btn">Explore More</button>
          </div>
         </div>

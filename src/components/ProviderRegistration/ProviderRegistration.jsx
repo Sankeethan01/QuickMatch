@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 const ProviderRegistration = ({comback}) => {
   return (
     <>
-          <div className="login">
+          <div className="essential-registration">
       <div className="register-container">
         <div className="form">
           <form>
@@ -40,7 +40,7 @@ const ProviderRegistration = ({comback}) => {
              
             </div>
             <div className="choose">
-            <p>Attact Proofs Collection : 
+            <p>Attach Proofs Collection : 
              
               </p>
               <input type="file" placeholder="Attach Proofs Collection" required />

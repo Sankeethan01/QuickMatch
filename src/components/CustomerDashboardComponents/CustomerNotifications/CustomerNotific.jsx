@@ -1,6 +1,7 @@
 // src/components/ServiceAcceptPage.js
 import React, { useState } from 'react';
 import './CustomerNotific.css';
+import ShowModal from '../../Write Feedback/ShowModal'
 
 const Notification = () => {
   const [requests, setRequests] = useState([
@@ -26,6 +27,7 @@ const Notification = () => {
   };
 
   return (
+    <>
     <div className="service-accept-container">
       <h2>Activities</h2>
       <div className="requests-list">
@@ -58,6 +60,10 @@ const Notification = () => {
         ))}
       </div>
     </div>
+    <div className='service-accept-container'>
+    <ShowModal username="Jhon Willie" email="willie45@gmail.com" user="Service User"/>
+    </div>
+    </>
   );
 };
 

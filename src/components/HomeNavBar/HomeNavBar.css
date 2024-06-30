@@ -2,18 +2,22 @@
 
 .nav .middle{
     margin-left: auto;
+
+    
 }
+
 
 .nav{
     position: fixed;
     z-index: 20;
     width: 100%;
-    background:#F0F8FF;
+    background:#060b26;
     top: 0;
     left: 0;
 }
 .nav .nav-link{
     text-decoration: none;
+    
 }
 .nav .topAvatar{
     width: 40px;
@@ -60,4 +64,10 @@
     width: 90px;
     border-radius: 50%;
   }
-
+.nav-link-drop{
+  text-decoration: none;
+  color: black;
+}
+.title-drop::after{
+  color: white;
+}

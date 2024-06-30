@@ -47,33 +47,33 @@ const HomeNavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto middle">
-            <Nav.Link>
+            <Nav.Link className="nav-link-back">
             <Link to="/home" className="nav-link">
                 Home
               </Link>
             </Nav.Link>
             <Nav.Link>
-            <NavDropdown title="Services">
+            <NavDropdown title="Services" className="title-drop">
               <NavDropdown.Item>
-                <Link to="/electric" className="nav-link">
+                <Link to="/electric" className="nav-link-drop">
                   Electric Services
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>
-                <Link to="/electronic" className="nav-link">
+                <Link to="/electronic" className="nav-link-drop">
                   Electronic Services
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>
-                <Link to="/construction" className="nav-link">
+                <Link to="/construction" className="nav-link-drop">
                   Construction Works
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>
-                <Link to="/eventmanagement" className="nav-link">
+                <Link to="/eventmanagement" className="nav-link-drop">
                   Event Management
                 </Link>
               </NavDropdown.Item>

@@ -51,7 +51,7 @@
     border-bottom: 1.5px solid #aaaaaa;
   }
   .input_box input:focus {
-    border-color: darkblue;
+    border-color: #060b26;
   }
   .icon{
     position: absolute;
@@ -63,7 +63,7 @@
 
   }
   .input_box input:focus ~ .icon{
-    color: darkblue;
+    color: #060b26;
   }
   .option_field {
     margin-top: 14px;
@@ -73,7 +73,7 @@
   }
 
   .login-container a{
-    color: darkblue;
+    color: #060b26;
     font-size: 12px;
   }
   .checkbox{
@@ -93,7 +93,7 @@
   }
 
   .form .button {
-    background: darkblue;
+    background: #060b26;
     margin-top: 30px;
     width: 100%;
     padding: 10px 0;
@@ -110,7 +110,7 @@
   .login_signup span{
     margin-left: 3px;
     text-decoration: underline;
-    color: darkblue;
+    color: #060b26;
     cursor: pointer;
   }
   .login_signup span:hover{

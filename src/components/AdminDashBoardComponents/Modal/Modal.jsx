@@ -32,7 +32,7 @@ const Modal = ({ setOpenModal, avatar, name, username, email }) => {
             {email}
           </p>
         </div>
-        <div className="footer">
+        <div className="footer-btn">
           <button
             onClick={() => {
               setOpenModal(false);

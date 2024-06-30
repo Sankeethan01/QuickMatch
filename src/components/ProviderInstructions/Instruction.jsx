@@ -2,49 +2,56 @@ import React, { useState } from "react";
 import "./Instruction.css";
 import ProviderRegistration from "../ProviderRegistration/ProviderRegistration";
 
-const Instruction = ({closeInstruct}) => {
+const Instruction = ({ closeInstruct }) => {
+  const [registration, setRegistration] = useState(false);
 
-       const [registration,setRegistration]  = useState(false);
-     
   return (
     <>
-      <div className="login">
+      <div className="instructions">
         <div className="instruction-container">
           <div>
             <h3>Service Provider Instructions</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              voluptatem veritatis similique, eligendi ea explicabo saepe eaque
-              tempora nihil! Qui nemo similique perferendis commodi autem
-              expedita, ducimus quaerat magnam provident dolorem alias ratione
-              et facere maiores facilis quia laborum suscipit temporibus. Ipsam
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              voluptatem veritatis similique, eligendi ea explicabo saepe eaque
-              tempora nihil! Qui nemo similique perferendis commodi autem
-              expedita, ducimus quaerat magnam provident dolorem alias ratione
-              tempora nihil! Qui nemo similique perferendis commodi autem
-              expedita, ducimus quaerat magnam provident dolorem alias ratione
-            
+              Welcome to QuickMatch! Please adhere to these guidelines for a
+              seamless experience: Do not share your mobile number with
+              customers; all interactions must be conducted through the
+              application. Even with repeat customers, ensure all communications
+              are within the platform, as direct connections outside the app are
+              strictly prohibited. Use email only if necessary to contact
+              customers. A portion of your income must be shared with QuickMatch
+              as per our agreement. If you are unable to attend to a customer,
+              decline their request within two weeks of the booking date.
+              Following these instructions helps maintain the integrity and
+              reliability of our platform. Thank you for your cooperation and
+              professionalism.
             </p>
-             <h6><input type="checkbox" name="" id="" /> I agree the terms of conditions.</h6>
+            <h6>
+              <input type="checkbox" name="" id="" /> I agree the terms of
+              conditions.
+            </h6>
           </div>
 
           <div className="button-div">
-          <button className="button" onClick={()=>{
-            closeInstruct(false);
-          }}>Back</button>
-            <button className="button" onClick={()=>{
+            <button
+              className="button"
+              onClick={() => {
+                closeInstruct(false);
+              }}
+            >
+              Back
+            </button>
+            <button
+              className="button"
+              onClick={() => {
                 setRegistration(true);
-            }}>Next</button>
-
+              }}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
-      {
-        registration && (
-            <ProviderRegistration comback={setRegistration}/>
-        )
-      }
+      {registration && <ProviderRegistration comback={setRegistration} />}
     </>
   );
 };

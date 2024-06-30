@@ -20,7 +20,7 @@ const Popup = ({ data, onclose }) => {
           <p>Provider : {data.provider}</p>
           <p>Status : {data.status}</p>
         </div>
-        <div className="footer">
+        <div className="footer-btn">
           <button onClick={onclose} id="cancelBtn">
             Cancel
           </button>

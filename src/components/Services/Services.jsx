@@ -3,9 +3,9 @@ import './Service.css'
 import service1 from '../../assets/service1.jpg'
 import service2 from '../../assets/service2.jpg'
 import service3 from '../../assets/service3.jpg'
-import service1icon from '../../assets/service1icon.png'
-import service2icon from '../../assets/service2icon.png'
-import service3icon from '../../assets/service3icon.png'
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
+import FestivalOutlinedIcon from '@mui/icons-material/FestivalOutlined';
 
 const Services = () => {
   return (
@@ -13,21 +13,21 @@ const Services = () => {
     <div className="program">
        <img src={service1} alt="" />
        <div className="caption">
-           <img src={service1icon} alt="" />
+           <ElectricBoltIcon className='service-icon'/>
            <p>Electric & Electronics</p>
        </div>
     </div>
     <div className="program">
        <img src={service2} alt="" />
        <div className="caption">
-           <img src={service2icon} alt="" />
+           <EngineeringOutlinedIcon className='service-icon'/>
            <p>Construction</p>
        </div>
     </div>
     <div className="program">
        <img src={service3} alt="" />
        <div className="caption">
-           <img src={service3icon} alt="" />
+       <FestivalOutlinedIcon className='service-icon'/>
            <p>Event Management</p>
        </div>
     </div>

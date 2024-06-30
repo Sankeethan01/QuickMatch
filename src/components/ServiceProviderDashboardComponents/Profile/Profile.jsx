@@ -15,7 +15,7 @@ const ProfilePage = () => {
     contactNumber: '123-456-7890',
     bio: 'Experienced service provider specializing in electrical services.',
     profilePicture: 'https://via.placeholder.com/150',
-    serviceType: 'Electric and electronic services',
+    serviceType: 'Electric services',
     location: 'Colombo',
     qualifications: 'Certified Electrician with 10 years of experience.',
     services: 'Electrical installations, Repairs, Maintenance.',

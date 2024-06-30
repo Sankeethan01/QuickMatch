@@ -1,6 +1,7 @@
 // src/components/Feedback.js
 import React, { useState } from 'react';
 import './Feedback.css';
+import ShowModal from '../../Write Feedback/ShowModal'
 
 const Feedback = () => {
   const [feedbacks] = useState([
@@ -25,6 +26,7 @@ const Feedback = () => {
   ]);
 
   return (
+    <>
     <div className="feedback-container">
       <h2 className="feedback-title">Customer Feedback</h2>
       {feedbacks.map((feedback) => (
@@ -34,7 +36,13 @@ const Feedback = () => {
           <p className="review-text">{feedback.comment}</p>
         </div>
       ))}
+
+       
     </div>
+    <div className='feedback-container'>
+    <ShowModal username="Jhon Smith" email="smith78@gmail.com" user="Service Provider"/>
+    </div>
+    </>
   );
 };
 

@@ -1,26 +1,105 @@
-.footer{
-    margin:5% 10%;
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 60px;
+  background-color: #060b26;
+  flex-wrap: wrap;
+  color: white;
+}
+.footer ul li {
+  list-style: none;
+}
+.foot-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 30%;
+  
+}
+.footer h4{
+    color: white;
+    font-weight: 600;
+}
+.foot-left .foot-logo {
+  width: 100px;
+  margin-bottom: 8px;
+}
+.foot-left .foot-icons{
+    width: 30%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #797979;
-    padding: 15px 0;
+    justify-content: space-around;
+    
 }
-.footer ul li{
-    list-style: none;
-    display: inline-block;
-    margin-left: 20px;
+.foot-left .foot-icons .foot-icon{
+    font-size: 2rem;
+     padding-right: 5px;
+}
+.foot-mid{
+    flex-basis: 30%;
+   
+}
+
+.foot-mid p{
+    margin-bottom: 5px;
+}
+.foot-right{
+    flex-basis: 20%;
+    
+}
+.footer .copy-right{
+    flex-basis: 100%;
+     text-align: center;
+     margin-top: 10px;
+}
+
+
+@media (max-width:900px){
+    .foot-left{
+        flex-basis: 40%;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .foot-mid{
+        flex-basis: 40%;
+        margin-bottom: 30px;
+        align-items: center;
+
+       
+    }
+    .foot-right{
+        flex-basis: 40%;
+        align-items: center;
+        
+    }
 }
 
 @media (max-width:600px){
     .footer{
-        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+    .foot-left{
+        flex-basis: 60%;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .foot-mid{
+        flex-basis: 60%;
+        margin-bottom: 30px;
+        align-items: center;
         text-align: center;
+
+       
     }
-    .footer ul li{
-       margin: 10px;
-    }
-    .footer ul{
-        margin-top: 10px;
+    .foot-right{
+        flex-basis: 60%;
+        align-items: center;
+        text-align: center;
+        
     }
 }
+
+
+

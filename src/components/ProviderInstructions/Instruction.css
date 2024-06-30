@@ -1,3 +1,17 @@
+ .instructions{
+  position: fixed;
+  top: 0 ;
+  left: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0); 
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+ }
 .instruction-container{
     width: 450px;
     height: 600px;
@@ -8,13 +22,16 @@
     flex-direction: column;
     padding: 25px;
 }
+.instruction-container p{
+  margin-top: 20px;
+}
 .cancel-btn{
     cursor: pointer;
     font-size: 2rem;
     
   }
   .instruction-container  .button-div .button {
-    background: darkblue;
+    background: #060b26;
     margin-top: 0px;
     width: 100%;
     padding: 10px 0;

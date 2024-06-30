@@ -66,14 +66,14 @@
     color: rgb(97, 97, 107);
     font-size: .8rem;
   }
-  .popup-box .footer {
+  .popup-box .footer-btn {
     flex: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .popup-box .footer button {
+  .popup-box .footer-btn button {
     width: 150px;
     height: 45px;
     margin: 10px;
