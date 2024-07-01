@@ -29,9 +29,9 @@ function App() {
     <div className="app">
        <Router>
         <Routes>
-          <Route path="/" exact Component={IntroPage} />
-          <Route path="/home" exact Component={HomePage} />
-          <Route path="/contact" exact Component={ContactPage} />
+          <Route path="/" exact Component={IntroPage} /> 
+          <Route path="/home" exact Component={HomePage} /> 
+          <Route path="/contact" exact Component={ContactPage} /> 
           <Route path="/construction" exact Component={Constrution} />
           <Route path="/electric" exact Component={Electric} />
           <Route path="/electronic" exact Component={Electronic} />
@@ -49,7 +49,7 @@ function App() {
           <Route path='/providerfeedback' exact Component={ProviderFeedback} />
           <Route path='/providernotifications' exact Component={ProviderNotifications} />
           <Route path='/providerfinance' exact Component={ProviderFinance} />
-          <Route path='/customerhome' exact Component={CustomerMain} />
+          <Route path='/customeraccountsettings' exact Component={CustomerMain} />
           <Route path='/customernotifications' exact Component={CustomerNotification} />
         </Routes>
        </Router>

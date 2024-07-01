@@ -1,14 +1,12 @@
 import React from 'react'
-import CustomerNav from '../../../components/CustomerDashboardComponents/CustomerNav/CustomerNav'
-import SubNav from '../../../components/CustomerDashboardComponents/CustomerSubNav/SubNav'
 import Footer from '../../../components/Footer/Footer'
 import Notification from '../../../components/CustomerDashboardComponents/CustomerNotifications/CustomerNotific'
+import HomeNavBar from '../../../components/HomeNavBar/HomeNavBar'
 
 const CustomerNotification = () => {
   return (
     <>
-     <CustomerNav />
-     <SubNav />
+     <HomeNavBar />
      <Notification />
      <Footer />
     </>

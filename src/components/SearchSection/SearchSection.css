@@ -78,3 +78,13 @@
         flex-basis: 70%;
     }
 }
+
+@media (max-width:600px)
+{
+    .search-section .search-img{
+        flex-basis: 100%;
+    }
+    .search-section .search-input{
+        flex-basis: 100%;
+    }
+}

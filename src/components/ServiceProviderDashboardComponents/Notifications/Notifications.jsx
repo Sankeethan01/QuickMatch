@@ -7,7 +7,6 @@ const Notification = () => {
     {
       id: 1,
       name: 'Alice Smith',
-      contactNumber: '123-456-7890',
       email: 'alice.smith@example.com',
       location: 'Colombo',
       expected_service: 'Need electrical services for my home.',
@@ -18,7 +17,6 @@ const Notification = () => {
     {
       id: 2,
       name: 'Bob Johnson',
-      contactNumber: '987-654-3210',
       email: 'bob.johnson@example.com',
       location: 'Kandy',
       expected_service: 'Looking for a construction contractor.',
@@ -44,7 +42,6 @@ const Notification = () => {
         {requests.map(request => (
           <div key={request.id} className="request-item">
             <p><strong>Name:</strong> {request.name}</p>
-            <p><strong>Contact Number:</strong> {request.contactNumber}</p>
             <p><strong>Email:</strong> {request.email}</p>
             <p><strong>Location:</strong> {request.location}</p>
             <p><strong>Expected Service:</strong> {request.expected_service}</p>

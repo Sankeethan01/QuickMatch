@@ -4,7 +4,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import EmailIcon from "@mui/icons-material/Email";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const Modal = ({ setOpenModal, avatar, name, username, email }) => {
+const Modal = ({ setOpenModal, avatar, name, username, email,type }) => {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -19,7 +19,7 @@ const Modal = ({ setOpenModal, avatar, name, username, email }) => {
         <div className="title">
           <img src={avatar} alt="" />
           <h3>{name}</h3>
-          <p>Admin</p>
+          <p>{type}</p>
         </div>
         <div className="body">
           <p className="small-head">Account Details</p>

@@ -5,7 +5,6 @@ import mail from "../../assets/mail-icon.png";
 import phone from "../../assets/phone-icon.png";
 import address from "../../assets/location-icon.png";
 import arrow from "../../assets/white-arrow.png";
-import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 
 const Contact = () => {
   const [result, setResult] = React.useState("");

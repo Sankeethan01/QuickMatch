@@ -29,7 +29,7 @@ const Notification = () => {
   return (
     <>
     <div className="service-accept-container">
-      <h2>Activities</h2>
+      <h2>Notifications</h2>
       <div className="requests-list">
         {requests.map(request => (
           <div key={request.id} className="request-item">

@@ -25,7 +25,7 @@ const AdminSettings = () => {
                     className="userShowImg"
                   />
                   <div className="userShowTopTitle">
-                    <span className="userShowUsername">Deluxshana</span>
+                    <span className="userShowUsername">Admin01</span>
                     <span className="userShowUserTitle">Admin</span>
                   </div>
                 </div>
@@ -33,12 +33,12 @@ const AdminSettings = () => {
                   <span className="userShowTitle">Account Details</span>
                   <div className="userShowInfo">
                     <PersonOutlineIcon className="userShowIcon" />
-                    <span className="userShowInfoTitle">dinasana10</span>
+                    <span className="userShowInfoTitle">admin01</span>
                   </div>
                   <div className="userShowInfo">
                   <EmailIcon className="userShowIcon" />
                     <span className="userShowInfoTitle">
-                      dinasana10@gmail.com
+                    admin01@gmail.com
                     </span>
                   </div>
                   <span className="userShowTitle">Contact Details</span>
@@ -60,7 +60,7 @@ const AdminSettings = () => {
                       <label>Username</label>
                       <input
                         type="text"
-                        placeholder="annabeck99"
+                        placeholder="admin01"
                         className="userUpdateInput"
                       />
                     </div>
@@ -68,7 +68,7 @@ const AdminSettings = () => {
                       <label>Full Name</label>
                       <input
                         type="text"
-                        placeholder="Deluxshana"
+                        placeholder="Admin01"
                         className="userUpdateInput"
                       />
                     </div>
@@ -76,7 +76,7 @@ const AdminSettings = () => {
                       <label>Email</label>
                       <input
                         type="text"
-                        placeholder="dinasana10@gmail.com"
+                        placeholder="admin01@gmail.com"
                         className="userUpdateInput"
                       />
                     </div>

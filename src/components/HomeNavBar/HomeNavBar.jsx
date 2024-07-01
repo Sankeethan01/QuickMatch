@@ -1,131 +1,140 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Logo from "../../assets/logo.png";
 import user from "../../assets/user-3.png";
 import "./HomeNavBar.css";
-import React  from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 350,
-  height: 300,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
- 
-};
-
+import Dropdown from "react-bootstrap/Dropdown";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import HomeIcon from '@mui/icons-material/Home';
+import WorkIcon from '@mui/icons-material/Work';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import CableIcon from '@mui/icons-material/Cable';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import FestivalOutlinedIcon from '@mui/icons-material/FestivalOutlined';
+import NotificationsActiveIcon from '@mui/icons-material/Notifications';
+import LogoutIcon from "@mui/icons-material/Logout";
+import Modal from "../AdminDashBoardComponents/Modal/Modal";
 
 const HomeNavBar = () => {
-  
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+
+  const [sidebar, setSidebar] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
+  const customer = {
+    name: "Customer02",
+    type: "Customer",
+    avatar: user,
+    username: "customer02",
+    email: "customer02@gmail.com",
+  };
 
   return (
-    <><Navbar collapseOnSelect expand="lg" className="nav">
-      <Container>
-        <Navbar.Brand
-          className="d-flex align-center justify-content-between"
-        >
-          <Link to="/home" className="nav-link">
-          <img className="logo" alt="Logo" src={Logo} width="60" height="60" /></Link>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto middle">
-            <Nav.Link className="nav-link-back">
-            <Link to="/home" className="nav-link">
-                Home
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-            <NavDropdown title="Services" className="title-drop">
-              <NavDropdown.Item>
-                <Link to="/electric" className="nav-link-drop">
-                  Electric Services
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>
-                <Link to="/electronic" className="nav-link-drop">
-                  Electronic Services
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>
-                <Link to="/construction" className="nav-link-drop">
-                  Construction Works
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>
-                <Link to="/eventmanagement" className="nav-link-drop">
-                  Event Management
-                </Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-            </Nav.Link>
-         
-            <Nav.Link>
-              <Link to="/contact" className="nav-link">
-                Contact
-              </Link>
-            </Nav.Link>
-          </Nav>
-          <Nav>
-          <Dropdown>
-      <Dropdown.Toggle variant="success" className="menu-drop">
-        <img src={user} alt="" className="topAvatar" />
-      </Dropdown.Toggle>
+    <>
+      <div className="home-nav">
+        <Link to="#" className="menu-bars">
+          <MenuIcon onClick={showSidebar} />
+        </Link>
+        <div className="topbarWrapper">
+          <div className="topLeft">
+          <Link to="/home" className="nav-link"> <span className="logo">
+           <img src={Logo} alt="" />
+            </span></Link>
+          </div>
+          <div className="topRight">
+            <Dropdown>
+              <Dropdown.Toggle variant="success" className="menu-drop">
+                <img src={user} alt="" className="topAvatar" />
+              </Dropdown.Toggle>
 
-      <Dropdown.Menu className="menu">
-      <Dropdown.ItemText className="user-name"><img src={user} alt="" className="topAvatar" /> Customer 02</Dropdown.ItemText>
-        <Dropdown.Item onClick={handleOpen}>My Account</Dropdown.Item>
-        <Dropdown.Item href="#">Logout</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style} >
-            <div className="info-modal">
-              <img src={user} alt="" />
-               <h2>Customer 02</h2>
-               <h4>customer02@gmail.com</h4>
-               <h4>Jaffna</h4>
-                          </div>
-          </Box>
-        </Fade>
-      </Modal>
+              <Dropdown.Menu className="menu">
+                <Dropdown.ItemText className="admin-name">
+                  <img src={user} alt="" className="topAvatar" /> customer02
+                </Dropdown.ItemText>
+                <Dropdown.Item
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                >
+                  My Account
+                </Dropdown.Item>
+                
+                <Dropdown.Item href="#">Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+      </div>
+      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+        <ul className="nav-menu-items" onClick={showSidebar}>
+          <li className="navbar-toggle">
+            <Link to="#" className="menu-bars">
+              <CloseIcon />
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/home">
+            <HomeIcon />
+              <span>Home</span>
+            </Link>
+          </li>
+          <Dropdown className="service-dropdown">
+          <Dropdown.Header className="drop-head"><WorkIcon />&nbsp;&nbsp;Services</Dropdown.Header>
+          <Dropdown.Item eventKey="2" className="service-link"><ElectricBoltIcon className="symbol"/>&nbsp;<Link to="/electric" className="nav-link">Electric</Link></Dropdown.Item>
+          <Dropdown.Item eventKey="3" className="service-link"><CableIcon className="symbol"/>&nbsp;<Link to="/electronic" className="nav-link">Electronic</Link></Dropdown.Item>
+          <Dropdown.Item eventKey="4" className="service-link"><ConstructionIcon className="symbol"/>&nbsp;<Link to="/construction" className="nav-link">Construction</Link></Dropdown.Item>
+          <Dropdown.Item eventKey="5" className="service-link"><FestivalOutlinedIcon className="symbol"/>&nbsp; <Link to="/eventmanagement" className="nav-link">Event Management</Link></Dropdown.Item>
+            </Dropdown>
+          <li className="nav-text">
+            <Link to="/customeraccountsettings">
+            <ManageAccountsIcon />
+              <span>Account Settings</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/customernotifications">
+            <NotificationsActiveIcon />
+              <span>Notifications</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/contact">
+            <PermPhoneMsgIcon />
+              <span>Contact</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/">
+            <LogoutIcon />
+              <span>Logout</span>
+            </Link>
+          </li>
+        </ul>
+        <div className="admin-footer">
+          &copy; {new Date().getFullYear()} QuickMatch
+        </div>
+      </nav>
+
+      {modalOpen && customer && (
+        <Modal
+          setOpenModal={setModalOpen}
+          avatar={customer.avatar}
+          name={customer.name}
+          username={customer.username}
+          email={customer.email}
+          type={customer.type}
+        />
+      )}
+      
     </>
   );
 };

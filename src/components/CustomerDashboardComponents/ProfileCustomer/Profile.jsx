@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../CustomerDashboardComponents/ProfileCustomer/Profile'; // Import the CSS file
+import '../../ServiceProviderDashboardComponents/Profile/Profile.css'; // Import the CSS file
 
 const districts = [
   'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
@@ -57,7 +57,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <h2>Profile Page</h2>
+      <h2>Account Settings</h2>
       <div className="profile-card">
         <img
           src={profile.profilePicture}

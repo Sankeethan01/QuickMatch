@@ -16,8 +16,8 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import ForumIcon from "@mui/icons-material/Forum";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
-import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import EngineeringIcon from '@mui/icons-material/Engineering';
 
 const AdminNavbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -26,10 +26,11 @@ const AdminNavbar = () => {
   const showSidebar = () => setSidebar(!sidebar);
 
   const admin = {
-    name: "Deluxshana",
+    name: "Admin01",
+    type: "Admin",
     avatar: user_icon,
-    username: "dinasana10",
-    email: "dinasana10@gmail.com",
+    username: "admin01",
+    email: "admin01@gmail.com",
   };
 
   return (
@@ -40,9 +41,9 @@ const AdminNavbar = () => {
         </Link>
         <div className="topbarWrapper">
           <div className="topLeft">
-            <span className="logo">
-              <img src={logo} alt="" />
-            </span>
+          <Link to="/adminhome" className="nav-link"> <span className="logo">
+           <img src={logo} alt="" />
+            </span></Link>
           </div>
           <div className="topRight">
             <Dropdown className="notific">
@@ -85,12 +86,8 @@ const AdminNavbar = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/adminsettings" className="drop-link">
-                    Settings
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item href="#">Logout</Dropdown.Item>
+                
+                <Dropdown.Item><Link to="/" className="nav-link">Logout</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -124,7 +121,7 @@ const AdminNavbar = () => {
           </li>
           <li className="nav-text">
             <Link to="/adminproviderlist">
-              <ManageAccountsIcon />
+              <EngineeringIcon />
               <span>Providers</span>
             </Link>
           </li>
@@ -154,8 +151,8 @@ const AdminNavbar = () => {
           </li>
           <li className="nav-text">
             <Link to="/adminsettings">
-              <SettingsIcon />
-              <span>Settings</span>
+              <ManageAccountsIcon />
+              <span>Account Settings</span>
             </Link>
           </li>
           <li className="nav-text">
@@ -173,6 +170,7 @@ const AdminNavbar = () => {
       {modalOpen && admin && (
         <Modal
           setOpenModal={setModalOpen}
+          type={admin.type}
           avatar={admin.avatar}
           name={admin.name}
           username={admin.username}

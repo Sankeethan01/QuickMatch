@@ -6,6 +6,7 @@
     border-radius: 8px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
 }
 
 .feedback-item {
@@ -38,6 +39,6 @@
 @media (max-width:900px){
     .feedback-container{
         max-width: 600px;
-        margin: 10px;
+        
     }
 }

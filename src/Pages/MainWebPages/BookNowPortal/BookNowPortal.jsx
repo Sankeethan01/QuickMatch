@@ -181,6 +181,7 @@ const BookNowPortal = (props) => {
             <p>Address: {bookingDetails.address}</p>
             <p>Notes: {bookingDetails.notes}</p>
             <p>Provider Name: {bookingDetails.providerName}</p>
+            <p>Booking Fee : Rs 200</p>
           </div>
         )}
       </Modal.Body>

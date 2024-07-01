@@ -1,5 +1,5 @@
 .contact{
-    margin: 150px auto;
+    margin: 120px auto;
     max-width: 90%;
     display: flex;
     align-content: center;
@@ -12,7 +12,7 @@
 .contact-col h3{
     color: #000F38;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 30px;
     display: flex;
 align-items: center;
 margin-bottom: 20px;

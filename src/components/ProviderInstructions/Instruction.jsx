@@ -18,8 +18,7 @@ const Instruction = ({ closeInstruct }) => {
               application. Even with repeat customers, ensure all communications
               are within the platform, as direct connections outside the app are
               strictly prohibited. Use email only if necessary to contact
-              customers. A portion of your income must be shared with QuickMatch
-              as per our agreement. If you are unable to attend to a customer,
+              customers. If you are unable to attend to a customer,
               decline their request within two weeks of the booking date.
               Following these instructions helps maintain the integrity and
               reliability of our platform. Thank you for your cooperation and

@@ -1,18 +1,16 @@
-import React from 'react'
-import CustomerNav from '../../../components/CustomerDashboardComponents/CustomerNav/CustomerNav'
-import SubNav from '../../../components/CustomerDashboardComponents/CustomerSubNav/SubNav'
-import Profile from '../../../components/CustomerDashboardComponents/ProfileCustomer/Profile'
-import Footer from '../../../components/Footer/Footer'
+import React from "react";
+import Profile from "../../../components/CustomerDashboardComponents/ProfileCustomer/Profile";
+import Footer from "../../../components/Footer/Footer";
+import HomeNavBar from "../../../components/HomeNavBar/HomeNavBar";
 
 const CustomerMain = () => {
   return (
     <>
-      <CustomerNav />
-      <SubNav />
+      <HomeNavBar />
       <Profile />
       <Footer />
     </>
-  ) 
-}
+  );
+};
 
-export default CustomerMain
+export default CustomerMain;
