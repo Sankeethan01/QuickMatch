@@ -22,12 +22,14 @@ import ProviderNotifications from './Pages/ServiceProviderDashboard/ProviderNoti
 import ProviderFinance from './Pages/ServiceProviderDashboard/ProviderFinance/ProviderFinance';
 import CustomerMain from './Pages/CustomerDashboard/CustomerMain/CustomerMain';
 import CustomerNotification from './Pages/CustomerDashboard/CustomerNotifications/CustomerNotification';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 
 function App() {
   return (
     <div className="app">
        <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" exact Component={IntroPage} /> 
           <Route path="/home" exact Component={HomePage} /> 
