@@ -17,7 +17,7 @@ import FeedbackIcon from "@mui/icons-material/Feedback";
 import ForumIcon from "@mui/icons-material/Forum";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import LogoutIcon from "@mui/icons-material/Logout";
-import EngineeringIcon from '@mui/icons-material/Engineering';
+import EngineeringIcon from "@mui/icons-material/Engineering";
 
 const AdminNavbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -41,9 +41,12 @@ const AdminNavbar = () => {
         </Link>
         <div className="topbarWrapper">
           <div className="topLeft">
-          <Link to="/adminhome" className="nav-link"> <span className="logo">
-           <img src={logo} alt="" />
-            </span></Link>
+            <Link to="/adminhome" className="nav-link">
+              {" "}
+              <span className="logo">
+                <img src={logo} alt="" />
+              </span>
+            </Link>
           </div>
           <div className="topRight">
             <Dropdown className="notific">
@@ -86,8 +89,12 @@ const AdminNavbar = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                
-                <Dropdown.Item><Link to="/" className="nav-link">Logout</Link></Dropdown.Item>
+
+                <Dropdown.Item>
+                  <Link to="/" className="nav-link">
+                    Logout
+                  </Link>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>

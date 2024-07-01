@@ -64,7 +64,7 @@ const HomeNavBar = () => {
                   My Account
                 </Dropdown.Item>
                 
-                <Dropdown.Item href="#">Logout</Dropdown.Item>
+                <Dropdown.Item><Link to="/" className="nav-link">Logout</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
