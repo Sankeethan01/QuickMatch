@@ -12,6 +12,7 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Modal from "../../AdminDashBoardComponents/Modal/Modal";
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 
 const ProviderNav = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -95,6 +96,13 @@ const ProviderNav = () => {
             <Link to="/providerfeedback">
               <FeedbackIcon />
               <span>Feedback</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/providercontact">
+              <PermPhoneMsgIcon />
+              <span>Contact</span>
             </Link>
           </li>
 

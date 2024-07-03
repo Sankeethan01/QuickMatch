@@ -182,6 +182,7 @@ const BookNowPortal = (props) => {
             <p>Notes: {bookingDetails.notes}</p>
             <p>Provider Name: {bookingDetails.providerName}</p>
             <p>Booking Fee : Rs 200</p>
+            <p className="payment-instructions">*If the provider declines or does not accept your service within 2 weeks, we will refund   &nbsp;&nbsp;your amount. Otherwise, the payment will not be refunded to you.</p>
           </div>
         )}
       </Modal.Body>

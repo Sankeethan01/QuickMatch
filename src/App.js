@@ -23,6 +23,7 @@ import ProviderFinance from './Pages/ServiceProviderDashboard/ProviderFinance/Pr
 import CustomerMain from './Pages/CustomerDashboard/CustomerMain/CustomerMain';
 import CustomerNotification from './Pages/CustomerDashboard/CustomerNotifications/CustomerNotification';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import ProviderContact from './Pages/ServiceProviderDashboard/ProviderContact/ProviderContact';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path='/providerfeedback' exact Component={ProviderFeedback} />
           <Route path='/providernotifications' exact Component={ProviderNotifications} />
           <Route path='/providerfinance' exact Component={ProviderFinance} />
+          <Route path='/providercontact' exact Component={ProviderContact} />
           <Route path='/customeraccountsettings' exact Component={CustomerMain} />
           <Route path='/customernotifications' exact Component={CustomerNotification} />
         </Routes>

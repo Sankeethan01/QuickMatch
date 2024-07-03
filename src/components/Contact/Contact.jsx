@@ -73,11 +73,11 @@ const Contact = () => {
             placeholder="Enter Your Name "
             required
           />
-          <label htmlFor="">Phone Number</label>
+          <label htmlFor="">Email Address</label>
           <input
             type="tel"
-            name="phone"
-            placeholder="Enter Phone Number"
+            name="email"
+            placeholder="Enter Email Address"
             required
           />
           <label htmlFor="">Write Your Message Here</label>
