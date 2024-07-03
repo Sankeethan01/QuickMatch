@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../ServiceProviderDashboardComponents/Profile/Profile.css'; // Import the CSS file
+import user from "../../../assets/user-3.png";
 
 const districts = [
   'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
@@ -14,7 +15,7 @@ const ProfilePage = () => {
     email: 'john.doe@example.com',
     contactNumber: '123-456-7890',
     
-    profilePicture: 'https://via.placeholder.com/150',
+    profilePicture: user,
     
     location: 'Colombo',
     

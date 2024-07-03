@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Profile.css'; // Import the CSS file
+import user from "../../../assets/user-4.png";
 
 const districts = [
   'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
@@ -14,7 +15,7 @@ const ProfilePage = () => {
     email: 'john.doe@example.com',
     contactNumber: '123-456-7890',
     bio: 'Experienced service provider specializing in electrical services.',
-    profilePicture: 'https://via.placeholder.com/150',
+    profilePicture: user,
     serviceType: 'Electric services',
     location: 'Colombo',
     qualifications: 'Certified Electrician with 10 years of experience.',
