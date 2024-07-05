@@ -13,6 +13,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Modal from "../../AdminDashBoardComponents/Modal/Modal";
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import { DropdownItem } from "react-bootstrap";
 
 const ProviderNav = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -57,7 +58,6 @@ const ProviderNav = () => {
                 >
                   My Account
                 </Dropdown.Item>
-
                 <Dropdown.Item href="#">Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

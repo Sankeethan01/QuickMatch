@@ -84,6 +84,7 @@ const ProfilePage = () => {
           alt="Profile"
           className="profile-picture"
         />
+        
         {isEditing ? (
           <form className="profile-form" onSubmit={handleFormSubmit}>
             <label>
@@ -252,6 +253,10 @@ const ProfilePage = () => {
           </div>
         )}
       </div>
+      <h2 className='status-head'>My Status : <select id='status' className='status'>
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+        </select></h2>
     </div>
   );
 };
