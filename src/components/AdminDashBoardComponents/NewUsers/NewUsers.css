@@ -1,8 +1,9 @@
 .new-users{
-    flex: 1;
+    flex-basis: 45%;
     box-shadow: 5px 5px 25px -10px rgba(31, 37, 162, 0.75);
     padding: 20px;
-    margin:20px 50px;
+    margin-top:20px;
+    margin-left: 50px;
     border-radius: 5px;
 }
 
@@ -79,17 +80,23 @@
     font-size: 18px !important;
 }
 
-@media (max-width:1000px){
-    .widgetSmUsername{
-        font-size: .8rem;
+@media (max-width:1050px){
+    .new-users{
+        flex-basis: 90%;
+        margin-right: 50px;
     }
+    
+}
+
+
+
+@media (max-width:700px){
+    
     .widgetSmUserTitle{
        display: none;
     }
-    .widgetSmButton{
-        font-size: .8rem;
+    .new-users{
+        margin-right: 50px;
     }
-    .zoom-icon{
-        font-size: .8rem;
-    }
+   
 }

@@ -1,13 +1,14 @@
 .latest-bookings {
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     padding: 20px;
-    margin: 30px 50px;
+    margin: 50px 50px;
   }
   
   .widgetLgTitle {
     font-size: 22px;
     font-weight: 600;
     margin-top: 5px;
+    margin-left: 20px;
   }
   
   .widgetLgTable{
@@ -72,7 +73,7 @@
 
 }
 
-@media (max-width:600px){
+@media (max-width:700px){
   .one{
     display: none;
   }
@@ -89,6 +90,14 @@
   }
   .widgetLgImg{
     margin-right: 0;
+  }
+ 
+}
+
+@media (max-width:500px){
+  .widgetLgTable{
+  
+    margin-left: 0px;
   }
 }
   
