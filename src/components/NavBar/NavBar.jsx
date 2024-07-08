@@ -32,7 +32,7 @@ const NavigationBar = () => {
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" className="toggle-icon"/>
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav" className="collapse-icon">
             <Nav className="me-auto middle">
               <Nav.Link><Link to="carousel" className="nav-link" smooth={true} offset={-50} duration={500}>Home</Link></Nav.Link>
               <Nav.Link><Link to="services" className="nav-link" smooth={true} offset={-300} duration={500}>Services</Link></Nav.Link>

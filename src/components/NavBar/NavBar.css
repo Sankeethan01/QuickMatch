@@ -26,6 +26,12 @@
 .nav .logo{
     cursor: pointer;
 }
+.toggle-icon{
+   color: white;
+    background:whitesmoke;
+    margin: 5px 10px;
+    padding-left: 5px;
+}
 .login-btn{
     outline: none;
     background: transparent;
@@ -68,5 +74,11 @@
 @media (max-width:1000px){
     .nav .nav-link:hover{
         transform: none;
+    }
+    
+}
+@media (max-width:600px){
+    .nav-link{
+        margin-left: 5px;
     }
 }
