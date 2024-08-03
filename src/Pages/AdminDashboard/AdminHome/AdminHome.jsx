@@ -23,7 +23,7 @@ const AdminHome = () => {
         dataKey="Active User"
       />
       <div className="new-users-container">
-        <NewUsers title="New Customers" job="Service User" />
+        <NewUsers />
         <NewProvider />
       </div>
       <LatestBookings />

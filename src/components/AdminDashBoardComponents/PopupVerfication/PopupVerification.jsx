@@ -12,6 +12,7 @@ const PopupVerification = ({ data, onclose }) => {
         <div className="title">
           <h3>Verification Details</h3>
           <p>Verification Id : {data.id}</p>
+          <p>Username : {data.username}</p>
         </div>
         <div className='body'>
         <p className="small-head">Required Details</p>
@@ -19,9 +20,9 @@ const PopupVerification = ({ data, onclose }) => {
         
         
        
-        <p>Name: {data.provider}</p>
+        <p>Name: {data.name}</p>
          <p>Email : {data.email} </p>
-          <p>Service : {data.service}</p>
+          <p>Service : {data.service_category}</p>
           <p>Registered : {data.date}</p>
         </div>
         </div>
@@ -29,9 +30,9 @@ const PopupVerification = ({ data, onclose }) => {
         <div className="body">
           <p className="small-head">Additional Details</p>
           
-          <p>Proof : </p>
+          <p>Proof : {data.proof}</p>
           
-          <p>Other Requirements: </p>
+          <p>Description: {data.description}</p>
         </div>
         <div className="footer-btn">
             <button>Verify</button>

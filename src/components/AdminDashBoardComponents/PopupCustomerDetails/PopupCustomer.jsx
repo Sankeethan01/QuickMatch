@@ -12,16 +12,17 @@ const PopupCustomer = ({ data, onclose }) => {
         <div className="title">
           <h3>Customer Details</h3>
           <p>Customer Id : {data.id}</p>
+          <p>Username : {data.username}</p>
         </div>
         <div className='body'>
         <p className="small-head">Required Details</p>
         <div className='info'>
-        <img src={data.avatar} alt="" />
+        <img src={`http://localhost/quickmatch_api/profile_images/${data.profile_image}`} alt="" />
         
         <div className=''>
-        <h3>{data.username}</h3>
-         <p>{data.email} </p>
-          <p>{data.address}</p>
+        <h5>{data.name}</h5>
+         
+          <p>{data.email}</p>
         </div>
         </div>
         </div>
@@ -29,9 +30,10 @@ const PopupCustomer = ({ data, onclose }) => {
         <div className="body">
           <p className="small-head">Additional Details</p>
           
-          <p>Status : {data.status}</p>
+          <p>Contact No : {data.phone}</p>
           
-          <p>Services Got : {data.services_got}</p>
+          <p>National ID : {data.national_id}</p>
+          <p>Address : {data.address}</p>
         </div>
         <div className="footer-btn">
           <button onClick={onclose} id="cancelBtn">

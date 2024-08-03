@@ -24,7 +24,7 @@
   
   .userUpdate {
     flex-basis: 60%;
-    padding: 20px;
+    padding: 50px;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 
@@ -109,6 +109,7 @@
       width: 250px;
       height: 30px;
       border-bottom: 1px solid gray;
+      padding: 5px;
   }
   
   .userUpdateRight{
@@ -148,7 +149,7 @@
     border:1px solid darkblue;
     color: darkblue;
   }
-  @media (max-width:800px)
+  @media (max-width:900px)
   {
     .userShow{
         flex-basis: 100%;

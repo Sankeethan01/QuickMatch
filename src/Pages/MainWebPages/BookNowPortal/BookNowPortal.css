@@ -1,3 +1,7 @@
+.book-now{
+  background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
+}
 .Bookingdetails {
     background-color: whitesmoke;
     margin: 10px;
@@ -74,3 +78,4 @@
   .payment-instructions{
     color: rgb(63, 67, 70);
   }
+

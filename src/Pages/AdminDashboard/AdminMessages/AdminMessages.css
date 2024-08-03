@@ -1,6 +1,8 @@
 .message-table{
-    padding: 30px;
-    width: 100%;
+    height: 535px;
+    overflow:hidden;
+    margin:15px 65px;
+    box-shadow: 1px 1px 8px 5px black;
 }
 .message-table .bookingListService{
     display: flex;
@@ -39,4 +41,10 @@
 }
 .action-button .button-link:hover{
     color: darkblue;
+}
+
+@media (max-width:900px) {
+    .message-table{
+        margin:20px 30px;;
+    }
 }

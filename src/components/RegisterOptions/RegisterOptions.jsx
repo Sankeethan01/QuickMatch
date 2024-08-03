@@ -21,9 +21,11 @@ const RegisterOptions = ({signupClose,loginClose}) => {
               <div className="button-div">
               <button className="button" onClick={()=>{
                 setCustomerSignup(true);
+                
               }}>Register as Customer</button>
               <button className="button" onClick={()=>{
                 setProviderSignup(true);
+              
               }}>Register as Service Provider</button>
               </div>
               <div className="login_signup">
@@ -32,13 +34,10 @@ const RegisterOptions = ({signupClose,loginClose}) => {
                 signupClose(false);
                 loginClose(true);
               }}>Login</span>
-                
-             
             </div>
-        
         </div>
          {customerSignup && (
-            <Signup onclose={setCustomerSignup} />
+            <Signup onclose ={setCustomerSignup} />
          )}
          {
             providerSignup && (

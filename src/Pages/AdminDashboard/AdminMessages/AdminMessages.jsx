@@ -1,21 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminMessages.css";
 import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/PageTitle";
-import { dataMessage } from "../../../DummyData";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import PopupMessage from "../../../components/AdminDashBoardComponents/PopupMessage/PopupMessage";
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
+import axios from "axios";
+import logo from '../../../assets/logo.png';
 
 const AdminMessages = () => {
-  const [data, setData] = useState(dataMessage);
   const [dataId, setDataId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  const fetchMessages = async () => {
+    axios
+      .get("http://localhost/quickmatch_api/messages.php")
+      .then((response) => {
+        console.log(response.data);
+       
+        
+        setLoading(false);
+
+        const transformedData = response.data.map((message, index) => ({
+           id : message.message_id,
+           message : message.message,
+           name : message.name,
+           email : message.email,
+           date: message.date,
+        }));
+
+        console.log("Transformed Data: ", transformedData);
+        setMessages(transformedData);
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching  feedbacks : ", error);
+        setLoading(false);
+      });
   };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this data?");
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete('http://localhost/quickmatch_api/messages.php', {
+          data: { id: id }
+        });
+        console.log(response.data);
+      
+        setMessages(messages.filter((message) => message.id !== id));
+        alert("Data deleted successfully");
+      } catch (error) {
+        console.error("Error deleting message: ", error);
+      }
+    }
+  };
+
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
+  }
+  
+
+
 
   const handleViewClick = (id) => {
     setDataId(id);
@@ -26,15 +86,15 @@ const AdminMessages = () => {
        setModalOpen(false);
   };
 
-  const selectedRowData = dataMessage.find(row => row.id === dataId);
+  const selectedRowData = messages.find(row => row.id === dataId);
 
 
   const columns = [
     { field: "id", headerName: "MessageID", width: 200 },
 
     {
-      field: "username",
-      headerName: "Username",
+      field: "name",
+      headerName: "Name",
       width: 250,
     },
     {
@@ -80,19 +140,25 @@ const AdminMessages = () => {
           <PageTitle heading="Messages" />
           <div className="message-table">
             <DataGrid
-              rows={data}
+            getRowClassName={(params) =>
+              params.indexRelativeToCurrentPage === 0 ? 'first-row' : ''
+            }
+              rows={messages}
               disableSelectionOnClick
               columns={columns}
               pageSize={8}
               initialState={{
                 pagination: {
-                  paginationModel: { page: 0, pageSize: 10 },
+                  paginationModel: { page: 0, pageSize: 7 },
                 },
               }}
-              pageSizeOptions={[10, 15]}
+              pageSizeOptions={[7, 10,15]}
               checkboxSelection
               disableRowSelectionOnClick
               className="table-grid"
+              rowHeight={60}
+              columnHeaderHeight={60}
+              
             />
           </div>
       

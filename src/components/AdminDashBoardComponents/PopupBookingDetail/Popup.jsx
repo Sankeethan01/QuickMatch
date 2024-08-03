@@ -12,6 +12,7 @@ const Popup = ({ data, onclose }) => {
         <div className="title">
           <h3>Service Booking Details</h3>
           <p>Booking Id : {data.id}</p>
+          <p>Booked Date : {data.date}</p>
         </div>
         <div className="body">
           <p className="small-head">Required Details</p>

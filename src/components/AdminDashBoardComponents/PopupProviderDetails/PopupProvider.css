@@ -1,111 +1,130 @@
 .popup-provider{
-    position: fixed;
-    top: 0 ;
-    left: 0;
-    margin: 0;
-    background-color: rgba(0, 0, 0, 0.5); 
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    
+  position:absolute;
+  top: 0 ;
+  left: 0;
+  margin: 0;
+  bottom: 0;
+  background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
+  width: 100%;
+  height: 150%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
 }
 .popup-provider .popup-box{
-     
-    width: 400px;
-    height: 500px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 1px 1px 20px 10px #060b26;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
+   
+  width: 550px;
+  height: 900px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 1px 1px 20px 10px #060b26;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+ 
 }
 
 .popup-provider .popup-box .cancel-btn{
-    cursor: pointer;
-    font-size: 1.8rem;
-  }
-  .popup-provider  .popup-box .title {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    flex: 40%;
-    border-bottom: 1px solid black;
-  }
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+.popup-provider  .popup-box .title {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+  flex: 40%;
+  border-bottom: 1px solid black;
+}
 
-  .popup-provider .popup-box .title p{
-    padding-top: 0px;
-  }
+.popup-provider .popup-box .title p{
+  padding-top: 0px;
+}
 
 
-  .popup-provider .titleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
-  }
+.popup-provider .titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-provider .titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.popup-provider .popup-box .body {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin: 10px 5px;
+ gap: 1px;
+ border-bottom: 1px solid black;
+}
+.body-more{
+  border-bottom: 1px solid black;
+}
+.body-more .small-head{
+  text-align: center;
+}
+.popup-provider .popup-box .body .small-head{
+  color: rgb(97, 97, 107);
+  font-size: .8rem;
+}
+.popup-provider .popup-box .body .info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
   
-  .popup-provider .titleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-  }
+}
+.popup-provider .popup-box .body .info h5{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+}
+
+.popup-provider .popup-box .body .info img{
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.popup-provider .popup-box .footer-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
   
-  .popup-provider .popup-box .body {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   margin: 5px 5px;
-   gap: 1px;
-   border-bottom: 1px solid black;
-  }
-
-  .popup-provider .popup-box .body .small-head{
-    color: rgb(97, 97, 107);
-    font-size: .8rem;
-  }
-  .popup-provider .popup-box .body .info{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-  .popup-provider .popup-box .body .info img{
-    width: 100px;
-    border-radius: 50%;
-    margin-right: 30px;
-  }
-
-  .popup-provider .popup-box .body .info div p{
-      
-      margin-bottom: 2px;
-  }
-
-  .popup-provider .popup-box .footer-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+}
 
 
-  
-  .popup-provider .popup-box .footer-btn button {
-    width: 100px;
-    height: 40px;
-    margin: 5px;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
+
+.popup-provider .popup-box .footer-btn button {
+  width: 140px;
+  height: 50px;
+  margin: 5px 0;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.popup-provider #cancelBtn {
+  background-color: crimson;
+}
+
+@media (max-width:560px)
+{
+  .popup-provider .popup-box{
+    width: 420px;
   }
-  
-  .popup-provider #cancelBtn {
-    background-color: crimson;
-  }
+}

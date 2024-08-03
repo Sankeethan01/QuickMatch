@@ -1,6 +1,5 @@
-import { React, useState } from "react";
+import { React, useState ,useEffect} from "react";
 import SearchSection from "../../../components/SearchSection/SearchSection";
-import { constructorsData } from "../../../userData";
 import ProviderCard from "../../../components/ProviderCard/ProviderCard";
 import './Construction.css'
 import ServiceTitle from "../../../components/ServiceTitle/ServiceTitle";
@@ -8,12 +7,33 @@ import HomeNavBar from "../../../components/HomeNavBar/HomeNavBar";
 import Footer from "../../../components/Footer/Footer";
 import CenterPage from "../CenterPage/CenterPage";
 import construction_img from '../../../assets/construction_work.jpg';
+import axios from "axios";
 
 const Construction = () => {
+  
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [filteredUsers, setFilteredUsers] = useState(constructorsData);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/quickmatch_api/services.php?action=construction"
+      );
+      const data = response.data;
+      console.log("raw data: ", data);
+      setUsers(data);
+      setFilteredUsers(data);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
 
   const handleShowModal = (user) => {
     setSelectedUser(user);
@@ -21,17 +41,17 @@ const Construction = () => {
   };
 
   const handleSearch = (city, work) => {
-    let filtered = constructorsData;
+    let filtered = users;
 
     if (city) {
       filtered = filtered.filter((user) =>
-        user.city.toLowerCase().includes(city.toLowerCase())
+        user.address.toLowerCase().includes(city.toLowerCase())
       );
     }
 
     if (work) {
       filtered = filtered.filter((user) =>
-        user.desc.toLowerCase().includes(work.toLowerCase())
+        user.description.toLowerCase().includes(work.toLowerCase())
       );
     }
 
@@ -65,12 +85,14 @@ const Construction = () => {
           show={modalShow}
           onHide={() => setModalShow(false)}
           name={selectedUser.name}
-          city={selectedUser.city}
-          desc={selectedUser.desc}
-          exp={selectedUser.exp}
-          profile={selectedUser.profile}
+          city={selectedUser.address}
+          service_name={selectedUser.service_name}
+          exp={selectedUser.description}
+          profile={selectedUser.profile_image}
           email={selectedUser.email}
           phone={selectedUser.phone}
+          provider_id={selectedUser.provider_id}
+          service_category_id={selectedUser.service_category_id}
         />
       )}
     </div>

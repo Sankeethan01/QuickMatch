@@ -77,7 +77,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <h2>Account Settings</h2>
+      <h2>Profile Settings</h2>
       <div className="profile-card">
         <img
           src={profile.profilePicture}

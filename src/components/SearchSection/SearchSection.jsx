@@ -18,6 +18,8 @@ const SearchSection = ({ handleSearch ,img}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearch(city, work);
+    setCity(""); 
+    setWork("");
   };
 
   return (

@@ -5,7 +5,8 @@
     top: 0 ;
     left: 0;
     margin: 0;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
     width: 100%;
     height: 100%;
     z-index: 60;
@@ -35,6 +36,13 @@
     border: none;
     color: white;
   }
+  .button-div .button:hover{
+    background: white;
+    border: 2px solid #060b26;
+    color:  #060b26;
+    font-weight: bold;
+  }
+
 
   .option-continer .cancel-btn{
     cursor: pointer;

@@ -1,7 +1,4 @@
-import Logo from "../../assets/logo.png";
-import user from "../../assets/user-3.png";
-import "./HomeNavBar.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,21 +14,49 @@ import FestivalOutlinedIcon from '@mui/icons-material/FestivalOutlined';
 import NotificationsActiveIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from "@mui/icons-material/Logout";
 import Modal from "../AdminDashBoardComponents/Modal/Modal";
+import Logo from "../../assets/logo.png";
+import userAvatar from "../../assets/user-3.png";
+import "./HomeNavBar.css";
+import axios from "axios";
 
 const HomeNavBar = () => {
-
-
   const [sidebar, setSidebar] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    type: "",
+    avatar: userAvatar,
+    username: "",
+    email: "",
+  });
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const customer = {
-    name: "Customer02",
-    type: "Customer",
-    avatar: user,
-    username: "customer02",
-    email: "customer02@gmail.com",
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost/quickmatch_api/CustomerDetails.php"
+      );
+      const data = response.data;
+      console.log("raw data: ", data);
+      if (data && data.length > 0) {
+        const fetchedUser = data[0]; // Assuming the first user object contains the needed info
+        setUser({
+          ...user,
+          name: fetchedUser.name,
+          username: fetchedUser.username,
+          email: fetchedUser.email,
+          type: fetchedUser.user_type,
+          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
   };
 
   return (
@@ -42,19 +67,21 @@ const HomeNavBar = () => {
         </Link>
         <div className="topbarWrapper">
           <div className="topLeft">
-          <Link to="/home" className="nav-link"> <span className="logo">
-           <img src={Logo} alt="" />
-            </span></Link>
+            <Link to="/home" className="nav-link">
+              <span className="logo">
+                <img src={Logo} alt="Logo" />
+              </span>
+            </Link>
           </div>
           <div className="topRight">
             <Dropdown>
               <Dropdown.Toggle variant="success" className="menu-drop">
-                <img src={user} alt="" className="topAvatar" />
+                <img src={user.avatar} alt="User Avatar" className="topAvatar" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="menu">
                 <Dropdown.ItemText className="admin-name">
-                  <img src={user} alt="" className="topAvatar" /> customer02
+                  <img src={user.avatar} alt="User Avatar" className="topAvatar" /> {user.name}
                 </Dropdown.ItemText>
                 <Dropdown.Item
                   onClick={() => {
@@ -63,8 +90,9 @@ const HomeNavBar = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                
-                <Dropdown.Item><Link to="/" className="nav-link">Logout</Link></Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/" className="nav-link">Logout</Link>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -80,41 +108,55 @@ const HomeNavBar = () => {
 
           <li className="nav-text">
             <Link to="/home">
-            <HomeIcon />
+              <HomeIcon />
               <span>Home</span>
             </Link>
           </li>
           <Dropdown className="service-dropdown">
-          <Dropdown.Header className="drop-head"><WorkIcon />&nbsp;&nbsp;Services</Dropdown.Header>
-          <Dropdown.Item eventKey="2" className="service-link"><ElectricBoltIcon className="symbol"/>&nbsp;<Link to="/electric" className="nav-link">Electric</Link></Dropdown.Item>
-          <Dropdown.Item eventKey="3" className="service-link"><CableIcon className="symbol"/>&nbsp;<Link to="/electronic" className="nav-link">Electronic</Link></Dropdown.Item>
-          <Dropdown.Item eventKey="4" className="service-link"><ConstructionIcon className="symbol"/>&nbsp;<Link to="/construction" className="nav-link">Construction</Link></Dropdown.Item>
-          <Dropdown.Item eventKey="5" className="service-link"><FestivalOutlinedIcon className="symbol"/>&nbsp; <Link to="/eventmanagement" className="nav-link">Event Management</Link></Dropdown.Item>
-            </Dropdown>
+            <Dropdown.Header className="drop-head">
+              <WorkIcon />&nbsp;&nbsp;Services
+            </Dropdown.Header>
+            <Dropdown.Item eventKey="2" className="service-link">
+              <ElectricBoltIcon className="symbol" />&nbsp;
+              <Link to="/electric" className="nav-link">Electric</Link>
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="3" className="service-link">
+              <CableIcon className="symbol" />&nbsp;
+              <Link to="/electronic" className="nav-link">Electronic</Link>
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="4" className="service-link">
+              <ConstructionIcon className="symbol" />&nbsp;
+              <Link to="/construction" className="nav-link">Construction</Link>
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="5" className="service-link">
+              <FestivalOutlinedIcon className="symbol" />&nbsp;
+              <Link to="/eventmanagement" className="nav-link">Event Management</Link>
+            </Dropdown.Item>
+          </Dropdown>
           <li className="nav-text">
             <Link to="/customeraccountsettings">
-            <ManageAccountsIcon />
-              <span>Account Settings</span>
+              <ManageAccountsIcon />
+              <span>Profile Settings</span>
             </Link>
           </li>
 
           <li className="nav-text">
             <Link to="/customernotifications">
-            <NotificationsActiveIcon />
+              <NotificationsActiveIcon />
               <span>Notifications</span>
             </Link>
           </li>
 
           <li className="nav-text">
             <Link to="/contact">
-            <PermPhoneMsgIcon />
+              <PermPhoneMsgIcon />
               <span>Contact</span>
             </Link>
           </li>
 
           <li className="nav-text">
             <Link to="/">
-            <LogoutIcon />
+              <LogoutIcon />
               <span>Logout</span>
             </Link>
           </li>
@@ -124,17 +166,16 @@ const HomeNavBar = () => {
         </div>
       </nav>
 
-      {modalOpen && customer && (
+      {modalOpen && (
         <Modal
           setOpenModal={setModalOpen}
-          avatar={customer.avatar}
-          name={customer.name}
-          username={customer.username}
-          email={customer.email}
-          type={customer.type}
+          avatar={user.avatar}
+          name={user.name}
+          username={user.username}
+          email={user.email}
+          type={user.type}
         />
       )}
-      
     </>
   );
 };

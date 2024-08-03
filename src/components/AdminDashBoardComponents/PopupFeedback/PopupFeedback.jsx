@@ -12,12 +12,13 @@ const PopupFeedback = ({ data, onclose }) => {
         <div className="title">
           <h3>Feedbacks</h3>
           <p>Feedback Id : {data.id}</p>
+          <p>User Type : {data.user_type}</p>
         </div>
         <div className="body">
           <p className="small-head">Required Details</p>
              <div className="info">
-             <p>User: {data.user}</p>
-            <p>Username : {data.username} </p>
+             <p>User: {data.name}</p>
+              
             <p>Email : {data.email}</p>
             <p>Date : {data.date}</p>
              </div>
@@ -25,11 +26,11 @@ const PopupFeedback = ({ data, onclose }) => {
          
         </div>
 
-        <div className="body">
+        <div className="body-feed">
           <p className="small-head">Feedback</p>
 
           <p>
-          QuickMatch is fantastic! The app is user-friendly, and finding and booking service providers is quick and easy. The quality of service providers is excellent. Highly recommend QuickMatch for hassle-free service bookings!
+          {data.feedback}
           </p>
         </div>
         <div className="footer-btn">

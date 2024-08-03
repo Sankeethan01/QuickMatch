@@ -34,7 +34,7 @@
     padding: 20px;
 }
 .review .slide{
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    box-shadow: 2px 4px 10px 5px #060b26;
     padding: 40px;
     border-radius: 10px;
     color: #676767;

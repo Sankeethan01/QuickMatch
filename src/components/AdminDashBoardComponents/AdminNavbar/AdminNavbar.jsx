@@ -159,7 +159,7 @@ const AdminNavbar = () => {
           <li className="nav-text">
             <Link to="/adminsettings">
               <ManageAccountsIcon />
-              <span>Account Settings</span>
+              <span>Profile Settings</span>
             </Link>
           </li>
           <li className="nav-text">

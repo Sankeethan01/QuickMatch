@@ -1,22 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./BookingList.css";
 import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/PageTitle";
-import { bookingRow } from "../../../DummyData";
-import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Popup from "../../../components/AdminDashBoardComponents/PopupBookingDetail/Popup";
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
+import { DataGrid } from "@mui/x-data-grid";
+import axios from "axios";
+import logo from '../../../assets/logo.png';
+
+
 
 const BookingList = () => {
-  const [data, setData] = useState(bookingRow);
+
   const [dataId, setDataId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  const [bookings,setBookings] = useState([]);
+
+  useEffect(()=>{
+    fetchBookings();
+},[]);
+
+const fetchBookings = async () => {
+  try{
+   const response = await axios.get('http://localhost/quickmatch_api/bookingDetails.php');
+   console.log('Raw data: ',response.data);
+   setLoading(false)
+
+
+   const transformedData = response.data.map((booking,index)=>(
+     {
+       id:booking.booking_id,
+       service: booking.service_type,
+       date: booking.booking_date,
+       customer: booking.customer_name,
+       provider: booking.provider_name,
+       status: booking.booking_status,
+
+     }
+   ))
+  
+ console.log('Transformed Data: ',transformedData);
+ setBookings(transformedData);
+
+ }
+  
+
+  catch(error){
+   console.error('Error fetching bookings:',error);
+   setLoading(false)
+  }
+};
+
+
+const handleDelete = async (id) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this customer data?");
+  if (confirmDelete) {
+    try {
+      const response = await axios.delete('http://localhost/quickmatch_api/customerDetails.php', {
+        data: { id: id }
+      });
+      console.log(response.data);
+    
+      setBookings(bookings.filter((message) => message.id !== id));
+      alert("Customer Data deleted successfully");
+    } catch (error) {
+      console.error("Error deleting message: ", error);
+    }
+  }
+};
+
+if(loading){
+  return <div className="loading">
+    <img src={logo} alt=""/>
+    <h4>Loading......</h4>
+  </div>
+}
+
+
 
   const handleViewClick = (id) => {
     setDataId(id);
@@ -27,31 +90,35 @@ const BookingList = () => {
     setModalOpen(false);
   };
 
-  const selectedRowData = bookingRow.find((row) => row.id === dataId);
+  const selectedRowData = bookings.find((row) => row.id === dataId);
 
   const columns = [
-    { field: "id", headerName: "BookingID", width: 100 },
-
-    { field: "service", headerName: "Service", width: 200 },
+    { field: "id", headerName: "BookingID", width: 130 },
+    {
+      field: "service",
+      headerName: "Service Category",
+      width: 250,
+    },
+    { field: "date", headerName: "Booked Date", width: 150 },
     {
       field: "customer",
       headerName: "Customer",
-      width: 180,
+      width: 250,
     },
     {
       field: "provider",
       headerName: "Provider",
-      width: 180,
+      width: 250,
     },
     {
       field: "status",
       headerName: "Status",
-      width: 160,
+      width: 120,
     },
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 140,
       renderCell: (params) => {
         return (
           <div className="table-action">
@@ -65,7 +132,6 @@ const BookingList = () => {
             >
               View
             </Button>
-
             <DeleteOutlineIcon
               className="userListDelete"
               onClick={() => handleDelete(params.row.id)}
@@ -76,6 +142,8 @@ const BookingList = () => {
     },
   ];
 
+
+  
   return (
     <div className="booking-list">
       <AdminNavbar />
@@ -83,24 +151,29 @@ const BookingList = () => {
         <Popup data={selectedRowData} onclose={handleclosePopup} />
       )}
 
-      <PageTitle heading="Service Bookings" />
+      <PageTitle heading="Service Booking" />
       <div className="booking-table">
-        <DataGrid 
-          rows={data}
+        <DataGrid  getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage === 0 ? 'first-row' : ''
+        }
+          rows={bookings}
           disableSelectionOnClick
           columns={columns}
           pageSize={8}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
+              paginationModel: { page: 0, pageSize: 7 },
             },
           }}
-          pageSizeOptions={[10, 15]}
-          disableRowSelectionOnClick
+          pageSizeOptions={[7, 10, 15]}
           checkboxSelection
+          disableRowSelectionOnClick
           className="table-grid"
+          rowHeight={60}
+          columnHeaderHeight={60}
         />
       </div>
+      
     </div>
   );
 };

@@ -105,4 +105,4 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
   )
 }
 
-export default PaymentMethod
+export default PaymentMethod;

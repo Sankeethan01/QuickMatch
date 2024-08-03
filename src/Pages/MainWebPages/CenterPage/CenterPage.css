@@ -4,9 +4,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.center-page{
+  background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
+}
 .User-container {
   padding: 20px;
+  
 }
 
 .User-container .header-section {
@@ -35,6 +39,7 @@
 
 .User-container .header-section .profile-img {
   width: 150px;
+  
   border-radius: 50%;
   border: 4px solid white;
   position: absolute;
@@ -43,6 +48,7 @@
   transform: translateX(-50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .User-container .info-section {
   margin-top: 20px;
@@ -65,7 +71,7 @@
 }
 
 .User-container .review {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
   color: #d5750e;
 }
@@ -92,6 +98,7 @@
   font-size: 20px;
   color: #777;
   text-align: center;
+
 }
 
 .User-container .reviews-section .cardtext2 {
@@ -100,6 +107,7 @@
   text-align: center;
   margin-bottom: 10px;
   margin-top: -20px;
+
 }
 
 .User-container .Details {
@@ -126,135 +134,106 @@
 }
 
 .User-container .submitbutton {
+
   margin-top: 20px;
   background-color: rgb(25, 143, 7);
   color: rgb(249, 248, 248);
   border-color: rgb(204, 210, 204);
+
 }
 
 .User-container .submitbutton:hover {
+
   background-color: white;
   color: rgb(16, 17, 16);
   border-color: rgb(231, 237, 231);
 }
 
+
 /* Review Card */
 
-.cardreview {
+.User-container  .cardreview {
   margin-top: 20px;
 }
 
-.reviews-section {
+.User-container  .reviews-section {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.review-card {
+.User-container  .review-card {
   background-color: #fff;
 
   border-radius: 8px;
   box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
 }
 
-.review-card:hover {
+.User-container  .review-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.review-card .card-body {
+.User-container  .review-card .card-body {
   padding: 20px;
 }
 
-.review-card .card-title {
+.User-container  .review-card .card-title {
   font-size: 1.5rem;
   color: #333;
 }
 
-.cardtext1 {
+.User-container  .cardtext1 {
   font-size: 1.2rem;
   color: #666;
   margin-bottom: 10px;
 }
 
-.cardtext2 {
+.User-container  .cardtext2 {
   font-size: 1.1rem;
   color: #777;
 }
 
-.rating-stars {
+.User-container  .rating-stars {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
 }
 
-.rating-stars .stars {
+.User-container  .rating-stars .stars {
   color: #ffc107;
   /* Star color */
   font-size: 1.2rem;
 }
 
-.rating-stars .stars:not(:last-child) {
+.User-container  .rating-stars .stars:not(:last-child) {
   margin-right: 5px;
 }
 
+
+
 @media (max-width: 768px) {
-  .available {
+  .User-container  .available {
     flex-direction: column;
     align-items: center;
   }
 
-  .details p {
+  .User-container  .details p {
     font-size: 0.9rem;
   }
 }
 
-@media (max-width: 1040px) {
-  .info-section {
+@media (max-width: 990px) {
+  
+  .User-container .info-section h3:nth-child(1) {
+    font-size: 130pxrem;
+    color: #091a70;
+    margin-bottom: 10px;
     margin-top: 50px;
-    padding: 30px;
-    background: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
   }
   .User-container .header-section .profile-img{
-    top: 80px;
-    width: 120px;
-  }
-  .User-container .header-section h2{
-    font-size: 33px;
-  }
-}
-
-@media (max-width:1000px)
-{
-  .User-container .header-section .profile-img{
-    top: 100px;
-    width: 110px;
-  }
-  .User-container .header-section h2{
-    font-size: 31px;
-  }
-}
-
-@media (max-width:600px){
-  .User-container .header-section .profile-img{
-    top: 100px;
-    width: 100px;
-  }
-  .User-container .header-section h2{
-    font-size: 28px;
-  }
-}
-
-@media (max-width:400px){
-  .User-container .header-section .profile-img{
-    top: 82px;
-    width: 100px;
-  }
-  .User-container .header-section h2{
-    font-size: 23px;
+    margin-top: 5px;;
   }
 }

@@ -16,7 +16,7 @@ const PopupMessage = ({ data, onclose }) => {
         <div className="body">
           <p className="small-head">Required Details</p>
              <div className="info">
-            <p>Name : {data.username} </p>
+            <p>Name : {data.name} </p>
             <p>Email : {data.email}</p>
             <p>Date : {data.date}</p>
              </div>
@@ -24,16 +24,11 @@ const PopupMessage = ({ data, onclose }) => {
          
         </div>
 
-        <div className="body">
+        <div className="body-mess">
           <p className="small-head">Message</p>
 
           <p>
-          Hi QuickMatch Team,
-
-I love the app! Could you add a feature to save favorite service providers? It would make rebooking much easier. Thanks for considering this suggestion!
-
-Best, 
- {data.username}
+             {data.message}
           </p>
         </div>
         <div className="footer-btn">

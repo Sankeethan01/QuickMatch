@@ -8,9 +8,12 @@
 .about-left{
     flex-basis: 40%;
     position: relative;
+    
 }
 .about-right{
     flex-basis: 56%;
+   
+    
 }
 .about-img{
     width: 80%;

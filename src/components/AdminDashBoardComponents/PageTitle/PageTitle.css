@@ -1,11 +1,12 @@
+
 .page-title{
     margin-top: 100px;
     width: 100%;
 }
 .page-title h1{
    font-weight: 600;
-    margin: 20px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin:15px 20px;
+    font-family: poppins,sans-serif;
     color: rgb(14, 14, 14);
      text-align: center;
 }
