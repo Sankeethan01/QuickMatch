@@ -36,9 +36,45 @@
     color: #ffb400;
 }
 
-@media (max-width:900px){
-    .feedback-container{
+@media (max-width:900px) {
+    .feedback-container {
         max-width: 600px;
-        
+
     }
+}
+
+/* src/components/Feedback.css */
+.feedback-container {
+    padding: 20px;
+}
+
+.feedback-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.feedback-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.customer-name {
+    font-weight: bold;
+}
+
+.star-rating {
+    color: gold;
+}
+
+.review-text {
+    margin-top: 5px;
+}
+
+.no-feedback {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
 }

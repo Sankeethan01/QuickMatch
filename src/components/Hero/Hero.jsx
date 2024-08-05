@@ -5,6 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import hero3 from '../../assets/hero3.jpg'
 import hero1 from '../../assets/hero1.jpg'
 
+
 const Hero = () => {
   return (
     <div className='carousel'>
@@ -31,6 +32,9 @@ const Hero = () => {
          </div>
         </div>
       </Carousel.Item>
+   
+      
+
     </Carousel>
     </div>
   )

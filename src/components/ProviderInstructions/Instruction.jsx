@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import "./Instruction.css";
 import ProviderRegistration from "../ProviderRegistration/ProviderRegistration";
+import inst_img from '../../assets/inst.jpg'
 
-const Instruction = ({ closeInstruct }) => {
-  const [registration, setRegistration] = useState(false);
+const Instruction = ({ closeInstruct, providerData }) => {
+  const [finalRegis, setFinalRegis] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   return (
     <>
       <div className="instructions">
+        <div className="inst">
+        <div className="inst-img">
+          <img src={inst_img} alt="" />
+
+        </div>
         <div className="instruction-container">
+
           <div>
             <h3>Service Provider Instructions</h3>
             <p>
@@ -26,7 +38,7 @@ const Instruction = ({ closeInstruct }) => {
               Thank you for your cooperation and professionalism.
             </p>
             <h6>
-              <input type="checkbox" name="" id="" /> I agree the terms of
+              <input type="checkbox" name="terms" id="terms" onChange={handleCheckboxChange} /> I agree to the terms and
               conditions.
             </h6>
           </div>
@@ -42,16 +54,18 @@ const Instruction = ({ closeInstruct }) => {
             </button>
             <button
               className="button"
+              disabled={!isChecked}
               onClick={() => {
-                setRegistration(true);
+                setFinalRegis(true);
               }}
             >
               Next
             </button>
           </div>
         </div>
+        </div>
       </div>
-      {registration && <ProviderRegistration comback={setRegistration} />}
+      {finalRegis && <ProviderRegistration providerData={providerData} openFinalReg={setFinalRegis} />}
     </>
   );
 };

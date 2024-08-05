@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../../assets/logo.png";
-import user from "../../../assets/user-4.png";
+import axios from "axios";
 import "../../HomeNavBar/HomeNavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,20 +12,62 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Modal from "../../AdminDashBoardComponents/Modal/Modal";
-import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
+import userAvatar from "../../../assets/user-3.png";
+import HomeIcon from '@mui/icons-material/Home';
 
 const ProviderNav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    type: "",
+    avatar: userAvatar,
+    username: "",
+    email: "",
+  });
+  const navigate = useNavigate();
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  const provider = {
-    name: "Provider04",
-    type: "Provider",
-    avatar: user,
-    username: "provider04",
-    email: "provider04@gmail.com",
+  useEffect(() => {
+    // Retrieve user data from storage
+    const user_id =
+      sessionStorage.getItem("user_id") || localStorage.getItem("user_id");
+
+    if (user_id) {
+      fetchData(user_id);
+    }
+  }, []);
+
+  const fetchData = async (user_id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost/quickmatch_api/providerDetails.php?user_id=${user_id}`
+      );
+      const data = response.data;
+      console.log("raw data: ", data);
+      if (data && data.length > 0) {
+        const fetchedUser = data[0]; // Assuming the first user object contains the needed info
+        setUser({
+          ...user,
+          name: fetchedUser.name,
+          username: fetchedUser.username,
+          email: fetchedUser.email,
+          type: fetchedUser.user_type,
+          avatar: fetchedUser.profile_image
+            ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}`
+            : userAvatar,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+  const handleLogout = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -43,12 +85,13 @@ const ProviderNav = () => {
           <div className="topRight">
             <Dropdown>
               <Dropdown.Toggle variant="success" className="menu-drop">
-                <img src={user} alt="" className="topAvatar" />
+                <img src={user.avatar} alt="" className="topAvatar" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="menu">
                 <Dropdown.ItemText className="admin-name">
-                  <img src={user} alt="" className="topAvatar" /> provider04
+                  <img src={user.avatar} alt="" className="topAvatar" />{" "}
+                  {user.name}
                 </Dropdown.ItemText>
                 <Dropdown.Item
                   onClick={() => {
@@ -57,7 +100,11 @@ const ProviderNav = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                <Dropdown.Item href="#">Logout</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>
+                  <Link to="/" className="nav-link">
+                    Logout
+                  </Link>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -68,6 +115,13 @@ const ProviderNav = () => {
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
               <CloseIcon />
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/providerIntro">
+              <HomeIcon />
+              <span>Home</span>
             </Link>
           </li>
 
@@ -105,7 +159,7 @@ const ProviderNav = () => {
             </Link>
           </li>
 
-          <li className="nav-text">
+          <li className="nav-text" onClick={handleLogout}>
             <Link to="/">
               <LogoutIcon />
               <span>Logout</span>
@@ -117,14 +171,14 @@ const ProviderNav = () => {
         </div>
       </nav>
 
-      {modalOpen && provider && (
+      {modalOpen && user && (
         <Modal
           setOpenModal={setModalOpen}
-          avatar={provider.avatar}
-          type={provider.type}
-          name={provider.name}
-          username={provider.username}
-          email={provider.email}
+          avatar={user.avatar}
+          type={user.type}
+          name={user.name}
+          username={user.username}
+          email={user.email}
         />
       )}
     </>

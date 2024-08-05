@@ -5,41 +5,50 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import mail from '../../assets/mail-icon.png';
+import phone from '../../assets/phone-icon.png';
+import location from '../../assets/location-icon.png';
 
 const Footer = () => {
   return (
     <>
     <div className='footer'>
       <div className='foot-left'>
-        <img src={logo} alt="" className='foot-logo'/>
+        <p>QuickMatch connects users with top service providers for seamless booking and high-quality service. Our platform offers a directory of verified professionals, user reviews, secure payments, and dedicated support. Find the right provider for any job and enjoy hassle-free, quality service at your fingertips.</p>
         
-        <p>QuickMatch connects users with top service providers, ensuring seamless booking and high-quality service for a hassle-free experience.</p>
-        <div className="foot-icons">
+      </div>
+      <div className='foot-mid'>
+      <img src={logo} alt="" className='foot-logo'/>
+          <div className="foot-icons">
           <FacebookIcon className='foot-icon'/>
           <TwitterIcon className='foot-icon'/>
           <InstagramIcon className='foot-icon'/>
           <YouTubeIcon className='foor-icon'/>
         </div>
-      </div>
-      <div className='foot-mid'>
-        <h4>Contact Details</h4>
-          <p>quickmatch021@gmail.com</p>
-          <p>0778337669</p>
         </div>
       <div className='foot-right'>
-        <h4>Quick Links</h4>
-        <ul>
-            <li>Contact</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Help Center</li>
-        </ul></div>
-        
+      <ul>
+          <li>
+            <img src={mail} alt="" />
+            cst21020@gmail.com
+          </li>
+          <li>
+            <img src={phone} alt="" />
+            +77 8337 669
+          </li>
+          <li>
+            <img src={location} alt="" />
+            Courts Road, Mallakam, Jaffna, Sri Lanka.
+          </li>
+        </ul>
+        </div>
         <p className='copy-right'>&copy; {new Date().getFullYear()} All rights Reserved</p>
     </div>
+  
     
     </>
   )
-}
+};
 
 export default Footer
+

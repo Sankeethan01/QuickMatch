@@ -8,6 +8,7 @@ import PopupFeedback from "../../../components/AdminDashBoardComponents/PopupFee
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
+import { toast, ToastContainer } from "react-toastify";
 
 const AdminFeedback = () => {
   const [dataId, setDataId] = useState(null);
@@ -55,7 +56,7 @@ const AdminFeedback = () => {
         console.log(response.data);
       
         setFeedbacks(feedbacks.filter((message) => message.id !== id));
-        alert("Data deleted successfully");
+        toast.success("Feedback data deleted Successfully..");
       } catch (error) {
         console.error("Error deleting message: ", error);
       }
@@ -160,6 +161,7 @@ const AdminFeedback = () => {
           columnHeaderHeight={60}
         />
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -14,7 +14,7 @@
 .search-section .search-img img{
     object-fit: cover;
     border-radius: 20px;
-   width: 100%;
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .search-section .search-input{
@@ -27,7 +27,7 @@
 .search-section .search-input input{
     margin-bottom: 25px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     width: 100%;
     padding: 15px;
     transition: all 0.3s ease-in-out;
@@ -58,9 +58,9 @@
 }
 .search-section .search-input button:hover{
     background-color: white;
-    color: rgb(37, 235, 57);
+    color: #060b26;
     transition: step-start;
-    border:1px solid green;
+    border:2px solid #060b26;
     transition-duration: 0.5s;
 }
 
@@ -88,3 +88,4 @@
         flex-basis: 100%;
     }
 }
+

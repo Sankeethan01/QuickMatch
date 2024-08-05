@@ -4,6 +4,7 @@ import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import PaymentMethod from "../PaymentMethod/PaymentMethod";
 import axios from "axios";
 import './BookNowPortal.css';
+import { ToastContainer, toast } from "react-toastify";
 
 const BookNowPortal = (props) => {
   const [showPayment, setShowPayment] = useState(false);
@@ -45,6 +46,7 @@ const BookNowPortal = (props) => {
   const handlePaymentSuccess = () => {
     setPaymentSuccess(true);
     setShowPayment(false);
+    toast.success("Provider data deleted Successfully..");
   };
 
   const handleBookingConfirm = () => {
@@ -58,10 +60,13 @@ const BookNowPortal = (props) => {
       if (bookingId) {
         await axios.delete(`http://localhost/quickmatch_api/bookingDetails.php?id=${bookingId}`);
       }
+      
       setShowPayment(false);
       setBookingDetails(null);
       setBookingId(null);
+    
       props.onHide();
+      
     } catch (error) {
       console.error("Error:", error);
     }
@@ -144,14 +149,14 @@ const BookNowPortal = (props) => {
 
             <Form.Group as={Row} className="mb-3" controlId="formNotes">
               <Form.Label column sm={3}>
-                Additional Notes
+                Exact Service
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
                   as="textarea"
                   rows={3}
                   placeholder="Enter any additional notes"
-                  name="notes"
+                  name="notes" required
                 />
               </Col>
             </Form.Group>
@@ -192,7 +197,7 @@ const BookNowPortal = (props) => {
             <p>Provider Name: {props.provider_name}</p>
             <p>Service Category :{props.service_name}</p>
             <p>Booking Status: {bookingDetails.booking_status}</p>
-            <p>Booking Fee : Rs 200</p>
+            <p>Booking Fee : Rs 500</p>
             <p className="payment-instructions">*If the provider declines or does not accept your service within 2 weeks, we will refund   &nbsp;&nbsp;your amount. Otherwise, the payment will not be refunded to you.</p>
           </div>
         )}
@@ -201,7 +206,7 @@ const BookNowPortal = (props) => {
           <div className="error-message">{error}</div>
         )}
       </Modal.Body>
-     
+      <ToastContainer />
     </Modal>
   );
 };

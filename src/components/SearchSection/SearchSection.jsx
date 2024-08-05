@@ -22,6 +22,10 @@ const SearchSection = ({ handleSearch ,img}) => {
     setWork("");
   };
 
+  const handleRefresh = ()=>{
+    window.location.reload();
+  }
+
   return (
     <div className="search-section">
       <div className="search-img">
@@ -45,6 +49,10 @@ const SearchSection = ({ handleSearch ,img}) => {
         <button onClick={handleSubmit}>
           <SearchIcon className="search-con" />
           Search
+        </button>
+        <button onClick={handleRefresh}>
+          
+          Go back
         </button>
       </div>
     </div>

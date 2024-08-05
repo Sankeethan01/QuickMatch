@@ -13,7 +13,6 @@ const AdminMonitoring = () => {
             <iframe title='homePage' src='/' className='monitor' />
             <iframe title='homePage' src='/home' className='monitor' />
             <iframe title='providerDashboard' src='/providerhome' className='monitor' />
-            <iframe title='customerDashboard' src='/customerhome' className='monitor' />
             </div>
              
         

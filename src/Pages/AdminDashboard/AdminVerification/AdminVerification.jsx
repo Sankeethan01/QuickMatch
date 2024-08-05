@@ -9,6 +9,7 @@ import PopupVerification from "../../../components/AdminDashBoardComponents/Popu
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
+import { ToastContainer, toast } from "react-toastify";
 
 const AdminVerification = () => {
   const [dataId, setDataId] = useState(null);
@@ -25,36 +26,27 @@ const AdminVerification = () => {
 
 
 const fetchVerifications = async () => {
-  axios.get('http://localhost/quickmatch_api/verificationDetails.php')
-  .then(response => {
-    
-    console.log(response.data);
-    setLoading(false)
-
-    const transformedData = response.data.map((verification,index)=>(
-      {
-        id : verification.verify_id,
-        description : verification.description,
-        mobile: verification.mobile_number,
-        proof: verification.proof,
-        address : verification.provider_address,
-        email: verification.provider_email,
-        name : verification.provider_name,
-        username : verification.provider_username,
-        date : verification.registered_date,
-        service_category: verification.service_category, 
-      }
-    ))
-
-    console.log('Transformed Data: ',transformedData);
+  try {
+    const response = await axios.get('http://localhost/quickmatch_api/verificationDetails.php');
+    const transformedData = response.data.map((verification) => ({
+      id: verification.verify_id,
+      description: verification.description,
+      mobile: verification.mobile_number,
+      proof: verification.proof,
+      address: verification.provider_address,
+      email: verification.provider_email,
+      name: verification.provider_name,
+      username: verification.provider_username,
+      date: verification.registered_date,
+      service_category: verification.service_category,
+    }));
     setVerifications(transformedData);
-   
-  })
-  .catch(error => {
-    console.error('Error fetching  verifications: ', error);
+  } catch (error) {
+    console.error("Error fetching verification details:", error);
+  } finally {
     setLoading(false);
-  })
-}
+  }
+};
 
 const handleDelete = async (id) => {
   const confirmDelete = window.confirm("Are you sure you want to delete this data?");
@@ -66,7 +58,7 @@ const handleDelete = async (id) => {
       console.log(response.data);
     
       setVerifications(verifications.filter((message) => message.id !== id));
-      alert("Data deleted successfully");
+      toast.success("Verification data deleted Successfully..");
     } catch (error) {
       console.error("Error deleting message: ", error);
     }
@@ -171,7 +163,7 @@ const handleDelete = async (id) => {
               columnHeaderHeight={60}
             />
           </div>
-    
+          <ToastContainer />
     </div>
   );
 };

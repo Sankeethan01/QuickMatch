@@ -1,32 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css'; // Import the CSS file
-import user from "../../../assets/user-4.png";
+import axios from 'axios';
+import userAvatar from "../../../assets/user-3.png";
 
 const districts = [
-  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
-  'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 
-  'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 
+  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
+  'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala',
+  'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa',
   'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
 ];
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    contactNumber: '123-456-7890',
-    bio: 'Experienced service provider specializing in electrical services.',
-    profilePicture: user,
-    serviceType: 'Electric services',
-    location: 'Colombo',
-    qualifications: 'Certified Electrician with 10 years of experience.',
-    services: 'Electrical installations, Repairs, Maintenance.',
-    chargesPerDay: { min: 5000, max: 10000 }, // Charges per day range
+    user_id: "",
+    name: "",
+    username: "",
+    email: "",
+    type: "",
+    avatar: userAvatar,
+    contactNumber: "",
+    nationalId: "",
+    location: "",
+    bio: "",
+    status: "",
+    serviceType: "",
+    services: "",
+    chargesPerDay: "",
+    qualifications: "",
     certificates: [],
-    nationalId: '123456789V', // National ID Card Number
   });
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState(profile);
+  const [profilePicFile, setProfilePicFile] = useState(null);
+  const [certificateFiles, setCertificateFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const user_id = sessionStorage.getItem('user_id') || localStorage.getItem('user_id');
+      if (!user_id) {
+        setError("User not authenticated");
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get(`http://localhost/quickmatch_api/providerDetails.php?user_id=${user_id}`);
+      const data = response.data;
+      if (data && data.length > 0) {
+        const fetchedUser = data[0];
+        setProfile({
+          user_id: fetchedUser.user_id,
+          name: fetchedUser.name,
+          username: fetchedUser.username,
+          email: fetchedUser.email,
+          type: fetchedUser.user_type,
+          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
+          contactNumber: fetchedUser.phone,
+          nationalId: fetchedUser.national_id,
+          location: fetchedUser.address,
+          status: fetchedUser.status === "yes" ? "1" : "0",
+          bio: fetchedUser.description || "",
+          serviceType: fetchedUser.user_type || "",
+          services: fetchedUser.services || "",
+          chargesPerDay: fetchedUser.charge,
+          qualifications: fetchedUser.qualification || "",
+          certificates: fetchedUser.certificates || [],
+        });
+        setForm({
+          user_id: fetchedUser.user_id,
+          name: fetchedUser.name,
+          username: fetchedUser.username,
+          email: fetchedUser.email,
+          type: fetchedUser.user_type,
+          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
+          contactNumber: fetchedUser.phone,
+          nationalId: fetchedUser.national_id,
+          location: fetchedUser.address,
+          status: fetchedUser.status === "yes" ? "1" : "0",
+          bio: fetchedUser.description || "",
+          serviceType: fetchedUser.user_type || "",
+          services: fetchedUser.services || "",
+          chargesPerDay: fetchedUser.charge,
+          qualifications: fetchedUser.qualification || "",
+          certificates: fetchedUser.certificates || [],
+        });
+      }
+    } catch (error) {
+      setError("Failed to fetch data");
+      console.error("Failed to fetch data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -40,51 +112,93 @@ const ProfilePage = () => {
     });
   };
 
-  const handleRangeChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      chargesPerDay: {
-        ...form.chargesPerDay,
-        [name]: Number(value)
-      }
-    });
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePicFile(file);
+      setForm({
+        ...form,
+        avatar: URL.createObjectURL(file),
+      });
+    }
   };
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
+    setCertificateFiles(files);
     setForm({
       ...form,
       certificates: files,
     });
   };
 
-  const handleProfilePicChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setForm({
-        ...form,
-        profilePicture: URL.createObjectURL(file),
-      });
+  
+
+  const handleStatusChange = (e) => {
+    const { value } = e.target;
+    setForm({
+      ...form,
+      status: value,
+    });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append('id', form.user_id);
+    formData.append('name', form.name);
+    formData.append('username', form.username);
+    formData.append('phone', form.contactNumber);
+    formData.append('address', form.location);
+    formData.append('national_id', form.nationalId);
+    formData.append('status', form.status);
+    formData.append('bio', form.bio);
+    formData.append('serviceType', form.serviceType);
+    formData.append('services', form.services);
+    formData.append('chargesPerDay', form.chargesPerDay);
+    formData.append('qualifications', form.qualifications);
+
+    if (profilePicFile) {
+      formData.append('profile_image', profilePicFile);
+    }
+
+    certificateFiles.forEach((file, index) => {
+      formData.append('certificates', file);
+    });
+
+    try {
+      const response = await axios.post("http://localhost/quickmatch_api/providerDetails.php", formData);
+      if (response.data.success) {
+        setProfile(form);
+        setIsEditing(false);
+      } else {
+        setError(response.data.message || "Failed to update profile");
+      }
+    } catch (error) {
+      setError("Failed to update profile");
+      console.error("Failed to update profile:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setProfile(form);
-    setIsEditing(false);
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="profile-container">
       <h2>Profile Settings</h2>
       <div className="profile-card">
         <img
-          src={profile.profilePicture}
+          src={profile.avatar}
           alt="Profile"
           className="profile-picture"
         />
-        
+
         {isEditing ? (
           <form className="profile-form" onSubmit={handleFormSubmit}>
             <label>
@@ -114,6 +228,29 @@ const ProfilePage = () => {
                 onChange={handleInputChange}
               />
             </label>
+            <label>
+                Provider Status:
+               <div className="radio-group">
+               <label>Yes</label>
+             <input
+      type="radio"
+      name="status"
+      value="1"
+      checked={form.status === "yes"}
+      onChange={handleStatusChange}
+    />
+      <label>No</label>
+    <input
+      type="radio"
+      name="status"
+      value="0"
+      checked={form.status === "no"}
+      onChange={handleStatusChange}
+    />
+  
+  </div>
+</label>
+
             <label>
               Bio:
               <textarea
@@ -164,26 +301,13 @@ const ProfilePage = () => {
               />
             </label>
             <label>
-              Charges per Day (LKR):
-              <div className="range-inputs">
-                <input
-                  type="number"
-                  name="min"
-                  value={form.chargesPerDay.min}
-                  onChange={handleRangeChange}
-                  placeholder="Min"
-                  className="range-input"
-                />
-                <span> - </span>
-                <input
-                  type="number"
-                  name="max"
-                  value={form.chargesPerDay.max}
-                  onChange={handleRangeChange}
-                  placeholder="Max"
-                  className="range-input"
-                />
-              </div>
+              Charges Per Day: {form.chargesPerDay}
+              <input
+                type="text"
+                name="chargesPerDay"
+                value={form.chargesPerDay}
+                onChange={handleInputChange}
+              />
             </label>
             <label>
               Qualifications:
@@ -197,12 +321,12 @@ const ProfilePage = () => {
               Profile Picture:
               <input
                 type="file"
-                accept="image/*"
+                name="profilePic"
                 onChange={handleProfilePicChange}
               />
             </label>
             <label>
-              Certificate Images:
+              Certificates:
               <input
                 type="file"
                 name="certificates"
@@ -210,55 +334,31 @@ const ProfilePage = () => {
                 onChange={handleFileChange}
               />
             </label>
-            <button
-              type="submit"
-              className="save-button"
-            >
-              Save
-            </button>
+            <button type="submit" className='save-button'>Save Changes</button>
+            <button type="button" onClick={() => setIsEditing(false)} className='save-button'>Cancel</button>
           </form>
         ) : (
-          <div className="profile-details">
-            <p><strong>Name:</strong> {profile.name}</p>
-            <p><strong>Email:</strong> {profile.email}</p>
-            <p><strong>Contact Number:</strong> {profile.contactNumber}</p>
-            <p><strong>National ID:</strong> {profile.nationalId}</p>
-            <p><strong>Bio:</strong> <div className="text-box">{profile.bio}</div></p>
-            <p><strong>Service Type:</strong> {profile.serviceType}</p>
-            <p><strong>Services:</strong> <div className="text-box">{profile.services}</div></p>
-            <p><strong>Location:</strong> {profile.location}</p>
-            <p><strong>Charges per Day:</strong> LKR {profile.chargesPerDay.min} - {profile.chargesPerDay.max}</p>
-            <p><strong>Qualifications:</strong> <div className="text-box">{profile.qualifications}</div></p>
-            {profile.certificates.length > 0 && (
-              <div>
-                <strong>Certificate Images:</strong>
-                <div className="certificate-images">
-                  {profile.certificates.map((file, index) => (
-                    <img
-                      key={index}
-                      src={URL.createObjectURL(file)}
-                      alt={`Certificate ${index + 1}`}
-                      className="certificate-thumbnail"
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-            <button
-              onClick={handleEditClick}
-              className="edit-button"
-            >
-              Edit Profile
-            </button>
+          <div>
+            <p>Name: {profile.name}</p>
+            <p>Email: {profile.email}</p>
+            <p>Contact Number: {profile.contactNumber}</p>
+            <p>Provider Status: {profile.status === 1 ? "Yes" : "No"}</p>
+            <p>Bio: {profile.bio}</p>
+            <p>Service Type: {profile.serviceType}</p>
+            <p>Services: {profile.services}</p>
+            <p>Location: {profile.location}</p>
+            <p>National ID: {profile.nationalId}</p>
+            <p>Charges Per Day: {profile.chargesPerDay}</p>
+            <p>Qualifications: {profile.qualifications}</p>
+            
+            <button onClick={handleEditClick} className='edit-button'>Edit Profile</button>
           </div>
         )}
       </div>
-      <h2 className='status-head'>My Status : <select id='status' className='status'>
-        <option value="online">Online</option>
-        <option value="offline">Offline</option>
-        </select></h2>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };
 
 export default ProfilePage;
+

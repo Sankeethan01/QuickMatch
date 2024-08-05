@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -29,17 +29,24 @@ const HomeNavBar = () => {
     username: "",
     email: "",
   });
-
+  const navigate = useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
 
   useEffect(() => {
-    fetchData();
+    // Retrieve user data from storage
+    const user_id = sessionStorage.getItem("user_id") || localStorage.getItem("user_id");
+  
+
+    if (user_id) {
+      fetchData(user_id);
+      
+    }
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (user_id) => {
     try {
       const response = await axios.get(
-        "http://localhost/quickmatch_api/CustomerDetails.php"
+        `http://localhost/quickmatch_api/customerDetails.php?user_id=${user_id}`
       );
       const data = response.data;
       console.log("raw data: ", data);
@@ -57,6 +64,11 @@ const HomeNavBar = () => {
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
+  };
+  const handleLogout = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+    navigate('/'); 
   };
 
   return (
@@ -90,7 +102,7 @@ const HomeNavBar = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                <Dropdown.Item>
+                <Dropdown.Item  onClick={handleLogout}>
                   <Link to="/" className="nav-link">Logout</Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -154,7 +166,7 @@ const HomeNavBar = () => {
             </Link>
           </li>
 
-          <li className="nav-text">
+          <li className="nav-text"  onClick={handleLogout}>
             <Link to="/">
               <LogoutIcon />
               <span>Logout</span>
@@ -166,7 +178,7 @@ const HomeNavBar = () => {
         </div>
       </nav>
 
-      {modalOpen && (
+      {modalOpen && user && (
         <Modal
           setOpenModal={setModalOpen}
           avatar={user.avatar}

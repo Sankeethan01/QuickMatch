@@ -8,6 +8,7 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
+import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -65,7 +66,7 @@ const handleDelete = async (id) => {
       console.log(response.data);
     
       setBookings(bookings.filter((message) => message.id !== id));
-      alert("Customer Data deleted successfully");
+      toast.success("Booking deleted Successfully..");
     } catch (error) {
       console.error("Error deleting message: ", error);
     }
@@ -173,7 +174,7 @@ if(loading){
           columnHeaderHeight={60}
         />
       </div>
-      
+      <ToastContainer />
     </div>
   );
 };

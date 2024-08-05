@@ -9,6 +9,7 @@ import PopupCustomer from "../../../components/AdminDashBoardComponents/PopupCus
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
+import { ToastContainer, toast } from "react-toastify";
 
 const CustomerList = () => {
  
@@ -65,7 +66,7 @@ const handleDelete = async (id) => {
       console.log(response.data);
     
       setCustomers(customers.filter((message) => message.id !== id));
-      alert("Customer Data deleted successfully");
+      toast.success("Customer data deleted Successfully..");
     } catch (error) {
       console.error("Error deleting message: ", error);
     }
@@ -174,6 +175,7 @@ const handleDelete = async (id) => {
           columnHeaderHeight={60}
         />
       </div>
+      <ToastContainer />
     </div>
   );
 };

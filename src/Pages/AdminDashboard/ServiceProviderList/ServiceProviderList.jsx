@@ -9,6 +9,7 @@ import PopupProvider from '../../../components/AdminDashBoardComponents/PopupPro
 import AdminNavbar from '../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar'
 import axios from 'axios';
 import logo from '../../../assets/logo.png';
+import { ToastContainer, toast } from "react-toastify";
 
 const ServiceProviderList = () => {
 
@@ -17,42 +18,39 @@ const ServiceProviderList = () => {
   const [providers,setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-        fetchProviders();
-  },[]);
-
 
     const fetchProviders = async  () => {
-          axios.get('http://localhost/quickmatch_api/providerDetails.php')
-          .then(response => {
-            console.log(response.data);
-            setLoading(false)
-
-            const transformedData = response.data.map((provider,index)=>(
-              {
-               id : provider.provider_id,
-               address : provider.address,
-               charge : provider.charge,
-               description : provider.description,
-               email : provider.email,
-               name: provider.name,
-               profile_image : provider.profile_image,
-               qualification : provider.qualification,
-               service_category  : provider.service_category,
-               services : provider.services,
-               status: provider.status,
-               username: provider.username,
-              }
-            ))
-
-            console.log('Transformed Data: ',transformedData);
-            setProviders(transformedData);
-          })
-          .catch(error => {
-            console.error('Error fetching  providers: ', error);
-            setLoading(false);
-          })
-    }
+      try {
+        const response = await axios.get('http://localhost/quickmatch_api/getAllProviders.php');
+        console.log(response.data);
+        setLoading(false);
+  
+        const transformedData = response.data.map((provider, index) => ({
+          id: provider.provider_id,
+          address: provider.address,
+          charge: provider.charge,
+          description: provider.description,
+          email: provider.email,
+          name: provider.name,
+          profile_image: provider.profile_image,
+          qualification: provider.qualification,
+          service_category: provider.service_category,
+          services: provider.services,
+          status: provider.status,
+          username: provider.username,
+        }));
+  
+        console.log('Transformed Data: ', transformedData);
+        setProviders(transformedData);
+      } catch (error) {
+        console.error('Error fetching providers: ', error);
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      fetchProviders();
+    }, []);
 
 
     if(loading){
@@ -70,7 +68,7 @@ const ServiceProviderList = () => {
         });
   
         setProviders(providers.filter((item) => item.id !== id));
-        alert("Customer Data deleted successfully");
+        toast.success("Provider data deleted Successfully..");
       } catch (error) {
         console.error('Error deleting provider: ', error);
       }}
@@ -174,7 +172,7 @@ const ServiceProviderList = () => {
         columnHeaderHeight={60}
       />
     </div> 
-       
+    <ToastContainer />
     </div>
   )
 }

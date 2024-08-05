@@ -8,6 +8,7 @@ import PopupMessage from "../../../components/AdminDashBoardComponents/PopupMess
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
+import { toast, ToastContainer } from "react-toastify";
 
 const AdminMessages = () => {
   const [dataId, setDataId] = useState(null);
@@ -57,7 +58,7 @@ const AdminMessages = () => {
         console.log(response.data);
       
         setMessages(messages.filter((message) => message.id !== id));
-        alert("Data deleted successfully");
+        toast.success("Feedback data deleted Successfully..");
       } catch (error) {
         console.error("Error deleting message: ", error);
       }
@@ -161,7 +162,7 @@ const AdminMessages = () => {
               
             />
           </div>
-      
+          <ToastContainer />
     </div>
   );
 };

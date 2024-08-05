@@ -1,105 +1,151 @@
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 60px;
-  background-color: #060b26;
-  flex-wrap: wrap;
-  color: white;
-}
-.footer ul li {
-  list-style: none;
-}
-.foot-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-basis: 30%;
-  
-}
-.footer h4{
-    color: white;
-    font-weight: 600;
-}
-.foot-left .foot-logo {
-  width: 100px;
-  margin-bottom: 8px;
-}
-.foot-left .foot-icons{
-    width: 30%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    
-}
-.foot-left .foot-icons .foot-icon{
-    font-size: 2rem;
-     padding-right: 5px;
-}
-.foot-mid{
-    flex-basis: 30%;
-   
-}
+    justify-content: space-between;
+    padding: 15px 60px;
+    background-color: #060b26;
+    flex-wrap: wrap;
+    color: white;
 
-.foot-mid p{
-    margin-bottom: 5px;
-}
-.foot-right{
-    flex-basis: 20%;
-    
-}
-.footer .copy-right{
-    flex-basis: 100%;
-     text-align: center;
-     margin-top: 10px;
-}
-
-
-@media (max-width:900px){
-    .foot-left{
-        flex-basis: 40%;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-    .foot-mid{
-        flex-basis: 40%;
-        margin-bottom: 30px;
-        align-items: center;
-
-       
-    }
-    .foot-right{
-        flex-basis: 40%;
-        align-items: center;
-        
-    }
-}
-
-@media (max-width:600px){
-    .footer{
-        align-items: center;
-        justify-content: center;
-    }
-    .foot-left{
-        flex-basis: 60%;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-    .foot-mid{
-        flex-basis: 60%;
-        margin-bottom: 30px;
-        align-items: center;
-        text-align: center;
-
-       
-    }
-    .foot-right{
-        flex-basis: 60%;
-        align-items: center;
-        text-align: center;
-        
-    }
-}
-
-
-
+  }
+  .footer ul li {
+    list-style: none;
+  }
+  .foot-left {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%;
+    border-bottom: 2px solid white;
+  }
+  .foot-left p{
+      text-align: justify;
+      margin-top: 40px;
+      width: 80%;
+      margin-left: 50px;
+  }
+  
+  .footer h4{
+      color: white;
+      font-weight: 600;
+  }
+  .foot-mid .foot-logo {
+    width: 130px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .foot-mid .foot-icons{
+      width: 60%;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      align-items: center;
+      margin-left: 20%;
+      
+      
+      
+  }
+  .foot-mid .foot-icons .foot-icon{
+      font-size: 2rem;
+       padding-right: 5px;
+  }
+  .foot-mid{
+      flex-basis: 20%;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0%;
+     
+  }
+  
+  .foot-right{
+      flex-basis: 40%;
+      margin-top: 40px;
+      border-bottom: 2px solid white;
+      align-items: center;
+      text-align: center;
+      
+  }
+  
+  .footer .copy-right{
+      flex-basis: 100%;
+       text-align: center;
+       margin-top: 10px;
+  }
+  .foot-right ul li{
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      margin-left: 50px;
+  }
+  .foot-right ul li img{
+      width: 20px;
+      margin-right: 10px;
+  }
+  
+  
+  @media (max-width:900px){
+      .foot-left{
+          flex-basis: 40%;
+          align-items: center;
+          margin-bottom: 30px;
+      }
+      .foot-mid{
+          flex-basis: 40%;
+          margin-bottom: 30px;
+          align-items: center;
+  
+         
+      }
+      .foot-right{
+          flex-basis: 40%;
+          align-items: center;
+          
+      }
+  }
+  
+  @media (max-width:600px){
+      .footer{
+          align-items: center;
+          justify-content: center;
+      }
+      .foot-left{
+          flex-basis: 60%;
+          align-items: center;
+          margin-bottom: 35px;
+          
+      }
+      .foot-left p{
+          text-align: justify;
+          width: 280px;
+          margin-right: 50px;
+      }
+      .foot-mid .foot-icons .foot-icon{
+          align-items: center;
+      }
+      .foot-mid{
+          flex-basis: 60%;
+          margin-bottom: 30px;
+          align-items: center;
+          text-align: center;
+  
+         
+      }
+      .foot-right{
+          flex-basis: 100%;
+          align-items: center;
+          text-align: center;
+          border-bottom:  100%;
+          
+      }
+      .foot-right ul li{
+          
+          align-items: center;
+          width: 200px;
+          margin-left: 13%;
+          margin-right: 40%;
+          
+      }
+      
+  
+  }
+  

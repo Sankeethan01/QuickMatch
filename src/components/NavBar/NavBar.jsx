@@ -6,13 +6,12 @@ import './NavBar.css'
 import { Link } from 'react-scroll';
 import { useState } from "react";
 import Login from "../Login/Login";
-import RegisterOptions from "../RegisterOptions/RegisterOptions";
+import Signup from "../Signup/Signup";
 
 const NavigationBar = () => {
 
   const [loginOpen, setLoginOpen] = useState(false);
   const [signinOpen, setsigninOpen] = useState(false);
-
 
    
   return (
@@ -46,7 +45,9 @@ const NavigationBar = () => {
                                                            setsigninOpen(false)
              }}>Login</button>
              <button className="signin-btn" onClick={()=> {setsigninOpen(true)
-                                                            setLoginOpen(false)}}>Sign up</button>
+                                                            setLoginOpen(false)
+                                                           }
+                                                            }>Sign up</button>
               </div>
              
             </Nav>
@@ -56,8 +57,8 @@ const NavigationBar = () => {
       {loginOpen  && (
         <Login loginClose={setLoginOpen} signupClose={setsigninOpen} />
       )}
-      {signinOpen  && (
-        <RegisterOptions signupClose={setsigninOpen} loginClose={setLoginOpen} />
+      {signinOpen  &&  (
+        <Signup signupClose={setsigninOpen} loginClose={setLoginOpen} />
       )}
    </>
   );

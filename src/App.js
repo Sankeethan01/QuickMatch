@@ -24,6 +24,7 @@ import CustomerMain from './Pages/CustomerDashboard/CustomerMain/CustomerMain';
 import CustomerNotification from './Pages/CustomerDashboard/CustomerNotifications/CustomerNotification';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ProviderContact from './Pages/ServiceProviderDashboard/ProviderContact/ProviderContact';
+import ProviderIntro from './Pages/ServiceProviderDashboard/ProviderIntro';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/adminfeedbacks" exact Component={AdminFeedback} />
           <Route path="/adminmessages" exact Component={AdminMessages} />
           <Route path="/adminmonitoring" exact Component={AdminMonitoring} />
+          <Route path='/providerIntro' exact Component={ProviderIntro} />
           <Route path='/providerhome' exact Component={ProviderHome} />
           <Route path='/providerfeedback' exact Component={ProviderFeedback} />
           <Route path='/providernotifications' exact Component={ProviderNotifications} />
