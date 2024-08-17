@@ -17,15 +17,14 @@
 }
 .popup-verify .popup-box{
      
-  width: 420px;
-  height: 570px;
+  width: 440px;
+  height: 700px;
   border-radius: 12px;
   background-color: white;
   box-shadow: 1px 1px 20px 10px #060b26;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin-top: 80px;
 }
 
 .popup-verify .popup-box .cancel-btn{

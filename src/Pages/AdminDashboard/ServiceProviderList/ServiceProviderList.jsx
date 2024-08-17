@@ -10,6 +10,7 @@ import AdminNavbar from '../../../components/AdminDashBoardComponents/AdminNavba
 import axios from 'axios';
 import logo from '../../../assets/logo.png';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 const ServiceProviderList = () => {
 
@@ -17,11 +18,12 @@ const ServiceProviderList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [providers,setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
 
     const fetchProviders = async  () => {
       try {
-        const response = await axios.get('http://localhost/quickmatch_api/getAllProviders.php');
+        const response = await axios.get('http://localhost/quickmatch_api/getAllProviders.php?action=getAll');
         console.log(response.data);
         setLoading(false);
   
@@ -49,6 +51,11 @@ const ServiceProviderList = () => {
     };
   
     useEffect(() => {
+      if(sessionStorage.getItem('user_type') !== 'admin')
+        {
+             sessionStorage.clear();
+              navigate('/');
+        }
       fetchProviders();
     }, []);
 

@@ -44,6 +44,56 @@
     border: 1px solid black;
 }
 
+.search-section .search-input select {
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    width: 100%;
+    padding: 15px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    background-color: white; /* Ensure the background is consistent */
+    text-align: center;
+    appearance: none; /* Removes the default arrow in some browsers */
+    -webkit-appearance: none; /* Removes the default arrow in Safari */
+    -moz-appearance: none; /* Removes the default arrow in Firefox */
+}
+
+.search-section .search-input select:focus {
+    outline: none;
+    border: 1px solid black;
+}
+
+.search-section .search-input select option {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.search-section .search-input {
+    position: relative;
+}
+
+.search-section .search-input select {
+    appearance: none;
+    background: url('data:image/svg+xml;base64,...') no-repeat right 15px center; /* Custom arrow image */
+    background-size: 12px;
+}
+
+.search-section .search-input::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid black;
+}
+
+
 .search-section .search-input button{
     margin-top: 20px;
     margin-bottom: 20px;

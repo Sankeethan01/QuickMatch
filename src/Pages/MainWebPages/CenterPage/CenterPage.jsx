@@ -24,10 +24,41 @@ const CenterPage = (props) => {
   });
 
   useEffect(() => {
+    // Fetching reviews for the provider
     axios
-      .get(`http://localhost/quickmatch_api/Review.php?provider_id=${props.provider_id}`)
-      .then((response) => setCustomerReviews(response.data))
-      .catch((error) => console.error("Error fetching reviews:", error));
+      .get(
+        `http://localhost/quickmatch_api/getCustomerReviews.php?provider_id=${props.provider_id}`
+      )
+      .then((response) => {
+        if (Array.isArray(response.data.data)) {
+          setCustomerReviews(response.data.data);
+        } else {
+          setCustomerReviews([]); // Handle unexpected response
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+        setCustomerReviews([]); // Handle error scenario
+      });
+    // Fetching the customer details using the user ID stored in sessionStorage
+    const userId = sessionStorage.getItem("user_id");
+    if (userId) {
+      axios
+        .get(
+          `http://localhost/quickmatch_api/getCustomerDetail.php?user_id=${userId}`
+        )
+        .then((response) => {
+          if (response.data && response.data.name) {
+            setNewReview((prevReview) => ({
+              ...prevReview,
+              reviewer: response.data.name, // Set the reviewer name
+            }));
+          }
+        })
+        .catch((error) =>
+          console.error("Error fetching customer details:", error)
+        );
+    }
   }, [props.provider_id]);
 
   const handleBookNowClose = () => setBookNowShow(false);
@@ -43,16 +74,30 @@ const CenterPage = (props) => {
       provider_id: props.provider_id,
       ...newReview,
     };
-
+  
     axios
-      .post("http://localhost/quickmatch_api/Review.php", reviewData)
+      .post("http://localhost/quickmatch_api/addCustomerReview.php", reviewData)
       .then((response) => {
-        setCustomerReviews([...customerReviews, response.data]);
-        setNewReview({ reviewer: "", comment: "", rating: 0 });
+        if (response.data.success) {
+          // Update the customerReviews state with the new review data
+          const newCustomerReview = {
+            reviewer: newReview.reviewer,
+            comment: newReview.comment,
+            rating: newReview.rating,
+            timestamp: new Date().toISOString(),
+          };
+  
+          setCustomerReviews([...customerReviews, newCustomerReview]);
+  
+          // Clear the form fields including the rating field
+          setNewReview({ reviewer: "", comment: "", rating: 0 });
+        } else {
+          console.error("Error: ", response.data.message);
+        }
       })
       .catch((error) => console.error("Error submitting review:", error));
   };
-
+  
   return (
     <>
       {bookNowShow ? (
@@ -66,7 +111,8 @@ const CenterPage = (props) => {
           service_name={props.service_name}
         />
       ) : (
-        <Modal className="center-page"
+        <Modal
+          className="center-page"
           {...props}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
@@ -81,7 +127,11 @@ const CenterPage = (props) => {
             <Container className="User-container">
               <div className="header-section text-center">
                 <h2>{props.name}</h2>
-                <img src={`http://localhost/quickmatch_api/profile_images/${props.profile}`} alt="Profile" className="profile-img" />
+                <img
+                  src={`http://localhost/quickmatch_api/profile_images/${props.profile}`}
+                  alt="Profile"
+                  className="profile-img"
+                />
               </div>
               <div className="info-section">
                 <h3>Business Hours</h3>
@@ -98,39 +148,44 @@ const CenterPage = (props) => {
               </div>
               <h3 className="review">Customer Reviews</h3>
               <div className="cardreview">
-                <Carousel className="reviews-section mb-4">
-                  {customerReviews.map((review) => (
-                    <Carousel.Item key={review.id}>
-                      <Card className="review-card">
-                        <Card.Body>
-                          <div className="reviewer-info">
-                            <div className="reviewer-details">
-                              <Card.Title>{review.reviewer}</Card.Title>
-                              <Card.Text className="cardtext1">
-                                {review.comment.length > 150
-                                  ? `${review.comment.substring(0, 150)}...`
-                                  : review.comment}
-                              </Card.Text>
+                <Carousel className="reviews-section mb-4" interval={2000}>
+                  {Array.isArray(customerReviews) &&
+                    customerReviews.map((review) => (
+                      <Carousel.Item key={review.id}>
+                        <Card className="review-card">
+                          <Card.Body>
+                            <div className="reviewer-info">
+                              <div className="reviewer-details">
+                                <Card.Title>{review.reviewer}</Card.Title>
+                                <Card.Text className="cardtext1">
+                                  {review.comment
+                                    ? review.comment.length > 150
+                                      ? `${review.comment.substring(0, 150)}...`
+                                      : review.comment
+                                    : "No comment provided."}
+                                </Card.Text>
+                              </div>
                             </div>
-                          </div>
-                          <Card.Text className="cardtext2">
-                            <div className="rating-stars">
-                              <Rating
-                                value={review.rating}
-                                edit={false} // Set to true if you want interactive ratings
-                                size={24} // Size of stars
-                                activeColor="#ffc107" // Color of active stars
-                              />
-                            </div>
-                            <small className="text-muted">
-                              Reviewed on{" "}
-                              {new Date(review.timestamp).toLocaleDateString()}
-                            </small>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Carousel.Item>
-                  ))}
+                            <Card.Text className="cardtext2">
+                              <div className="rating-stars">
+                                <Rating
+                                  value={review.rating}
+                                  edit={false} // Set to true if you want interactive ratings
+                                  size={24} // Size of stars
+                                  activeColor="#ffc107" // Color of active stars
+                                />
+                              </div>
+                              <small className="text-muted">
+                                Reviewed on{" "}
+                                {new Date(
+                                  review.timestamp
+                                ).toLocaleDateString()}
+                              </small>
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </Carousel.Item>
+                    ))}
                 </Carousel>
               </div>
               <Form onSubmit={handleReviewSubmit} className="mb-4" action="GET">
@@ -142,6 +197,7 @@ const CenterPage = (props) => {
                     value={newReview.reviewer}
                     onChange={handleReviewChange}
                     required
+                    readOnly
                   />
                 </Form.Group>
                 <Form.Group controlId="reviewComment">
@@ -188,14 +244,10 @@ const CenterPage = (props) => {
                   <strong>Address:</strong> {props.city}
                 </p>
               </Col>
-              <Col md={4}>
+              <Col md={3}></Col>
+              <Col md={5}>
                 <p>
                   <strong>Email:</strong> {props.email}
-                </p>
-              </Col>
-              <Col md={4}>
-                <p>
-                  <strong>Contact Number:</strong> {props.phone}
                 </p>
               </Col>
             </Row>

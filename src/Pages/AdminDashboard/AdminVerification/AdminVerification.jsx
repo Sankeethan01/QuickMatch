@@ -10,6 +10,7 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AdminVerification = () => {
   const [dataId, setDataId] = useState(null);
@@ -17,32 +18,47 @@ const AdminVerification = () => {
 
   const [verifications,setVerifications] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
 
 
   useEffect(()=>{
+    if(sessionStorage.getItem('user_type') !== 'admin')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
     fetchVerifications();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 
 
 const fetchVerifications = async () => {
   try {
-    const response = await axios.get('http://localhost/quickmatch_api/verificationDetails.php');
+    const response = await axios.get('http://localhost/quickmatch_api/getAllVerifications.php?action=getAll');
+
+    const categoryMapping = {
+      S01: 'Electric',
+      S02: 'Electronic',
+      S03: 'Construction',
+      S04: 'Event Management',
+    };
+
     const transformedData = response.data.map((verification) => ({
       id: verification.verify_id,
       description: verification.description,
-      mobile: verification.mobile_number,
       proof: verification.proof,
       address: verification.provider_address,
       email: verification.provider_email,
       name: verification.provider_name,
       username: verification.provider_username,
       date: verification.registered_date,
-      service_category: verification.service_category,
+      service_category: categoryMapping[verification.service_category] || verification.service_category,
+      services:verification.services,
     }));
     setVerifications(transformedData);
   } catch (error) {
-    console.error("Error fetching verification details:", error);
+    console.log("Error fetching verification details:");
   } finally {
     setLoading(false);
   }
@@ -52,15 +68,15 @@ const handleDelete = async (id) => {
   const confirmDelete = window.confirm("Are you sure you want to delete this data?");
   if (confirmDelete) {
     try {
-      const response = await axios.delete('http://localhost/quickmatch_api/verificationDetails.php', {
-        data: { id: id }
-      });
+      // Send ID as a URL parameter
+      const response = await axios.delete(`http://localhost/quickmatch_api/deleteVerification.php?id=${id}`);
       console.log(response.data);
     
       setVerifications(verifications.filter((message) => message.id !== id));
-      toast.success("Verification data deleted Successfully..");
+      toast.success("Verification data deleted Successfully.");
     } catch (error) {
       console.error("Error deleting message: ", error);
+      toast.error("Failed to delete verification data.");
     }
   }
 };

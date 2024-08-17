@@ -1,6 +1,6 @@
 .signup-container{
-    width: 800px !important;
-    height: 530px;
+    width: 900px !important;
+    height: 650px !important;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -9,7 +9,16 @@
     padding: 25px;
     position: relative;
     opacity: .8;
-   
+}
+
+.signup-container .input_row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.signup-container .small_input {
+  width: calc(50% - 15px);
 }
 
 .signup-container a{
@@ -22,7 +31,9 @@
     
   }
 .register-img{
-    width: 400px;
+    width: 380px;
+    margin-left: 20px;
+    margin-top: 70px;
   }
  
   .form{
@@ -34,7 +45,8 @@
          
     color: #0b0217;
     text-align: center;
-    margin-right: 50px;
+    margin-right: 25px;
+    margin-bottom: -5px;
     
 
 }
@@ -46,27 +58,31 @@ height: 35px;
 
 
 }
-.form-section .input_box input {
-height: 100%;
-width: 80%;
-border: none;
-outline: none;
-padding: 0 30px;
-color: #333;
-transition: all 0.2s ease;
-border-bottom: 1.5px solid #aaaaaa;
-border-radius: 4px;
+.form-section .input_box input,
+.form-section .input_box select {
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 15px 0;
+  transition: all 0.3s;
 }
 .form-section .input_box input:focus {
 border-color: #060b26;
 }
+
+.form-section .input_box select{
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
 .form-section .icon{
 position: absolute;
-top: 50%;
-transform: translateY(-50%);
-font-size: 20px;
+top: 70%;
+font-size: 22px;
 color: #707070;
-left: 0;
+left: 5px;
 
 }
 .form-section .input_box input:focus ~ .icon{
@@ -85,17 +101,18 @@ font-size: 12px;
 }
   .signup-container .form-section{
     margin-left: 30px;
-    width: 380px;
-    margin-right: -0.5px;
-    margin-top: -10px;
-   
-   
-    
+    width: 450px !important;
+    margin-right: 25px;
+    margin-top: -35px;
+    margin-left: 10px;
+
   }
   .signup-container .form-img{
     width: 450px;
     border-left: 2px solid #707070;
-  margin-left: -10px;
+    margin-left: 10px;
+    margin-right: -30px;
+    margin-top: -40px;
   }
 
   .form .form-section .button {
@@ -114,11 +131,12 @@ font-size: 12px;
     font-weight: bold;
     border: 2px solid #060b26;
   }
-  .button-div{
+   .button-div{
     display: flex;
-    gap: 10px;
-    width: 90%;
-    margin-left: -14px;
+    gap: 18px;
+    width: 80%;
+    margin-left: 33px;
+    margin-top: 20px;
   }
 
   .signup-container .login_signup {
@@ -137,18 +155,49 @@ font-size: 12px;
     color: black;
   }
 
-  @media (max-width:820px)
+  @media (max-width:910px)
   {
    .signup-container{
-    width: 410px !important;
+    margin-top: 10px;
+    width: 420px !important;
+    margin-bottom: 10px;
+    height: auto;
+   }
+   .form-section{
+    margin-top: -20px;
+    margin-bottom: 10px !important;
+   }
+   .form-section h2{
+    margin-bottom: -30px;
+    margin-top: 20px;
+   }
+   .form-section .input_row{
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: -5px;
+   }
+   .form-section .input_box{
+    width: 90%;
+    margin-bottom: -5px;
+    margin-left: 10px;
+   }
+   .form-section .small_input{
+    width: 90%;
    }
    .signup-container .form{
     width: 400px;
+    margin-top: -20px;
    }
     .form .form-img{
       display: none;
     }
     .signup-container .button-div{
-      width: 80%;
+      width: 100%;
+      font-size: .8rem;
+      margin-left: -15px;
+    }
+    .signup-container .cancel-btn{
+      z-index: 10;
+      
     }
   }

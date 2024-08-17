@@ -24,11 +24,11 @@ const AdminFeaturedInfo = () => {
 
   const fetchCustomerCount = async () => {
     axios
-      .get("http://localhost/quickmatch_api/customerDetails.php?action=count")
+      .get("http://localhost/quickmatch_api/getUserCount.php?user_type=customer")
       .then((response) => {
         console.log(response.data);
         setLoading(false);
-           setCustomerCount(response.data.customer_count)
+           setCustomerCount(response.data.user_count)
       })
       .catch((error) => {
         console.error("Error fetching  customer count : ", error);
@@ -38,11 +38,11 @@ const AdminFeaturedInfo = () => {
 
   const fetchSuccessfulServiceCount = async () => {
     axios
-      .get("http://localhost/quickmatch_api/bookingDetails.php?action=count")
+      .get("http://localhost/quickmatch_api/getSuccessServiceCount.php?booking_status=Completed")
       .then((response) => {
         console.log(response.data);
         setLoading(false);
-           setSuccessfulServices(response.data.successful_service_count)
+           setSuccessfulServices(response.data.success_count)
       })
       .catch((error) => {
         console.error("Error fetching  successful service count : ", error);
@@ -52,11 +52,11 @@ const AdminFeaturedInfo = () => {
 
   const fetchProviderCount = async () => {
     axios
-      .get("http://localhost/quickmatch_api/providerDetails.php?action=count")
+      .get("http://localhost/quickmatch_api/getUserCount.php?user_type=provider")
       .then((response) => {
         console.log(response.data);
         setLoading(false);
-           setProviderCount(response.data.provider_count)
+           setProviderCount(response.data.user_count)
       })
       .catch((error) => {
         console.error("Error fetching  provider count : ", error);
@@ -66,7 +66,7 @@ const AdminFeaturedInfo = () => {
 
   const fetchTotalIncome = async () => {
     axios
-      .get("http://localhost/quickmatch_api/bookingDetails.php?action=totalIncome")
+      .get("http://localhost/quickmatch_api/getTotalIncome.php?action=totalIncome")
       .then((response) => {
         console.log(response.data);
         setLoading(false);

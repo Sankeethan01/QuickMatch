@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../ServiceProviderDashboardComponents/Profile/Profile.css'; // Import the CSS file
 import userAvatar from "../../../assets/user-3.png";
+import { ToastContainer, toast } from "react-toastify";
 
 const districts = [
-  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
+  '','Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
   'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala',
   'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa',
   'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
@@ -23,7 +24,11 @@ const ProfilePage = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState(profile);
+  const [form, setForm] = useState({
+    ...profile,
+    city: "", 
+    district: "", 
+  });
   const [profilePicFile, setProfilePicFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,38 +41,40 @@ const ProfilePage = () => {
     setLoading(true);
     try {
       // Fetch user ID from session (local storage in this case)
-      const user_id = sessionStorage.getItem('user_id')  ||  localStorage.getItem('user_id'); 
+      const user_id = sessionStorage.getItem('user_id'); 
       if (!user_id) {
         setError("User not authenticated");
         setLoading(false);
         return;
       }
 
-      const response = await axios.get(`http://localhost/quickmatch_api/customerDetails.php?user_id=${user_id}`);
+      const response = await axios.get(`http://localhost/quickmatch_api/getCustomerDetail.php?user_id=${user_id}`);
       const data = response.data;
-      if (data && data.length > 0) {
-        const fetchedUser = data[0];
+      if (data) { 
+        const address = data.address;
+        const [city, district] = data.address.split(' | ');
         setProfile({
-          user_id:fetchedUser.user_id,
-          name: fetchedUser.name,
-          username: fetchedUser.username,
-          email: fetchedUser.email,
-          type: fetchedUser.user_type,
-          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
-          contactNumber: fetchedUser.phone,
-          nationalId: fetchedUser.national_id,
-          location: fetchedUser.address,
+          user_id:data.user_id,
+          name: data.name,
+          username: data.username,
+          email: data.email,
+          type: data.user_type,
+          avatar: data.profile_image ? `http://localhost/quickmatch_api/profile_images/${data.profile_image}` : userAvatar,
+          contactNumber: data.phone,
+          nationalId: data.national_id,
+          location: address,
         });
         setForm({
-          user_id:fetchedUser.user_id,
-          name: fetchedUser.name,
-          username: fetchedUser.username,
-          email: fetchedUser.email,
-          type: fetchedUser.user_type,
-          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
-          contactNumber: fetchedUser.phone,
-          nationalId: fetchedUser.national_id,
-          location: fetchedUser.address,
+          user_id:data.user_id,
+          name: data.name,
+          username: data.username,
+          email: data.email,
+          type: data.user_type,
+          contactNumber: data.phone,
+          nationalId: data.national_id,
+          city: city || "",
+          district: district || "",
+          avatar: data.profile_image ? `http://localhost/quickmatch_api/profile_images/${data.profile_image}` : userAvatar,
         });
       }
     } catch (error) {
@@ -84,51 +91,60 @@ const ProfilePage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
+    setForm((prevForm) => {
+      const updatedForm = { ...prevForm, [name]: value };
+      const city = name === "city" ? value : updatedForm.city;
+      const district = name === "district" ? value : updatedForm.district;
+      updatedForm.location = `${city} | ${district}`;
+      return updatedForm;
     });
   };
 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setProfilePicFile(file);
-      setForm({
-        ...form,
-        avatar: URL.createObjectURL(file),
-      });
+        setProfilePicFile(file);
+        setForm((prevForm) => {
+            const city = prevForm.city || "";
+            const district = prevForm.district || "";
+            return {
+                ...prevForm,
+                avatar: URL.createObjectURL(file),
+                location: `${city} | ${district}`, 
+            };
+        });
     }
-  };
- 
+};
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     const formData = new FormData();
-    formData.append('id',form.user_id );
+    formData.append('user_id',form.user_id);
     formData.append('name', form.name);
     formData.append('username', form.username);
-    formData.append('phone', form.contactNumber);
-    formData.append('address', form.location);
-    formData.append('national_id', form.nationalId);
+    formData.append('contactNumber', form.contactNumber);
+    formData.append('location', form.location);
+    formData.append('nationalId', form.nationalId);
+
     if (profilePicFile) {
       formData.append('profile_image', profilePicFile);
     }
 
     try {
-      const response = await axios.post("http://localhost/quickmatch_api/customerDetails.php", formData);
+      const response = await axios.post("http://localhost/quickmatch_api/updateCustomerProfile.php", formData);
       if (response.data.success) {
-        setProfile(form);
-        setIsEditing(false);
-      
+        setProfile({ ...form });
+          setIsEditing(false);
+          toast.success("Profile updated");
       } else {
-        setError(response.data.message || "Failed to update profile");
+        toast.error(response.data.message);
       }
     } catch (error) {
-      setError("Failed to update profile");
-      console.error("Failed to update profile:", error);
+      
+      toast.error("Failed to update profile:", error);
     } finally {
       setLoading(false);
     }
@@ -150,7 +166,7 @@ const ProfilePage = () => {
         {isEditing ? (
           <form className="profile-form" onSubmit={handleFormSubmit}>
             <label>
-              Name:
+              Name :
               <input
                 type="text"
                 name="name"
@@ -159,16 +175,25 @@ const ProfilePage = () => {
               />
             </label>
             <label>
-              Email:
+              Username :
               <input
-                type="email"
-                name="email"
-                value={form.email}
+                type="text"
+                name="username"
+                value={form.username}
                 onChange={handleInputChange}
               />
             </label>
             <label>
-              Contact Number:
+              Email :
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                
+              />
+            </label>
+            <label>
+              Contact Number :
               <input
                 type="text"
                 name="contactNumber"
@@ -177,14 +202,25 @@ const ProfilePage = () => {
               />
             </label>
             <label>
-              Location:
+              City:
+              <input
+                type="text"
+                name="city"
+                value={form.city}
+                onChange={handleInputChange}
+              />
+            </label>
+            <label>
+              District:
               <select
-                name="location"
-                value={form.location}
+                name="district"
+                value={form.district}
                 onChange={handleInputChange}
               >
-                {districts.map(district => (
-                  <option key={district} value={district}>{district}</option>
+                {districts.map((district, index) => (
+                  <option key={index} value={district}>
+                    {district}
+                  </option>
                 ))}
               </select>
             </label>
@@ -198,10 +234,10 @@ const ProfilePage = () => {
               />
             </label>
             <label>
-              Profile Picture:
+              Profile Picture :
               <input
                 type="file"
-                accept="image/*"
+               name='profile_image'
                 onChange={handleProfilePicChange}
               />
             </label>
@@ -213,15 +249,16 @@ const ProfilePage = () => {
             >
               Save
             </button>
-            <button type="button" onClick={() => setIsEditing(false)} className='save-button'>Cancel</button>
+            <button type="button" onClick={() => setIsEditing(false)} className='cancel-button'>Cancel</button>
           </form>
         ) : (
           <div className="profile-details">
-            <p><strong>Name:</strong> {profile.name}</p>
-            <p><strong>Email:</strong> {profile.email}</p>
-            <p><strong>Contact Number:</strong> {profile.contactNumber}</p>
-            <p><strong>National ID:</strong> {profile.nationalId}</p>
-            <p><strong>Location:</strong> {profile.location}</p>
+            <p><strong>Name :</strong> {profile.name}</p>
+            <p><strong>Username :</strong> {profile.username}</p>
+            <p><strong>Email :</strong> {profile.email}</p>
+            <p><strong>Contact Number :</strong> {profile.contactNumber}</p>
+            <p><strong>National ID :</strong> {profile.nationalId}</p>
+            <p><strong>Address :</strong> {profile.location}</p>
             <button
               onClick={handleEditClick}
               className="edit-button"
@@ -232,6 +269,7 @@ const ProfilePage = () => {
         )}
         {error && <div className="error-message">{error}</div>}
       </div>
+      <ToastContainer />
     </div>
   );
 };

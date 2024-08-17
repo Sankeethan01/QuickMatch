@@ -11,7 +11,6 @@ import ServiceProviderList from './Pages/AdminDashboard/ServiceProviderList/Serv
 import BookingList from './Pages/AdminDashboard/BookingList/BookingList';
 import AdminVerification from './Pages/AdminDashboard/AdminVerification/AdminVerification';
 import AdminFeedback from './Pages/AdminDashboard/AdminFeedback/AdminFeedback';
-import AdminMessages from './Pages/AdminDashboard/AdminMessages/AdminMessages';
 import AdminMonitoring from './Pages/AdminDashboard/AdminMonitoring/AdminMonitoring';
 import Electric from './Pages/MainWebPages/Electric/Electric';
 import Electronic from './Pages/MainWebPages/Electronic/Electronic';
@@ -25,6 +24,8 @@ import CustomerNotification from './Pages/CustomerDashboard/CustomerNotification
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import ProviderContact from './Pages/ServiceProviderDashboard/ProviderContact/ProviderContact';
 import ProviderIntro from './Pages/ServiceProviderDashboard/ProviderIntro';
+import CustomerFeedbackSection from './Pages/CustomerDashboard/CustomerFeedbackSection/CustomerFeedbackSection';
+import ProviderFeedbackSection from './Pages/ServiceProviderDashboard/ProviderFeedbackSection';
 
 
 function App() {
@@ -47,7 +48,6 @@ function App() {
           <Route path="/adminbookings" exact Component={BookingList} />
           <Route path="/adminverification" exact Component={AdminVerification} />
           <Route path="/adminfeedbacks" exact Component={AdminFeedback} />
-          <Route path="/adminmessages" exact Component={AdminMessages} />
           <Route path="/adminmonitoring" exact Component={AdminMonitoring} />
           <Route path='/providerIntro' exact Component={ProviderIntro} />
           <Route path='/providerhome' exact Component={ProviderHome} />
@@ -55,8 +55,10 @@ function App() {
           <Route path='/providernotifications' exact Component={ProviderNotifications} />
           <Route path='/providerfinance' exact Component={ProviderFinance} />
           <Route path='/providercontact' exact Component={ProviderContact} />
+          <Route path='/providerfeedbacksection' exact Component={ProviderFeedbackSection} />
           <Route path='/customeraccountsettings' exact Component={CustomerMain} />
           <Route path='/customernotifications' exact Component={CustomerNotification} />
+          <Route path='/customerfeedbacksection' exact Component={CustomerFeedbackSection} />
         </Routes>
        </Router>
     </div>

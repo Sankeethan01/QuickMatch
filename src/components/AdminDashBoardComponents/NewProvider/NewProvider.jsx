@@ -16,7 +16,7 @@ const NewProvider = () => {
 
   const fetchNewProviders = async () => {
     try {
-      const response = await axios.get("http://localhost/quickmatch_api/providerDetails.php?action=lastFive");
+      const response = await axios.get("http://localhost/quickmatch_api/getLastFiveUsers.php?user_type=provider");
       setNewProviders(response.data);
       setLoading(false);
     } catch (error) {

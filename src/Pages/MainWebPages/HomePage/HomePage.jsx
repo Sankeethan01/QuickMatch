@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '../../../components/Hero/Hero'
 import Services from '../../../components/Services/Services'
 import HomeNavBar from '../../../components/HomeNavBar/HomeNavBar'
@@ -7,8 +7,20 @@ import Title from '../../../components/Title/Title'
 import Functionality from '../../../components/Functionality/Functionality'
 import About from '../../../components/About/About'
 import Review from '../../../components/Review/Review'
+import { useNavigate } from 'react-router-dom'
+
 
 const HomePage = () => {
+  useEffect(() => {
+    if(sessionStorage.getItem('user_type') !== 'customer')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
+  })
+
+  const navigate = useNavigate();
+  
   return (
     <div className='homePage'>
       <HomeNavBar />

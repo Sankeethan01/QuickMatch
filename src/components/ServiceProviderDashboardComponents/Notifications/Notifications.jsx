@@ -1,87 +1,164 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Notifications.css';
+import { Button, Modal } from 'react-bootstrap';
 
-const Notification = () => {
+const ProviderNotification = () => {
   const [requests, setRequests] = useState([]);
+  const [showActionModal, setShowActionModal] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [actionType, setActionType] = useState('');
 
   useEffect(() => {
-    fetchBookings();
-  }, []);
+    const user_id = sessionStorage.getItem('user_id');
+    if (user_id) {
+      fetchBookings(user_id);
+    }
+  },[]);
+
 
   
 
-  const fetchBookings = async () => {
+  const fetchBookings = async (user_id) => {
     try {
-      const response = await axios.get('http://localhost/quickmatch_api/providerDetails.php?action=getProviderBookingsById&provider_id=501');
-      setRequests(response.data);
-    } catch (error) {
-      console.error('Error fetching bookings:', error);
-    }
-  };
-
-  const updateBookingStatus = async (booking_id, status) => {
-    try {
-      const response = await axios.post('http://localhost/quickmatch_api/providerDetails.php', {
-        action: 'updateStatus',
-        provider_id: 501,
-        booking_id: booking_id,
-        status: status
-      });
-      if (response.status === 200) {
-        // Remove the updated booking from the state
-        setRequests(prevRequests => prevRequests.filter(request => request.booking_id !== booking_id));
+      const response = await axios.get(`http://localhost/quickmatch_api/getBookingDetailForProvider.php?user_id=${user_id}`);
+      if (response.data && Array.isArray(response.data)) {
+        setRequests(response.data);
+      } else {
+        console.error("Unexpected response format:", response.data);
       }
     } catch (error) {
-      console.error(`Error updating booking status to ${status}:`, error);
+      console.error("Failed to fetch bookings:", error);
     }
   };
 
-  const handleAccept = (id) => {
-    updateBookingStatus(id, 'Accepted');
+  const handleAccept = async () => {
+    if (selectedBookingId) {
+      try {
+        const response = await axios.post('http://localhost/quickmatch_api/acceptBooking.php', {
+          booking_id: selectedBookingId,
+          booking_status: 'Accepted',
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.data.success) {
+          setRequests(requests.map(request => 
+            request.booking_id === selectedBookingId ? { ...request, booking_status: 'Accepted' } : request
+          ));
+          setShowActionModal(false);
+        } else {
+          console.error("Failed to update booking status:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error updating booking status:", error);
+      }
+    }
   };
 
-  const handleDecline = (id) => {
-    updateBookingStatus(id, 'Declined');
+
+  const handleDecline = async () => {
+    if (selectedBookingId) {
+      try {
+        const response = await axios.post('http://localhost/quickmatch_api/providerCancelBooking.php', {
+          booking_id: selectedBookingId,
+          booking_status1: 'Declined-provider',
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.data.success) {
+          setRequests(requests.map(request => 
+            request.booking_id === selectedBookingId ? { ...request, booking_status: 'Declined-provider' } : request
+          ));
+          setShowActionModal(false);
+        } else {
+          console.error("Failed to update booking status:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error updating booking status:", error);
+      }
+    }
+  }
+
+  const openActionModal = (id, action) => {
+    setSelectedBookingId(id);
+    setActionType(action);
+    setShowActionModal(true);
   };
+
+  const confirmAction = () => {
+    if (actionType === 'accept') {
+      handleAccept();
+    } else if (actionType === 'decline') {
+      handleDecline();
+    }
+  };
+
+  
+
 
   return (
+    <>
     <div className="service-accept-container">
       <h2>Service Requests</h2>
       <div className="requests-list">
-        {requests.length === 0 ? (
-          <p className="no-pending-requests">No pending requests.</p>
-        ) : (
-          requests.map(request => (
-            <div key={request.booking_id} className="request-item">
-              <p><strong>Customer Name:</strong> {request.customer_name}</p>
-              <p><strong>Address:</strong> {request.customer_address}</p>
-              <p><strong>Expected Service Date:</strong> {request.booking_date}</p>
-              <p><strong>Expected Service:</strong> {request.additional_notes}</p>
-              <div className="actions">
-                {request.booking_status !== 'Accepted' && request.booking_status !== 'Declined' && (
+        {requests.map(request => (
+          <div key={request.booking_id} className="request-item">
+             <p><strong>Customer Name :</strong> {request.customer_name}</p>
+            <p><strong>Service :</strong> {request.service}</p>
+            <p><strong>Service Category :</strong> {request.service_name}</p>
+            <p><strong>Service Provider:</strong> {request.provider_name}</p>
+            <p><strong>My Location:</strong> {request.customer_address}</p>
+            <p><strong>Additional Notes:</strong> {request.additional_notes}</p>
+            <p><strong>Service Requested Date:</strong> {request.booking_date}</p>
+             <h4>Status of the Request: <span>{request.booking_status}</span></h4>
+            <div className="actions">
+            {request.booking_status === 'Pending' && (
                   <>
-                    <button className="accept-button" onClick={() => handleAccept(request.booking_id)}>
-                      Accept
+                  <button className="accept-button" onClick={() => openActionModal(request.booking_id, 'accept')}>
+                      Accept Request
                     </button>
-                    <button className="decline-button" onClick={() => handleDecline(request.booking_id)}>
-                      Decline
+                    <button className="decline-button" onClick={() => openActionModal(request.booking_id, 'decline')}>
+                      Cancel Request
                     </button>
                   </>
                 )}
-                {request.booking_status === 'Accepted' && (
-                  <span className="status accepted">Accepted</span>
-                )}
-                {request.booking_status === 'Declined' && (
-                  <span className="status declined">Declined</span>
-                )}
-              </div>
+                {request.booking_status === 'Declined-provider' && (
+                <span style={{color: 'red'}}>Service Request Declined</span>
+              )}
+              {request.booking_status === 'Accepted' && (
+                <span className="status accepted">Service Request Accepted</span>
+              )}
             </div>
-          ))
-        )}
+          </div>
+        ))}
       </div>
     </div>
+    <Modal show={showActionModal} onHide={() => setShowActionModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {actionType === 'accept' ? 'Confirm Acceptance' : 'Confirm Cancellation'}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to {actionType === 'accept' ? 'accept' : 'decline'} this service request?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowActionModal(false)}>
+            Close
+          </Button>
+          <Button variant={actionType === 'accept' ? 'success' : 'danger'} onClick={confirmAction}>
+            {actionType === 'accept' ? 'Accept Service Booking' : 'Cancel Service Booking'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
-export default Notification;
+export default ProviderNotification;

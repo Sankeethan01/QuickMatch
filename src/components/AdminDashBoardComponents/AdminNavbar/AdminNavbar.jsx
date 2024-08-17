@@ -8,14 +8,12 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import logo from "../../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import user_icon from "../../../assets/user-1.png";
 import Modal from "../Modal/Modal";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PersonIcon from "@mui/icons-material/Person";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import FeedbackIcon from "@mui/icons-material/Feedback";
-import ForumIcon from "@mui/icons-material/Forum";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import LogoutIcon from "@mui/icons-material/Logout";
 import EngineeringIcon from "@mui/icons-material/Engineering";
@@ -45,7 +43,7 @@ const AdminNavbar = () => {
 
   const fetchData = async (user_id) => {
     try {
-      const response = await axios.get(`http://localhost/quickmatch_api/admin.php?user_id=${user_id}`);
+      const response = await axios.get(`http://localhost/quickmatch_api/getAdminDetail.php?user_id=${user_id}`);
       const data = response.data;
       if (data) {
         setAdmin({
@@ -106,12 +104,12 @@ const AdminNavbar = () => {
                 <img src={admin.avatar} alt="User Icon" className="topAvatar" />
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="menu">
+              <Dropdown.Menu className="menu" style={{width:'180px'}}>
                 <Dropdown.ItemText className="admin-name">
                   <img src={admin.avatar} alt="User Icon" className="topAvatar" /> {admin.name}
                 </Dropdown.ItemText>
-                <Dropdown.Item onClick={() => setModalOpen(true)}>My Account</Dropdown.Item>
-                <Dropdown.Item onClick={handleLogout}>
+                <Dropdown.Item style={{textAlign:'center'}} onClick={() => setModalOpen(true)}>My Account</Dropdown.Item>
+                <Dropdown.Item style={{textAlign:'center'}}  onClick={handleLogout}>
                   <Link to="/" className="nav-link">Logout</Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -161,12 +159,6 @@ const AdminNavbar = () => {
             <Link to="/adminfeedbacks">
               <FeedbackIcon />
               <span>Feedbacks</span>
-            </Link>
-          </li>
-          <li className="nav-text">
-            <Link to="/adminmessages">
-              <ForumIcon />
-              <span>Messages</span>
             </Link>
           </li>
           <li className="nav-text">

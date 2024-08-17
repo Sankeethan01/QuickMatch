@@ -8,28 +8,52 @@ import Footer from "../../../components/Footer/Footer";
 import CenterPage from "../CenterPage/CenterPage";
 import electric_jpg from '../../../assets/electrical.jpg'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Electric = () => {
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  const navigate = useNavigate();
+
+  const electricWorks = [
+    'Switch and outlet repair and installation', 
+    'Lighting repair, installation, and upgrades', 
+    'Ceiling fan installation', 
+    'Wiring and rewiring',
+    'Data and Communication Wiring',
+    'Home Automation Systems', 
+    'Electrical Panel Upgrades', 
+    'Electrical Repairs',
+    'Electrical Installations',
+    'Circuit Breaker Replacement',
+    'Emergency electrical services',
+    'Backup power solutions'
+  ];
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (sessionStorage.getItem('user_type') !== 'customer') {
+      sessionStorage.clear();
+      navigate('/');
+      return; 
+    }
 
+    fetchData();
+  },[navigate])
+
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/quickmatch_api/services.php?action=electric"
+        "http://localhost/quickmatch_api/providersByServiceCategory.php?service_category_id=S01"
       );
       const data = response.data;
-      console.log("raw data: ", data);
       setUsers(data);
       setFilteredUsers(data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
+      alert("Failed to load service providers. Please try again later.");
     }
   };
 
@@ -41,6 +65,7 @@ const Electric = () => {
   const handleSearch = (city, work) => {
     let filtered = users;
 
+    
     if (city) {
       filtered = filtered.filter((user) =>
         user.address.toLowerCase().includes(city.toLowerCase())
@@ -61,7 +86,7 @@ const Electric = () => {
     <div className="construction">
     <HomeNavBar />
      <ServiceTitle title="Electric"/> 
-    <SearchSection handleSearch={handleSearch} img={electric_jpg} />
+    <SearchSection  handleSearch={handleSearch} img={electric_jpg} works={electricWorks}/>
     <div className="body-section">
       {searchPerformed && filteredUsers.length === 0 ? (
         <div className="not-found">

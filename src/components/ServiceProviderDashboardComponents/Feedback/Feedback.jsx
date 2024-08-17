@@ -2,24 +2,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feedback.css';
-import ShowModal from '../../Write Feedback/ShowModal'
 
 const Feedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
-  const providerId = 501; // Set the provider ID
 
   useEffect(() => {
+
+    const user_id = sessionStorage.getItem('user_id');
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get(`http://localhost/quickmatch_api/providerDetails.php?action=customerFeedbackById&provider_id=${providerId}`);
-        setFeedbacks(response.data);
+        const response = await axios.get(`http://localhost/quickmatch_api/getCustomerReviews.php?user_id=${user_id}`);
+        if (Array.isArray(response.data.data)) {
+          setFeedbacks(response.data.data);
+        } else {
+          setFeedbacks([]);  // Or handle the unexpected response format
+        }
       } catch (error) {
         console.error('Error fetching feedbacks:', error);
+       setFeedbacks([]);  // Handle the error by setting feedbacks to an empty array
       }
     };
 
     fetchFeedbacks();
-  }, [providerId]);
+  }, []);
 
   return (
     <>
@@ -37,9 +42,7 @@ const Feedback = () => {
           <p className="no-feedback">No feedbacks available.</p>
         )}
       </div>
-      <div className='feedback-container'>
-        <ShowModal username="John Smith" email="smith78@gmail.com" user="Service Provider"/>
-      </div>
+      
     </>
   );
 };

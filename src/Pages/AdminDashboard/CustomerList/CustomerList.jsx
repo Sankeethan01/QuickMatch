@@ -10,6 +10,7 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CustomerList = () => {
  
@@ -18,14 +19,20 @@ const CustomerList = () => {
 
   const [customers,setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
 
   useEffect(()=>{
+    if(sessionStorage.getItem('user_type') !== 'admin')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
     fetchCustomers();
 },[]);
 
 const fetchCustomers = async () => {
-  axios.get('http://localhost/quickmatch_api/customerDetails.php')
+  axios.get('http://localhost/quickmatch_api/getAllCustomers.php?action=getAll')
   .then(response => {
     
     console.log(response.data);

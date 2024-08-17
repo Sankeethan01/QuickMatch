@@ -14,6 +14,7 @@ import FestivalOutlinedIcon from '@mui/icons-material/FestivalOutlined';
 import NotificationsActiveIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from "@mui/icons-material/Logout";
 import Modal from "../AdminDashBoardComponents/Modal/Modal";
+import ChatIcon from '@mui/icons-material/Chat';
 import Logo from "../../assets/logo.png";
 import userAvatar from "../../assets/user-3.png";
 import "./HomeNavBar.css";
@@ -34,31 +35,31 @@ const HomeNavBar = () => {
 
   useEffect(() => {
     // Retrieve user data from storage
-    const user_id = sessionStorage.getItem("user_id") || localStorage.getItem("user_id");
-  
+    const user_id = sessionStorage.getItem("user_id");
+    const user_type = sessionStorage.getItem("user_type");
 
-    if (user_id) {
-      fetchData(user_id);
+    if (user_id && user_type) {
+      fetchData(user_id,user_type);
       
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchData = async (user_id) => {
+  const fetchData = async (user_id,user_type) => {
     try {
       const response = await axios.get(
-        `http://localhost/quickmatch_api/customerDetails.php?user_id=${user_id}`
+        `http://localhost/quickmatch_api/getCustomerDetail.php?user_id=${user_id}`
       );
       const data = response.data;
       console.log("raw data: ", data);
-      if (data && data.length > 0) {
-        const fetchedUser = data[0]; // Assuming the first user object contains the needed info
+      if (data) {
         setUser({
           ...user,
-          name: fetchedUser.name,
-          username: fetchedUser.username,
-          email: fetchedUser.email,
-          type: fetchedUser.user_type,
-          avatar: fetchedUser.profile_image ? `http://localhost/quickmatch_api/profile_images/${fetchedUser.profile_image}` : userAvatar,
+          name: data.name,
+          username: data.username,
+          email: data.email,
+          type: data.user_type,
+          avatar: data.profile_image ? `http://localhost/quickmatch_api/profile_images/${data.profile_image}` : userAvatar,
         });
       }
     } catch (error) {
@@ -66,10 +67,20 @@ const HomeNavBar = () => {
     }
   };
   const handleLogout = () => {
-    sessionStorage.clear();
-    localStorage.clear();
-    navigate('/'); 
-  };
+
+    const adminSession = sessionStorage.getItem('previous_user_type');
+    const id = sessionStorage.getItem('user_id');
+    sessionStorage.clear()
+
+
+    if (adminSession) {
+        sessionStorage.setItem('user_type', adminSession);
+        sessionStorage.setItem('user_id', id);
+    }
+
+   
+    navigate('/adminmonitoring');
+};
 
   return (
     <>
@@ -86,23 +97,23 @@ const HomeNavBar = () => {
             </Link>
           </div>
           <div className="topRight">
-            <Dropdown>
+            <Dropdown >
               <Dropdown.Toggle variant="success" className="menu-drop">
                 <img src={user.avatar} alt="User Avatar" className="topAvatar" />
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="menu">
+              <Dropdown.Menu className="menu" style={{ width: '180px' }}>
                 <Dropdown.ItemText className="admin-name">
-                  <img src={user.avatar} alt="User Avatar" className="topAvatar" /> {user.name}
+                  <img src={user.avatar} alt="User Avatar" className="topAvatar" /> {user.username}
                 </Dropdown.ItemText>
-                <Dropdown.Item
+                <Dropdown.Item style={{ textAlign: 'center' }}
                   onClick={() => {
                     setModalOpen(true);
                   }}
                 >
                   My Account
                 </Dropdown.Item>
-                <Dropdown.Item  onClick={handleLogout}>
+                <Dropdown.Item style={{ textAlign: 'center' }}  onClick={handleLogout}>
                   <Link to="/" className="nav-link">Logout</Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -146,13 +157,6 @@ const HomeNavBar = () => {
             </Dropdown.Item>
           </Dropdown>
           <li className="nav-text">
-            <Link to="/customeraccountsettings">
-              <ManageAccountsIcon />
-              <span>Profile Settings</span>
-            </Link>
-          </li>
-
-          <li className="nav-text">
             <Link to="/customernotifications">
               <NotificationsActiveIcon />
               <span>Notifications</span>
@@ -163,6 +167,20 @@ const HomeNavBar = () => {
             <Link to="/contact">
               <PermPhoneMsgIcon />
               <span>Contact</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/customerfeedbacksection">
+              <ChatIcon />
+              <span>Feedback Section</span>
+            </Link>
+          </li>
+
+          <li className="nav-text">
+            <Link to="/customeraccountsettings">
+              <ManageAccountsIcon />
+              <span>Profile Settings</span>
             </Link>
           </li>
 

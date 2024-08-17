@@ -85,7 +85,7 @@
 }
 
 /* Save button styling */
-.save-button,
+.save-button,.cancel-button,
 .edit-button {
     background-color: #060b26;
     color: #fff;
@@ -104,8 +104,12 @@
 /* Save button specific */
 .save-button {
     margin-top: 1rem;
-    align-self: flex-end;
+    align-self: flex-start;
     /* Align Save button to the right */
+}
+.cancel-button{
+    margin-top: 1rem;
+   margin-left: 30px !important;
 }
 
 /* Edit button specific */

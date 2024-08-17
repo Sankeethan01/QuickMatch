@@ -50,7 +50,7 @@ const Contact = () => {
         <ul>
           <li>
             <img src={mail} alt="" />
-            cst21020@gmail.com
+            findquickmatch@gmail.com
           </li>
           <li>
             <img src={phone} alt="" />
@@ -58,9 +58,7 @@ const Contact = () => {
           </li>
           <li>
             <img src={address} alt="" />
-            Courts Road, Mallakam <br />
-            Jaffna <br />
-            Sri Lanka
+          Passara Road, Badulla, Sri Lanka
           </li>
         </ul>
       </div>

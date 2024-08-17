@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./BookingList.css";
 import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/PageTitle";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Button from "@mui/material/Button";
 import Popup from "../../../components/AdminDashBoardComponents/PopupBookingDetail/Popup";
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
-import { ToastContainer, toast } from "react-toastify";
-
-
+import { useNavigate } from "react-router-dom";
 
 const BookingList = () => {
 
@@ -19,14 +16,21 @@ const BookingList = () => {
   const [loading, setLoading] = useState(true);
 
   const [bookings,setBookings] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
+    if(sessionStorage.getItem('user_type') !== 'admin')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
     fetchBookings();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 
 const fetchBookings = async () => {
   try{
-   const response = await axios.get('http://localhost/quickmatch_api/bookingDetails.php');
+   const response = await axios.get('http://localhost/quickmatch_api/getAllBookings.php?action=getAll');
    console.log('Raw data: ',response.data);
    setLoading(false)
 
@@ -52,24 +56,6 @@ const fetchBookings = async () => {
   catch(error){
    console.error('Error fetching bookings:',error);
    setLoading(false)
-  }
-};
-
-
-const handleDelete = async (id) => {
-  const confirmDelete = window.confirm("Are you sure you want to delete this customer data?");
-  if (confirmDelete) {
-    try {
-      const response = await axios.delete('http://localhost/quickmatch_api/customerDetails.php', {
-        data: { id: id }
-      });
-      console.log(response.data);
-    
-      setBookings(bookings.filter((message) => message.id !== id));
-      toast.success("Booking deleted Successfully..");
-    } catch (error) {
-      console.error("Error deleting message: ", error);
-    }
   }
 };
 
@@ -104,7 +90,7 @@ if(loading){
     {
       field: "customer",
       headerName: "Customer",
-      width: 250,
+      width: 230,
     },
     {
       field: "provider",
@@ -133,10 +119,7 @@ if(loading){
             >
               View
             </Button>
-            <DeleteOutlineIcon
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            
           </div>
         );
       },
@@ -174,7 +157,6 @@ if(loading){
           columnHeaderHeight={60}
         />
       </div>
-      <ToastContainer />
     </div>
   );
 };

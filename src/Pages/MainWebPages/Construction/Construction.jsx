@@ -1,39 +1,62 @@
-import { React, useState ,useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import SearchSection from "../../../components/SearchSection/SearchSection";
 import ProviderCard from "../../../components/ProviderCard/ProviderCard";
-import './Construction.css'
+import "./Construction.css";
 import ServiceTitle from "../../../components/ServiceTitle/ServiceTitle";
 import HomeNavBar from "../../../components/HomeNavBar/HomeNavBar";
 import Footer from "../../../components/Footer/Footer";
 import CenterPage from "../CenterPage/CenterPage";
-import construction_img from '../../../assets/construction_work.jpg';
+import construction_img from "../../../assets/construction_work.jpg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Construction = () => {
-  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user_type") !== "customer") {
+      sessionStorage.clear();
+      navigate("/");
+      return;
+    }
+
+    fetchData();
+  }, [navigate]);
+
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/quickmatch_api/services.php?action=construction"
+        "http://localhost/quickmatch_api/providersByServiceCategory.php?service_category_id=S03"
       );
       const data = response.data;
-      console.log("raw data: ", data);
       setUsers(data);
       setFilteredUsers(data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
+      alert("Failed to load service providers. Please try again later.");
     }
   };
+
+  const constructionWorks = [
+    "Painting",
+    "building works",
+    "Office building",
+    "Hall works",
+    "Civil Construction",
+    "General Contracting",
+    "Design-Build Services",
+    "Commercial Construction",
+    "Industrial Construction",
+    "Site Preparation",
+    "Project Management",
+    "Commercial Construction",
+  ];
 
   const handleShowModal = (user) => {
     setSelectedUser(user);
@@ -43,6 +66,7 @@ const Construction = () => {
   const handleSearch = (city, work) => {
     let filtered = users;
 
+    
     if (city) {
       filtered = filtered.filter((user) =>
         user.address.toLowerCase().includes(city.toLowerCase())
@@ -51,7 +75,7 @@ const Construction = () => {
 
     if (work) {
       filtered = filtered.filter((user) =>
-        user.description.toLowerCase().includes(work.toLowerCase())
+        user.services.toLowerCase().includes(work.toLowerCase())
       );
     }
 
@@ -62,8 +86,8 @@ const Construction = () => {
   return (
     <div className="construction">
       <HomeNavBar />
-       <ServiceTitle title="Construction"/> 
-      <SearchSection handleSearch={handleSearch} img={construction_img} />
+      <ServiceTitle title="Construction" />
+      <SearchSection handleSearch={handleSearch} img={construction_img} works={constructionWorks}/>
       <div className="body-section">
         {searchPerformed && filteredUsers.length === 0 ? (
           <div className="not-found">

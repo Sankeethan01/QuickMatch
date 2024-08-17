@@ -9,6 +9,7 @@ import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/Pa
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import userAvatar from "../../../assets/user-3.png"; // Import userAvatar if it's not imported
+import { useNavigate } from "react-router-dom";
 
 const AdminSettings = () => {
   const [inputs, setInputs] = useState({
@@ -25,15 +26,19 @@ const AdminSettings = () => {
   const scrollRef = useRef(null);
   const [profileImageChanged, setProfileImageChanged] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Restore scroll position after reload
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView();
     }
-  }, []);
 
-  useEffect(() => {
-    const user_id = sessionStorage.getItem("user_id") || localStorage.getItem("user_id");
+     if(sessionStorage.getItem('user_type') !== 'admin')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
+    const user_id = sessionStorage.getItem("user_id");
 
     if (user_id) {
       fetchData(user_id);
@@ -42,13 +47,14 @@ const AdminSettings = () => {
 
   const fetchData = async (user_id) => {
     try {
-      const response = await axios.get(`http://localhost/quickmatch_api/admin.php?user_id=${user_id}`);
+      const response = await axios.get(`http://localhost/quickmatch_api/getAdminDetail.php?user_id=${user_id}`);
       const data = response.data;
       if (data) {
         setInputs({
           ...data,
           profile_image: data.profile_image ? `http://localhost/quickmatch_api/profile_images/${data.profile_image}` : userAvatar,
         });
+        console.log(inputs);
         setLoading(false);
       }
     } catch (error) {
@@ -81,7 +87,7 @@ const AdminSettings = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost/quickmatch_api/admin.php', formData);
+      const response = await axios.post('http://localhost/quickmatch_api/updateAdminProfile.php', formData);
       console.log(response.data);
       window.location.reload();
     } catch (error) {

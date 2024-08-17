@@ -17,7 +17,7 @@ const NewUsers = () => {
 
   const fetchNewCustomers = async () => {
     try {
-      const response = await axios.get("http://localhost/quickmatch_api/customerDetails.php?action=lastFive");
+      const response = await axios.get("http://localhost/quickmatch_api/getLastFiveUsers.php?user_type=customer");
       setNewCustomers(response.data);
       setLoading(false);
     } catch (error) {

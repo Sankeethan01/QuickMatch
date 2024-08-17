@@ -60,7 +60,8 @@
 }
 
 .nav-text a:hover {
-  background-color: #1a83ff;
+  background-color: #d9dde1;
+  transform: scale(1.2);
 }
 
 
@@ -195,5 +196,6 @@ color: black;
   margin-left: 10px;
 }
 .service-link:hover{
-  background-color: #1a83ff;
+  background-color: #c9d2dc;
+  transform: scale(1.2);
 }

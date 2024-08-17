@@ -3,9 +3,16 @@ import React from "react";
 import "./SearchSection.css";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchSection = ({ handleSearch ,img}) => {
+const SearchSection = ({ handleSearch ,img , works }) => {
   const [city, setCity] = useState("");
   const [work, setWork] = useState("");
+
+  const districts = [
+    'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
+    'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala',
+    'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa',
+    'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+  ];
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
@@ -32,20 +39,28 @@ const SearchSection = ({ handleSearch ,img}) => {
         <img src={img} alt="slide" />
       </div>
       <div className="search-input">
-        <input
-          className="city-search"
-          type="text"
-          placeholder="Find City"
+      <select 
+          className="city-search" 
+          name="city" 
           value={city}
           onChange={handleCityChange}
-        />
-        <input
-          className="work-search"
-          type="text"
-          placeholder="What kind of work needed"
+        >
+          <option value="">Select City</option> 
+          {districts.map(district => (
+            <option key={district} value={district}>{district}</option>
+          ))}
+        </select>
+        <select 
+          className="work-search" 
+          name="work" 
           value={work}
           onChange={handleWorkChange}
-        />
+        >
+          <option value="">Select Work</option>
+          {works.map((workOption, index) => (
+            <option key={index} value={workOption}>{workOption}</option>
+          ))}
+        </select>
         <button onClick={handleSubmit}>
           <SearchIcon className="search-con" />
           Search

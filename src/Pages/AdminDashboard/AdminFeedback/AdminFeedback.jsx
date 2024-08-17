@@ -9,6 +9,7 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AdminFeedback = () => {
   const [dataId, setDataId] = useState(null);
@@ -16,14 +17,21 @@ const AdminFeedback = () => {
 
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if(sessionStorage.getItem('user_type') !== 'admin')
+      {
+           sessionStorage.clear();
+            navigate('/');
+      }
     fetchFeedbacks();
   }, []);
+  
 
   const fetchFeedbacks = async () => {
     axios
-      .get("http://localhost/quickmatch_api/feedbackDetails.php")
+      .get("http://localhost/quickmatch_api/getAllFeedbacks.php?action=getAll")
       .then((response) => {
         console.log(response.data);
         setLoading(false);
@@ -50,9 +58,7 @@ const AdminFeedback = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this data?");
     if (confirmDelete) {
       try {
-        const response = await axios.delete('http://localhost/quickmatch_api/feedbackDetails.php', {
-          data: { id: id }
-        });
+        const response = await axios.delete(`http://localhost/quickmatch_api/deleteFeedback.php?id=${id}`);
         console.log(response.data);
       
         setFeedbacks(feedbacks.filter((message) => message.id !== id));

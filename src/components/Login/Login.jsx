@@ -5,17 +5,14 @@ import ClearIcon from "@mui/icons-material/Clear";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import { useNavigate } from "react-router-dom";
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
 import loginGif from "../../assets/login.jpg";
 import { ToastContainer, toast } from "react-toastify";
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form } from "react-bootstrap";
 
 const Login = ({ loginClose, signupClose }) => {
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [message, setMessage] = useState("");
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,67 +21,93 @@ const Login = ({ loginClose, signupClose }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if(!email.includes('@gmail.com'))
+      {
+        toast.error("Please enter valid email..");
+        return;
+      }
     try {
-      const response = await axios.post("http://localhost/quickmatch_api/Login.php", {
-        email,
-        password,
-        remember_me: rememberMe,
-      });
+      const response = await axios.post(
+        "http://localhost/quickmatch_api/login.php",
+        {
+          email,
+          password,
+        }
+      );
 
-      setMessage(response.data.message);
+      
       console.log(response.data);
 
       const { user_type, user_id } = response.data;
 
-      if (rememberMe) {
-        localStorage.setItem("user_type", user_type);
-        localStorage.setItem("user_id", user_id);
-      } else {
-        sessionStorage.setItem("user_type", user_type);
-        sessionStorage.setItem("user_id", user_id);
-      }
+      toast.success(response.data.message);
 
-      if (user_type === 'admin') {
-        navigate('/adminhome');
-      } else if (user_type === 'customer') {
-        navigate('/home');
-      } else if (user_type === 'provider') {
-        navigate('/providerIntro');
-      }
-      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-        Logged in Successfully
-      </Alert>
+      setTimeout(() => {
+      
+          sessionStorage.setItem("user_type", user_type);
+          sessionStorage.setItem("user_id", user_id);
+          sessionStorage.setItem("email", email);
+  
+        if (user_type === "admin") {
+          navigate("/adminhome");
+        } else if (user_type === "customer") {
+          navigate("/home");
+        } else if (user_type === "provider") {
+          navigate("/providerIntro");
+        }
+
+      }, 3000);
+      
+     
+     
+      
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(error.response.data.message);
+       toast.error(error.response.data.message);
       } else {
-        setMessage("Login failed.");
+        toast.error("Login failed. Try again..");
       }
-      console.error("Login error:", error);
+      
     }
   };
 
   const handleForgotPassword = async () => {
+    if(!forgotPasswordEmail.includes('@gmail.com'))
+      {
+        toast.error("Please enter valid email..");
+        return;
+      }
     if (newPassword !== confirmPassword) {
-      setMessage("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
-    try {
-      const response = await axios.post("http://localhost/quickmatch_api/ForgotPassword.php", {
-        email: forgotPasswordEmail,
-        new_password: newPassword,
-      });
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
-      setMessage(response.data.message);
+    if(!passwordRegex.test(newPassword))
+    {
+      toast.error("Password must be at least 6 characters long and include at least one uppercase letter, one special character, and one number.");
+      return;
+    }
+   
+
+    try {
+      const response = await axios.post(
+        "http://localhost/quickmatch_api/changePassword.php",
+        {
+          email: forgotPasswordEmail,
+          new_password: newPassword,
+        }
+      );
+
+      toast.success(response.data.message);
       setShowForgotPasswordModal(false);
     } catch (error) {
       if (error.response && error.response.data) {
-        setMessage(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setMessage("Password reset failed.");
+        toast.error("Password reset failed.");
       }
-      console.error("Password reset error:", error);
     }
   };
 
@@ -101,7 +124,9 @@ const Login = ({ loginClose, signupClose }) => {
             />
           </div>
           <div className="form">
-            <div className="login-img"><img className="login-gif" src={loginGif} alt="" /></div>
+            <div className="login-img">
+              <img className="login-gif" src={loginGif} alt="" />
+            </div>
             <div className="login-form">
               <form onSubmit={handleLogin}>
                 <h2>Login</h2>
@@ -126,23 +151,17 @@ const Login = ({ loginClose, signupClose }) => {
                   <LockIcon className="icon" />
                 </div>
                 <div className="option_field">
-                  <span className="checkbox">
-                    <input
-                      type="checkbox"
-                      id="check"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                    <label htmlFor="check">Remember me</label>
-                  </span>
-                  <span className="forgot_pw" onClick={() => setShowForgotPasswordModal(true)}>
+                  <span
+                    className="forgot_pw"
+                    onClick={() => setShowForgotPasswordModal(true)}
+                  >
                     Forgot password?
                   </span>
                 </div>
                 <button className="button" type="submit">
                   Login Now
                 </button>
-                {message && <p>{message}</p>}
+                
                 <div className="login_signup">
                   Don't have an account?
                   <span
@@ -160,7 +179,10 @@ const Login = ({ loginClose, signupClose }) => {
         </div>
       </div>
 
-      <Modal show={showForgotPasswordModal} onHide={() => setShowForgotPasswordModal(false)}>
+      <Modal
+        show={showForgotPasswordModal}
+        onHide={() => setShowForgotPasswordModal(false)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Reset Password</Modal.Title>
         </Modal.Header>
@@ -201,7 +223,10 @@ const Login = ({ loginClose, signupClose }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowForgotPasswordModal(false)}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowForgotPasswordModal(false)}
+          >
             Close
           </Button>
           <Button variant="primary" onClick={handleForgotPassword}>
@@ -209,6 +234,7 @@ const Login = ({ loginClose, signupClose }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </>
   );
 };

@@ -9,8 +9,8 @@ import hero1 from '../../assets/hero1.jpg'
 const Hero = () => {
   return (
     <div className='carousel'>
-    <Carousel fade>
-      <Carousel.Item>
+    <Carousel fade >
+      <Carousel.Item interval={2000}>
         <div className='intro'>
         <img  src={hero3}  alt=''/>
         <div className="hero-text">

@@ -56,12 +56,12 @@
       background-color: #d1ece0;
       color: #0ed260;
   }
-  .widgetLgButton.Declined{
+  .widgetLgButton.Declined-provider,  .widgetLgButton.Declined-customer{
       background-color: #d31723;
       color: #ffffff;
   
   }
-  .widgetLgButton.Processing{
+  .widgetLgButton.Pending{
       background-color: #ebf1fe;
       color: #0a74f6;
   

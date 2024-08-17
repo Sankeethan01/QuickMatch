@@ -30,7 +30,7 @@ const Footer = () => {
       <ul>
           <li>
             <img src={mail} alt="" />
-            cst21020@gmail.com
+            findquickmatch@gmail.com
           </li>
           <li>
             <img src={phone} alt="" />
@@ -38,7 +38,7 @@ const Footer = () => {
           </li>
           <li>
             <img src={location} alt="" />
-            Courts Road, Mallakam, Jaffna, Sri Lanka.
+            Passara Road, Badulla, Sri Lanka.
           </li>
         </ul>
         </div>

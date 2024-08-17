@@ -1,37 +1,56 @@
-import { React, useState,useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import SearchSection from "../../../components/SearchSection/SearchSection";
 // import { electronicPersonData } from "../../../userData";
 import ProviderCard from "../../../components/ProviderCard/ProviderCard";
-import '../../MainWebPages/Construction/Construction.css'
+import "../../MainWebPages/Construction/Construction.css";
 import ServiceTitle from "../../../components/ServiceTitle/ServiceTitle";
 import HomeNavBar from "../../../components/HomeNavBar/HomeNavBar";
 import Footer from "../../../components/Footer/Footer";
 import CenterPage from "../CenterPage/CenterPage";
-import electronic_img from '../../../assets/electronic.jpg'
+import electronic_img from "../../../assets/electronic.jpg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Electronic = () => {
-  
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (sessionStorage.getItem("user_type") !== "customer") {
+      sessionStorage.clear();
+      navigate("/");
+      return;
+    }
+
     fetchData();
-  }, []);
+  }, [navigate]);
+
+  const electronicWorks = [
+    "Home Appliance Repair",
+    "Mobile Device Repair",
+    "Computer and Laptop Repair",
+    "Audio and Visual Equipment Repair",
+    "Network Installation and Troubleshooting",
+    "Security Systems Installation and Maintenance",
+    "Battery Replacement Services",
+    "Gaming Console Repair",
+  ];
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/quickmatch_api/services.php?action=electronic"
+        "http://localhost/quickmatch_api/providersByServiceCategory.php?service_category_id=S02"
       );
       const data = response.data;
-      console.log("raw data: ", data);
       setUsers(data);
       setFilteredUsers(data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
+      alert("Failed to load service providers. Please try again later.");
     }
   };
 
@@ -43,6 +62,7 @@ const Electronic = () => {
   const handleSearch = (city, work) => {
     let filtered = users;
 
+    
     if (city) {
       filtered = filtered.filter((user) =>
         user.address.toLowerCase().includes(city.toLowerCase())
@@ -51,7 +71,7 @@ const Electronic = () => {
 
     if (work) {
       filtered = filtered.filter((user) =>
-        user.description.toLowerCase().includes(work.toLowerCase())
+        user.services.toLowerCase().includes(work.toLowerCase())
       );
     }
 
@@ -61,42 +81,42 @@ const Electronic = () => {
 
   return (
     <div className="construction">
-    <HomeNavBar />
-     <ServiceTitle title="Electronic" /> 
-    <SearchSection handleSearch={handleSearch} img={electronic_img} />
-    <div className="body-section">
-      {searchPerformed && filteredUsers.length === 0 ? (
-        <div className="not-found">
-          <p>Results not found !!</p>
-        </div>
-      ) : (
-        filteredUsers.map((user, index) => (
-          <ProviderCard
-            key={index}
-            user={user}
-            onShowModal={handleShowModal}
-          />
-        ))
+      <HomeNavBar />
+      <ServiceTitle title="Electronic" />
+      <SearchSection handleSearch={handleSearch} img={electronic_img} works={electronicWorks}/>
+      <div className="body-section">
+        {searchPerformed && filteredUsers.length === 0 ? (
+          <div className="not-found">
+            <p>Results not found !!</p>
+          </div>
+        ) : (
+          filteredUsers.map((user, index) => (
+            <ProviderCard
+              key={index}
+              user={user}
+              onShowModal={handleShowModal}
+            />
+          ))
+        )}
+      </div>
+      <Footer />
+      {selectedUser && (
+        <CenterPage
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          name={selectedUser.name}
+          city={selectedUser.address}
+          service_name={selectedUser.service_name}
+          exp={selectedUser.description}
+          profile={selectedUser.profile_image}
+          email={selectedUser.email}
+          phone={selectedUser.phone}
+          provider_id={selectedUser.provider_id}
+          service_category_id={selectedUser.service_category_id}
+        />
       )}
     </div>
-    <Footer />
-    {selectedUser && (
-      <CenterPage
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        name={selectedUser.name}
-        city={selectedUser.address}
-        service_name={selectedUser.service_name}
-        exp={selectedUser.description}
-        profile={selectedUser.profile_image}
-        email={selectedUser.email}
-        phone={selectedUser.phone}
-        provider_id={selectedUser.provider_id}
-        service_category_id={selectedUser.service_category_id}
-      />
-    )}
-  </div>
-  )
-}
+  );
+};
 
-export default Electronic
+export default Electronic;

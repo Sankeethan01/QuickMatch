@@ -1,44 +1,82 @@
-import React, { useState } from 'react';
-import './Finance.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Finance.css";
 
 const FinancePage = () => {
-  const [payments, setPayments] = useState([
-    { id: 1, customerName: 'Alice Smith', date: '2024-01-05', amount: 15000, service: 'Electrical Repairs' },
-    { id: 2, customerName: 'Bob Johnson', date: '2024-01-10', amount: 20000, service: 'TV Repairs' },
-    { id: 3, customerName: 'Carol White', date: '2024-01-15', amount: 10000, service: 'AC Machine' },
-    // Add more payments as needed
-  ]);
-
+  const [payments, setPayments] = useState([]);
   const [form, setForm] = useState({
-    customerName: '',
-    date: '',
-    amount: '',
-    service: ''
+    customerName: "",
+    date: "",
+    amount: "",
+    service: "",
   });
 
-  const totalIncome = payments.reduce((sum, payment) => sum + payment.amount, 0);
+  useEffect(() => {
+    const fetchFinanceData = async () => {
+      try {
+        const user_id = sessionStorage.getItem("user_id");
+        const response = await axios.get(
+          `http://localhost/quickmatch_api/getFinance.php?user_id=${user_id}`
+        );
+        setPayments(response.data);
+      } catch (error) {
+        console.error("Failed to fetch finance data:", error);
+      }
+    };
+
+    fetchFinanceData();
+  }, []);
+
+  const totalIncome = payments.reduce(
+    (sum, payment) => sum + parseFloat(payment.amount),
+    0
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPayment = {
-      id: payments.length + 1,
-      customerName: form.customerName,
-      date: form.date,
-      amount: parseFloat(form.amount),
-      service: form.service
-    };
-    setPayments([newPayment, ...payments]);
-    setForm({
-      customerName: '',
-      date: '',
-      amount: '',
-      service: ''
-    });
+
+    try {
+      const user_id = sessionStorage.getItem("user_id");
+      const response = await axios.post(
+        "http://localhost/quickmatch_api/addFinance.php",
+        {
+          user_id: user_id,
+          customer_name: form.customerName,
+          date: form.date,
+          amount: parseFloat(form.amount),
+          service: form.service,
+        }
+      );
+
+      if (response.data.success) {
+        const newPayment = {
+          payment_id: response.data.payment_id, // assuming backend returns the new payment ID
+          customer_name: form.customerName,
+          date: form.date,
+          amount: parseFloat(form.amount),
+          service: form.service,
+        };
+        setPayments([newPayment, ...payments]);
+        setForm({
+          customerName: "",
+          date: "",
+          amount: "",
+          service: "",
+        });
+      } else {
+        console.error("Failed to add finance:", response.data.message);
+      }
+    } catch (error) {
+      console.error(
+        "Error adding finance:",
+        error.response ? error.response.data : error.message
+      );
+    }
   };
 
   return (
@@ -47,8 +85,12 @@ const FinancePage = () => {
       <div className="report-section">
         <h3>Financial Report</h3>
         <div className="report-summary">
-          <p><strong>Total Income:</strong> LKR {totalIncome.toLocaleString()}</p>
-          <p><strong>Number of Transactions:</strong> {payments.length}</p>
+          <p>
+            <strong>Total Income:</strong> LKR {totalIncome.toLocaleString()}
+          </p>
+          <p>
+            <strong>Number of Transactions:</strong> {payments.length}
+          </p>
         </div>
       </div>
       <div className="form-section">
@@ -98,19 +140,29 @@ const FinancePage = () => {
               required
             />
           </div>
-          <button type="submit" className="submit-button">Add Payment</button>
+          <button type="submit" className="submit-button">
+            Add Payment
+          </button>
         </form>
       </div>
       <div className="payments-section">
         <h3>Payments Received</h3>
         <ul className="payments-list">
-          {payments.map(payment => (
-            <li key={payment.id} className="payment-item">
+          {payments.map((payment, index) => (
+            <li key={payment.payment_id || index} className="payment-item">
               <div className="payment-info">
-                <p><strong>Customer Name:</strong> {payment.customerName}</p>
-                <p><strong>Date:</strong> {payment.date}</p>
-                <p><strong>Amount:</strong> LKR {payment.amount.toLocaleString()}</p>
-                <p><strong>Service:</strong> {payment.service}</p>
+                <p>
+                  <strong>Customer Name:</strong> {payment.customer_name}
+                </p>
+                <p>
+                  <strong>Date:</strong> {payment.date}
+                </p>
+                <p>
+                  <strong>Amount:</strong> LKR {payment.amount.toLocaleString()}
+                </p>
+                <p>
+                  <strong>Service:</strong> {payment.service}
+                </p>
               </div>
             </li>
           ))}

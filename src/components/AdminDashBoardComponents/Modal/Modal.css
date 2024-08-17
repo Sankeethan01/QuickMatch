@@ -47,6 +47,9 @@
     width: 100px;
     border-radius: 50%;
   }
+  .modalContainer .title h3{
+    text-align: center;
+  }
   
   .titleCloseBtn button {
     background-color: transparent;

@@ -6,6 +6,7 @@
     background-color: #060b26;
     flex-wrap: wrap;
     color: white;
+    margin-bottom: 0 !important;
 
   }
   .footer ul li {

@@ -15,7 +15,7 @@ const LatestBookings = () => {
 
   const fetchNewBooking = async () => {
     try {
-      const response = await axios.get("http://localhost/quickmatch_api/bookingDetails.php?action=lastFour");
+      const response = await axios.get("http://localhost/quickmatch_api/getLastFiveBookings.php?action=lastFive");
       setNewBooking(response.data);
       setLoading(false);
     } catch (error) {
@@ -50,8 +50,8 @@ const LatestBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {newBooking.map((booking) => (
-            <tr className='widgetLgTr' key={booking.booking_id}>
+          {newBooking.map((booking,key) => (
+            <tr className='widgetLgTr' key={key}>
               <td className='widgetLgUser'>
                 <img src={`http://localhost/quickmatch_api/profile_images/${booking.profile_image}`} alt='' className='widgetLgImg' />
                 <span className='widgetLgName'>{booking.customer_name}</span>
