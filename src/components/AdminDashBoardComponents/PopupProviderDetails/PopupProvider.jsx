@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './PopupProvider.css'
 import ClearIcon from "@mui/icons-material/Clear";
+import axios from 'axios';
 
 const PopupProvider = ({ data, onclose }) => {
 
+  const [isDisabled, setIsDisabled] = useState(false);
 
+  useEffect(() => {
+    setIsDisabled(data.disable_status === "disabled");
+    console.log(data.disable_status);
+  }, [data.disable_status]);
+
+  const handleDisableUser = async () => {
+    const newStatus = isDisabled ? 'active' : 'disabled'; // Determine the new status
+    console.log(`Attempting to change status to: ${newStatus}`); // Log the status being sent
+  
+    try {
+      const response = await axios.get(`http://localhost/quickmatch_api/disableUser.php`, {
+        params: { 
+          id: data.user_id, 
+          status: newStatus 
+        }
+      });
+  
+      if (response.data.success) {
+        console.log(`Status successfully updated to: ${newStatus}`);
+        setIsDisabled(!isDisabled);  
+        data.status = newStatus;     
+      } else {
+        console.error("Failed to update status", response.data.message);
+      }
+    } catch (error) {
+      console.error("There was an error updating the user status!", error);
+    }
+  };
+  
 
 
   return (
@@ -48,7 +79,17 @@ const PopupProvider = ({ data, onclose }) => {
           
         </div>
         <div className="footer-btn">
-        
+        <button
+            onClick={handleDisableUser}
+            id="disableBtn"
+            style={{
+              backgroundColor: isDisabled ? "gray" : "darkblue",
+              color: "white",
+            }}
+            
+          >
+            {isDisabled ? "Disabled" : "Disable User"}
+          </button>
           <button onClick={onclose} id="cancelBtn">
             Cancel
           </button>

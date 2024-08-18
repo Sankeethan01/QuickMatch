@@ -1,76 +1,151 @@
-.booking-list{
-    background-color: #f8f9fa;
+.booking-list {
+    background-color: #f4f6f8;
 }
-.booking-table{
+
+.booking-table {
     height: 535px;
-    overflow:hidden;
-    margin:15px 65px;
-    box-shadow: 1px 1px 8px 5px black;
+    overflow: hidden;
+    margin: 15px 65px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    transition: box-shadow 0.3s ease;
 }
+
+.booking-table:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.booking-table .MuiDataGrid-columnHeaders {
+    color: #060b26;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #f1f3f4, #e8eaed);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 2px solid #060b26;
+}
+
+/* DataGrid Rows */
+.booking-table .MuiDataGrid-row {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.booking-table .MuiDataGrid-row:hover {
+    background-color: #f7f9fc;
+    transform: scale(1.01);
+}
+
+/* First row styling */
 .booking-table .first-row {
-    padding-top: 60px; 
-    padding-bottom: 60px;/* Adjust the value as needed */
-  }
-  .booking-table .userListUser{
+    background-color: #f8f9fa;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* User List Styling */
+.booking-table .userListUser {
     display: flex;
     align-items: center;
 }
 
-.booking-table .userListImg{
-    width: 32px;
-    height: 32px;
+.booking-table .userListImg {
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 14px;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.booking-table .userListDelete{
-    color: red;
-    cursor: pointer;
+/* Action Button Styling */
+.booking-table .table-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 3px;
 }
 
-.booking-table .table-action{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin-left: 3px;
-}
-
-.booking-table .table-action .action-button{
-    background: rgb(57, 57, 203);
+.booking-table .table-action .action-button {
+    background: linear-gradient(135deg, #060b26, rgb(100, 100, 255));
     color: white;
     border: none;
     outline: none;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 8px 14px;
+    border-radius: 8px;
     margin: 10px 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.booking-table .action-button .button-link{
+
+.booking-table .table-action .action-button:hover {
+    background: white;
+    color: rgb(57, 57, 203);
+    border: 1px solid rgb(57, 57, 203);
+    transform: translateY(-2px);
+}
+
+/* Button Link Styling */
+.booking-table .action-button .button-link {
     text-decoration: none;
     color: white;
 }
-.booking-table .table-action .action-button:hover{
-    background: white;
-    color: darkblue;
-    border: 1px solid darkblue;
+
+.booking-table .action-button .button-link:hover {
+    color: rgb(57, 57, 203);
 }
-.booking-table .action-button .button-link:hover{
-    color: darkblue;
+
+/* Checkbox Styling */
+.booking-table .MuiDataGrid-checkboxInput {
+    color: rgb(57, 57, 203);
 }
-.MuiDataGrid-columnHeaders {
+
+/* Pagination and Miscellaneous */
+.MuiDataGrid-footerContainer {
+    background-color: #f1f3f4;
+    border-top: 1px solid #e0e0e0;
+}
+
+.MuiDataGrid-root .MuiDataGrid-footerContainer .MuiButtonBase-root {
     color: #060b26;
-    font-size: 1.3rem;
-    font-weight: 600;
-    /* Ensure it stays above rows */
-   border-bottom: 2px solid #060b26; /* Add a border to clearly separate the header from the first row */
- }
+}
 
+/* Scrollbar Styling */
+.booking-table .MuiDataGrid-root::-webkit-scrollbar {
+    width: 8px;
+}
 
+.booking-table .MuiDataGrid-root::-webkit-scrollbar-track {
+    background-color: #f1f3f4;
+}
 
- @media (max-width:900px) {
-    .booking-table{
-        margin:20px 30px;;
+.booking-table .MuiDataGrid-root::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.booking-table .MuiDataGrid-root::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 900px) {
+    .booking-table {
+        margin: 20px 30px;
+        padding: 15px;
+    }
+
+    .booking-table .MuiDataGrid-columnHeaders {
+        font-size: 1rem;
+    }
+
+    .booking-table .MuiDataGrid-row {
+        font-size: 0.9rem;
     }
 }
-

@@ -35,7 +35,8 @@ const BookNowPortal = (props) => {
     service_category_id: props.service_category_id,
     customer_name: formData.get("name"),
     provider_Name : props.provider_name,
-    email: formData.get("email"),
+    customer_email: formData.get("email"),
+    provider_email: props.email,
     provider_id: props.provider_id,
     customer_id: customer.user_id,
     booking_status: "Pending",
@@ -184,7 +185,7 @@ const BookNowPortal = (props) => {
             <h3>Booking Details</h3>
         
             <p>Name : {bookingDetails.customer_name}</p>
-            <p>Email : {bookingDetails.email}</p>
+            <p>Email : {bookingDetails.customer_email}</p>
             <p>Address : {bookingDetails.customer_address}</p>
             <p>Service : {bookingDetails.service}</p>
             <p>Service Category :{props.service_name}</p>

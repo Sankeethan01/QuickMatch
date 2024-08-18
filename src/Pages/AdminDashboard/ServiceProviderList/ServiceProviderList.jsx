@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import './ServiceProviderList.css'
 import PageTitle from '../../../components/AdminDashBoardComponents/PageTitle/PageTitle'
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import PopupProvider from '../../../components/AdminDashBoardComponents/PopupProviderDetails/PopupProvider'
 import AdminNavbar from '../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar'
 import axios from 'axios';
 import logo from '../../../assets/logo.png';
-import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 
 const ServiceProviderList = () => {
@@ -29,6 +27,7 @@ const ServiceProviderList = () => {
   
         const transformedData = response.data.map((provider, index) => ({
           id: provider.provider_id,
+          user_id:provider.user_id,
           address: provider.address,
           charge: provider.charge,
           description: provider.description,
@@ -40,6 +39,7 @@ const ServiceProviderList = () => {
           services: provider.services,
           status: provider.status,
           username: provider.username,
+          disable_status:provider.disable_status,
         }));
   
         console.log('Transformed Data: ', transformedData);
@@ -57,6 +57,7 @@ const ServiceProviderList = () => {
               navigate('/');
         }
       fetchProviders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
@@ -67,19 +68,7 @@ const ServiceProviderList = () => {
       </div>
     }
 
-    const handleDelete = async (id) => {
-      const confirmDelete = window.confirm("Are you sure you want to delete this customer data?");
-      if(confirmDelete){try {
-        await axios.delete('http://localhost/quickmatch_api/providerDetails.php', {
-          data: { id },
-        });
-  
-        setProviders(providers.filter((item) => item.id !== id));
-        toast.success("Provider data deleted Successfully..");
-      } catch (error) {
-        console.error('Error deleting provider: ', error);
-      }}
-    };
+    
 
     const handleViewClick = (id) => {
       setDataId(id);
@@ -139,10 +128,7 @@ const ServiceProviderList = () => {
                     handleViewClick(params.row.id);
                     setModalOpen(true);
                 }}>View</Button>
-                  <DeleteOutlineIcon
-                  className="userListDelete"
-                  onClick={() => handleDelete(params.row.id)}
-                />
+                  
                  
               </div>
             );
@@ -179,7 +165,6 @@ const ServiceProviderList = () => {
         columnHeaderHeight={60}
       />
     </div> 
-    <ToastContainer />
     </div>
   )
 }

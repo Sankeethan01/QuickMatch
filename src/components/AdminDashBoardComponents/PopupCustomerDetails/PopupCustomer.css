@@ -92,23 +92,25 @@
 
   .popup-customer .popup-box .footer-btn {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
     
   }
 
 
   
   .popup-customer .popup-box .footer-btn button {
-    width: 100px;
-    height: 40px;
+    width: 140px;
+    height: 50px;
     margin: 5px 0;
     border: none;
     color: white;
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
+    padding: 5px;
   }
   
   .popup-customer #cancelBtn {

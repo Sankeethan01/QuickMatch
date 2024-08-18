@@ -2,14 +2,12 @@ import React, { useEffect } from "react";
 import "./CustomerList.css";
 import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/PageTitle";
 import { DataGrid } from "@mui/x-data-grid";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import PopupCustomer from "../../../components/AdminDashBoardComponents/PopupCustomerDetails/PopupCustomer";
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
-import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const CustomerList = () => {
@@ -29,6 +27,7 @@ const CustomerList = () => {
             navigate('/');
       }
     fetchCustomers();
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 
 const fetchCustomers = async () => {
@@ -48,7 +47,7 @@ const fetchCustomers = async () => {
         address:customer.address,
         profile_image:customer.profile_image,
         national_id:customer.national_id,
- 
+        status:customer.disable_status,
       }
     ))
 
@@ -63,22 +62,7 @@ const fetchCustomers = async () => {
 
 
 
-const handleDelete = async (id) => {
-  const confirmDelete = window.confirm("Are you sure you want to delete this customer data?");
-  if (confirmDelete) {
-    try {
-      const response = await axios.delete('http://localhost/quickmatch_api/customerDetails.php', {
-        data: { id: id }
-      });
-      console.log(response.data);
-    
-      setCustomers(customers.filter((message) => message.id !== id));
-      toast.success("Customer data deleted Successfully..");
-    } catch (error) {
-      console.error("Error deleting message: ", error);
-    }
-  }
-};
+
 
   if(loading){
     return <div className="loading">
@@ -143,10 +127,7 @@ const handleDelete = async (id) => {
             >
               View
             </Button>
-            <DeleteOutlineIcon
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            
           </div>
         );
       },
@@ -182,7 +163,6 @@ const handleDelete = async (id) => {
           columnHeaderHeight={60}
         />
       </div>
-      <ToastContainer />
     </div>
   );
 };

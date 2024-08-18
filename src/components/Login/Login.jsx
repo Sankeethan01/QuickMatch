@@ -34,29 +34,33 @@ const Login = ({ loginClose, signupClose }) => {
           password,
         }
       );
-
-      
       console.log(response.data);
+      if(response.data.success)
+      {
+        const { user_type, user_id } = response.data;
 
-      const { user_type, user_id } = response.data;
-
-      toast.success(response.data.message);
-
-      setTimeout(() => {
-      
-          sessionStorage.setItem("user_type", user_type);
-          sessionStorage.setItem("user_id", user_id);
-          sessionStorage.setItem("email", email);
+        toast.success(response.data.message);
   
-        if (user_type === "admin") {
-          navigate("/adminhome");
-        } else if (user_type === "customer") {
-          navigate("/home");
-        } else if (user_type === "provider") {
-          navigate("/providerIntro");
-        }
-
-      }, 3000);
+        setTimeout(() => {
+        
+            sessionStorage.setItem("user_type", user_type);
+            sessionStorage.setItem("user_id", user_id);
+            sessionStorage.setItem("email", email);
+    
+          if (user_type === "admin") {
+            navigate("/adminhome");
+          } else if (user_type === "customer") {
+            navigate("/home");
+          } else if (user_type === "provider") {
+            navigate("/providerIntro");
+          }
+  
+        }, 3000);
+      }
+     else{
+      toast.error(response.data.message);
+     }
+      
       
      
      

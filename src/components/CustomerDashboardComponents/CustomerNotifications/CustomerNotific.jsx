@@ -96,6 +96,7 @@ const Notification = () => {
             <p><strong>Service :</strong> {request.service}</p>
             <p><strong>Service Category :</strong> {request.service_name}</p>
             <p><strong>Service Provider:</strong> {request.provider_name}</p>
+            <p><strong>Provider Email :</strong> {request.provider_email}</p>
             <p><strong>My Location:</strong> {request.customer_address}</p>
             <p><strong>Additional Notes:</strong> {request.additional_notes}</p>
             <p><strong>Service Requested Date:</strong> {request.booking_date}</p>

@@ -34,29 +34,32 @@ const ProviderNotification = () => {
 
   const handleAccept = async () => {
     if (selectedBookingId) {
-      try {
-        const response = await axios.post('http://localhost/quickmatch_api/acceptBooking.php', {
-          booking_id: selectedBookingId,
-          booking_status: 'Accepted',
-        }, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+        try {
+            const response = await axios.post('http://localhost/quickmatch_api/acceptBooking.php', {
+                booking_id: selectedBookingId,
+                booking_status: 'Accepted',
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        if (response.data.success) {
-          setRequests(requests.map(request => 
-            request.booking_id === selectedBookingId ? { ...request, booking_status: 'Accepted' } : request
-          ));
-          setShowActionModal(false);
-        } else {
-          console.error("Failed to update booking status:", response.data.message);
+            console.log("Server Response:", response.data); // Add this line to inspect the response
+
+            if (response.data.success) {
+                setRequests(requests.map(request => 
+                    request.booking_id === selectedBookingId ? { ...request, booking_status: 'Accepted' } : request
+                ));
+                setShowActionModal(false);
+            } else {
+                console.error("Failed to update booking status:", response.data.message || "Unknown error");
+            }
+        } catch (error) {
+            console.error("Error updating booking status:", error);
         }
-      } catch (error) {
-        console.error("Error updating booking status:", error);
-      }
     }
-  };
+};
+
 
 
   const handleDecline = async () => {
@@ -110,10 +113,11 @@ const ProviderNotification = () => {
         {requests.map(request => (
           <div key={request.booking_id} className="request-item">
              <p><strong>Customer Name :</strong> {request.customer_name}</p>
+             <p><strong>Customer Email :</strong> {request.customer_email}</p>
             <p><strong>Service :</strong> {request.service}</p>
             <p><strong>Service Category :</strong> {request.service_name}</p>
             <p><strong>Service Provider:</strong> {request.provider_name}</p>
-            <p><strong>My Location:</strong> {request.customer_address}</p>
+            <p><strong>Customer Location:</strong> {request.customer_address}</p>
             <p><strong>Additional Notes:</strong> {request.additional_notes}</p>
             <p><strong>Service Requested Date:</strong> {request.booking_date}</p>
              <h4>Status of the Request: <span>{request.booking_status}</span></h4>

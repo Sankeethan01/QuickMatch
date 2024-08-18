@@ -34,7 +34,7 @@ const PopupVerification = ({ data, onclose }) => {
         console.log(response.data);
         if (response.data.success) {
           toast.success(response.data.message);
-           
+          onclose(false);
           
         } else {
           toast.error( response.data.message);
