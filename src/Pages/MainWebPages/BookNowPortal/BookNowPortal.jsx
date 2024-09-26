@@ -55,16 +55,18 @@ const BookNowPortal = (props) => {
     try {
       const response = await axios.post("http://localhost/quickmatch_api/createBooking.php", bookingDetails);
       if (response.data.success) {
-        toast.success("Service booked successfully.");
         setShowPayment(false);
+        toast.success("Service booked successfully.");
         setBookingDetails(null);
         props.onHide();
       } else {
         setError("Failed to submit booking. Please try again later.");
+        toast.error("Booking failed...")
       }
     } catch (error) {
       setError("An error occurred while processing your request.");
       console.error("Error:", error);
+      toast.error("Error occured...")
     }
   };
 

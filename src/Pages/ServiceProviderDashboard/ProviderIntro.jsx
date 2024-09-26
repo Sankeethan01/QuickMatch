@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from '../../components/Hero/Hero'
 import Services from '../../components/Services/Services'
 import Functionality from '../../components/Functionality/Functionality'
@@ -8,18 +8,33 @@ import Footer from '../../components/Footer/Footer'
 import ProviderNav from '../../components/ServiceProviderDashboardComponents/ProviderNavbar/ProviderNav'
 import Title from '../../components/Title/Title'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../assets/logo.png';
 
 const ProviderIntro = () => {
 
   useEffect(() => {
-    if(sessionStorage.getItem('user_type') !== 'provider')
-      {
-           sessionStorage.clear();
-            navigate('/');
-      }
+    setTimeout(() => {
+      setLoading(false);
+      if(sessionStorage.getItem('user_type') !== 'provider')
+        {
+             sessionStorage.clear();
+              navigate('/');
+        }
+    }, 2000);
+    
   })
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
+  }
 
   return (
     <div className='homePage'>

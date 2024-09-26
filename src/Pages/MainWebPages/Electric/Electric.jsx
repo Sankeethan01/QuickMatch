@@ -9,6 +9,8 @@ import CenterPage from "../CenterPage/CenterPage";
 import electric_jpg from '../../../assets/electrical.jpg'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logo from '../../../assets/logo.png';
+
 const Electric = () => {
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -16,6 +18,9 @@ const Electric = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+ 
 
   const electricWorks = [
     'Switch and outlet repair and installation', 
@@ -33,13 +38,16 @@ const Electric = () => {
   ];
 
   useEffect(() => {
-    if (sessionStorage.getItem('user_type') !== 'customer') {
-      sessionStorage.clear();
-      navigate('/');
-      return; 
-    }
-
-    fetchData();
+      if (sessionStorage.getItem('user_type') !== 'customer') {
+        sessionStorage.clear();
+        navigate('/');
+        return; 
+      }
+      setTimeout(() => {
+        setLoading(false);
+        fetchData();
+      }, 2000);
+    
   },[navigate])
 
   
@@ -81,6 +89,15 @@ const Electric = () => {
     setFilteredUsers(filtered);
     setSearchPerformed(true);
   };
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
+  }
 
   return (
     <div className="construction">

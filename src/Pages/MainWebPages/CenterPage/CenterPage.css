@@ -131,6 +131,13 @@
   padding: 10px 20px;
   font-size: 1.25rem;
   font-weight: 600;
+  background-color: #08113a;
+  color: #fff;
+}
+.User-container .bookbutton:hover{
+  color: #08113a;
+  background: #fff;
+  border: 1px solid #08113a;
 }
 
 .User-container .submitbutton {

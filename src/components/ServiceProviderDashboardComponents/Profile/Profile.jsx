@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Profile.css"; // Import the CSS file
 import axios from "axios";
 import userAvatar from "../../../assets/user-3.png";
+import { ToastContainer,toast } from "react-toastify";
 
 const districts = [
   "Ampara",
@@ -196,12 +197,14 @@ const ProfilePage = () => {
       if (response.data.success) {
         setProfile({ ...form });
         setIsEditing(false);
+        toast.success("Profile updated Successfully...");
       } else {
         setError(response.data.message || "Failed to update profile");
       }
     } catch (error) {
       setError("Failed to update profile");
       console.error("Failed to update profile:", error);
+      toast.error("Error while updating profile");
     } finally {
       setLoading(false);
     }
@@ -390,6 +393,7 @@ const ProfilePage = () => {
         )}
       </div>
       {error && <div className="error-message">{error}</div>}
+      <ToastContainer />
     </div>
   );
 };

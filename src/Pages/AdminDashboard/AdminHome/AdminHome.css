@@ -1,4 +1,9 @@
-
+.admin-home{
+    background-color: #f8f9fa;
+    margin-top: -10px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
 .new-users-container{
     display: flex;
     justify-content: space-between;
@@ -6,7 +11,4 @@
     background-color: transparent;
     margin-top: 30px;
     flex-wrap: wrap;
-}
-.admin-home{
-    background-color: #f8f9fa;
 }

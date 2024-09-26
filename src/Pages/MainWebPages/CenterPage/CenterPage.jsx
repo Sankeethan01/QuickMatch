@@ -13,6 +13,7 @@ import Rating from "react-rating-stars-component";
 import BookNowPortal from "../BookNowPortal/BookNowPortal";
 import axios from "axios";
 import "./CenterPage.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const CenterPage = (props) => {
   const [bookNowShow, setBookNowShow] = useState(false);
@@ -80,6 +81,7 @@ const CenterPage = (props) => {
       .then((response) => {
         if (response.data.success) {
           // Update the customerReviews state with the new review data
+          toast.success("Review added successfully...");
           const newCustomerReview = {
             reviewer: newReview.reviewer,
             comment: newReview.comment,
@@ -93,9 +95,12 @@ const CenterPage = (props) => {
           setNewReview({ reviewer: "", comment: "", rating: 0 });
         } else {
           console.error("Error: ", response.data.message);
+          toast.error("Error while adding review...");
         }
       })
-      .catch((error) => console.error("Error submitting review:", error));
+      .catch((error) => {console.error("Error submitting review:", error);
+        toast.error("Error occurred...")
+      });
   };
   
   return (
@@ -254,6 +259,7 @@ const CenterPage = (props) => {
           </Modal.Footer>
         </Modal>
       )}
+      <ToastContainer />
     </>
   );
 };

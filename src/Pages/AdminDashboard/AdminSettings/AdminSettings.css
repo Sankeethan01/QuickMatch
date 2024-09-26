@@ -1,6 +1,7 @@
 .admin-settings{
     background: linear-gradient(135deg, #f0f4f8, #dfe7ef);
-    padding-top: 10px;
+    margin-top: -10px;
+    padding-top: 30px;
 }
 .admin-profile {
     padding: 30px;

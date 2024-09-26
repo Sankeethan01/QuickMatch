@@ -10,6 +10,8 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import axios from "axios";
 import userAvatar from "../../../assets/user-3.png"; // Import userAvatar if it's not imported
 import { useNavigate } from "react-router-dom";
+import logo from '../../../assets/logo.png'
+import { ToastContainer, toast } from "react-toastify";
 
 const AdminSettings = () => {
   const [inputs, setInputs] = useState({
@@ -41,7 +43,10 @@ const AdminSettings = () => {
     const user_id = sessionStorage.getItem("user_id");
 
     if (user_id) {
-      fetchData(user_id);
+      setTimeout(() => {
+        fetchData(user_id);
+      }, 2000);
+      
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -74,6 +79,7 @@ const AdminSettings = () => {
   };
 
   const handleSubmit = async (event) => {
+  
     event.preventDefault();
 
     const formData = new FormData();
@@ -90,14 +96,20 @@ const AdminSettings = () => {
     try {
       const response = await axios.post('http://localhost/quickmatch_api/updateAdminProfile.php', formData);
       console.log(response.data);
-      window.location.reload();
+      toast.success("Profile updated successfully...");
     } catch (error) {
       console.error('There was an error!', error);
+      toast.error("Error occurred while updating...");
     }
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
   }
 
   const profileImageUrl = inputs.profile_image instanceof File
@@ -107,7 +119,6 @@ const AdminSettings = () => {
   return (
     <div className="admin-settings">
       <AdminNavbar />
-
       <PageTitle heading="Profile Settings" />
       <div className="admin-profile">
         <div className="adminContainer">
@@ -209,6 +220,7 @@ const AdminSettings = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

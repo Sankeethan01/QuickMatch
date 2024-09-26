@@ -20,7 +20,6 @@ const ProviderNotifications = () => {
   return (
     <>
        <ProviderNav />
-    
        <ProviderNotification />
        <Footer />
     </>

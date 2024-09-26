@@ -110,7 +110,7 @@ const ProviderNotification = () => {
     <div className="service-accept-container">
       <h2>Service Requests</h2>
       <div className="requests-list">
-        {requests.map(request => (
+        {requests ? requests.map(request => (
           <div key={request.booking_id} className="request-item">
              <p><strong>Customer Name :</strong> {request.customer_name}</p>
              <p><strong>Customer Email :</strong> {request.customer_email}</p>
@@ -140,7 +140,11 @@ const ProviderNotification = () => {
               )}
             </div>
           </div>
-        ))}
+        )):
+          <div className="requests-list">
+              <h1>No such notifications here</h1>
+          </div>
+        }
       </div>
     </div>
     <Modal show={showActionModal} onHide={() => setShowActionModal(false)}>

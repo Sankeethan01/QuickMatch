@@ -1,4 +1,4 @@
-/* src/ServiceAcceptPage.css */
+
 
 /* Container for the entire service accept page */
 .service-accept-container {
@@ -19,8 +19,8 @@
     text-align: center;
     color: #2c3e50;
     margin-bottom: 25px;
-    font-family: 'Arial, sans-serif';
     font-size: 2em;
+    font-family: 'Poppins';
 }
 
 /* Container for the list of service requests */
@@ -96,10 +96,20 @@
     background-color: #27ae60;
     color: #ffffff;
 }
+.service-accept-container .accept-button:hover {
+    color: #27ae60;
+    background-color: #ffffff;
+    border: 1px solid #27ae60;
+}
 
 .service-accept-container .decline-button {
     background-color: #e74c3c;
     color: #ffffff;
+}
+.service-accept-container .decline-button:hover{
+    background-color: #fff;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
 }
 
 /* Accepted status style */

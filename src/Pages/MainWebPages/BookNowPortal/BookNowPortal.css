@@ -20,20 +20,19 @@
   
   .DetailsSubmitbutton {
   
-    background-color: #e30a0a;
+    background-color: #0c0635;
     color: rgb(255, 254, 254);
-    border: 2px solid rgb(234, 194, 194);
     float: inline-end;
     padding: 8px 25px;
     border-radius: 10px;
-  
+    border: none;
   }
   
   .DetailsSubmitbutton:hover {
   
-    background-color: rgb(10, 169, 60);
-    color: rgb(236, 243, 238);
-    border: 2px solid rgb(10, 169, 60);
+    background-color: #fff;
+    color: #0c0635;
+    border: 2px solid #0c0635;
     float: inline-end;
     padding: 8px 25px;
     border-radius: 10px;

@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 const AdminVerification = () => {
   const [dataId, setDataId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
   const [verifications,setVerifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -28,7 +27,9 @@ const AdminVerification = () => {
            sessionStorage.clear();
             navigate('/');
       }
-    fetchVerifications();
+      setTimeout(() => {
+        fetchVerifications();
+      }, 2000);
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 

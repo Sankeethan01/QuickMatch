@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PopupCustomer.css";
 import ClearIcon from "@mui/icons-material/Clear";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const PopupCustomer = ({ data, onclose }) => {
   const [isDisabled, setIsDisabled] = useState(false);
@@ -25,6 +26,7 @@ const PopupCustomer = ({ data, onclose }) => {
   
       if (response.data.success) {
         console.log(`Status successfully updated to: ${newStatus}`);
+        toast.success(`Customer status successfully changed : ${newStatus}`);
         setIsDisabled(!isDisabled);  
         data.status = newStatus;     
       } else {
@@ -88,6 +90,7 @@ const PopupCustomer = ({ data, onclose }) => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

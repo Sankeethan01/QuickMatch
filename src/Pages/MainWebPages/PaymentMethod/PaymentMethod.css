@@ -11,16 +11,20 @@
   
   .paynowbutton {
   
-    background-color: #f9fcf9;
-    color: #077b07;
-    border-color: #020202;
+    background-color: #020202;
+    color: #fff;
     margin: 10px;
+  }
+  .paynowbutton:hover{
+    background-color: #f9fcf9;
+    color: #020202;
+    border: 1px solid #020202;
   }
   
   .payconfirmbutton {
   
     background-color: #f9fcf9;
-    color: #077b07;
+    color: #020202;
     border-color: #020202;
   
   }

@@ -14,7 +14,6 @@ const CustomerList = () => {
  
   const [dataId, setDataId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
   const [customers,setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -26,7 +25,10 @@ const CustomerList = () => {
            sessionStorage.clear();
             navigate('/');
       }
-    fetchCustomers();
+      setTimeout(() => {
+        fetchCustomers();
+      }, 2000);
+    
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 

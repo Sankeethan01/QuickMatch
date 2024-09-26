@@ -5,6 +5,7 @@ import mail from "../../assets/mail-icon.png";
 import phone from "../../assets/phone-icon.png";
 import address from "../../assets/location-icon.png";
 import arrow from "../../assets/white-arrow.png";
+import { ToastContainer,toast } from "react-toastify";
 
 const Contact = () => {
   const [result, setResult] = React.useState("");
@@ -25,9 +26,11 @@ const Contact = () => {
 
     if (data.success) {
       setResult("Form Submitted Successfully");
+      toast.success("Email sent successfully..");
       event.target.reset();
     } else {
       console.log("Error", data);
+      toast.error("Error sending email...")
       setResult(data.message);
     }
   };
@@ -91,6 +94,7 @@ const Contact = () => {
         </form>
         <span>{result}</span>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -56,7 +56,10 @@ const ServiceProviderList = () => {
              sessionStorage.clear();
               navigate('/');
         }
-      fetchProviders();
+        setTimeout(() => {
+          fetchProviders();
+        }, 2000);
+      
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

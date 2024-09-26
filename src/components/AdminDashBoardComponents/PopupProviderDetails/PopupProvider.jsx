@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './PopupProvider.css'
 import ClearIcon from "@mui/icons-material/Clear";
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 
 const PopupProvider = ({ data, onclose }) => {
 
@@ -26,6 +27,7 @@ const PopupProvider = ({ data, onclose }) => {
   
       if (response.data.success) {
         console.log(`Status successfully updated to: ${newStatus}`);
+        toast.success(`Provider status successfully changed : ${newStatus}`);
         setIsDisabled(!isDisabled);  
         data.status = newStatus;     
       } else {
@@ -95,7 +97,7 @@ const PopupProvider = ({ data, onclose }) => {
           </button>
         </div>
       </div>
-      
+      <ToastContainer />
     </div>
   )
 }

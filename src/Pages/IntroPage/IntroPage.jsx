@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './IntroPage.css'
 import NavigationBar from '../../components/NavBar/NavBar'
 import Hero from '../../components/Hero/Hero'
@@ -11,6 +11,9 @@ import Contact from '../../components/Contact/Contact'
 import Footer from '../../components/Footer/Footer'
 
 const IntroPage = () => {
+
+  
+
   return (
     <div className='intro-page'>
       <NavigationBar />

@@ -9,6 +9,7 @@ import CenterPage from "../CenterPage/CenterPage";
 import construction_img from "../../../assets/construction_work.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logo from '../../../assets/logo.png';
 
 const Construction = () => {
   const navigate = useNavigate();
@@ -19,8 +20,11 @@ const Construction = () => {
       navigate("/");
       return;
     }
-
-    fetchData();
+    setTimeout(() => {
+      setLoading(false);
+      fetchData();
+    }, 2000);
+   
   }, [navigate]);
 
   const [modalShow, setModalShow] = useState(false);
@@ -28,6 +32,7 @@ const Construction = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -82,6 +87,15 @@ const Construction = () => {
     setFilteredUsers(filtered);
     setSearchPerformed(true);
   };
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
+  }
 
   return (
     <div className="construction">

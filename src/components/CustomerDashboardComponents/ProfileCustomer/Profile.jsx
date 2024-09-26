@@ -138,7 +138,7 @@ const ProfilePage = () => {
       if (response.data.success) {
         setProfile({ ...form });
           setIsEditing(false);
-          toast.success("Profile updated");
+          toast.success("Profile updated successfully...");
       } else {
         toast.error(response.data.message);
       }
@@ -150,9 +150,7 @@ const ProfilePage = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
 
   return (
     <div className="profile-container">

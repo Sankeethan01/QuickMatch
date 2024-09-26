@@ -90,7 +90,7 @@ const Notification = () => {
     <div className="service-accept-container">
       <h2>Service Notifications</h2>
       <div className="requests-list">
-        {requests.map(request => (
+        {requests.length > 0 ? requests.map(request => (
           <div key={request.booking_id} className="request-item">
              <p><strong>Customer Name :</strong> {request.customer_name}</p>
             <p><strong>Service :</strong> {request.service}</p>
@@ -124,7 +124,12 @@ const Notification = () => {
               )}
             </div>
           </div>
-        ))}
+         
+        )):
+         <div className='request-item'>
+          <h1 style={{textAlign:'center'}}>No such Notifications found</h1>
+         </div>
+        }
       </div>
     </div>
      <Modal show={showCancelModal} onHide={() => setShowCancelModal(false)}>

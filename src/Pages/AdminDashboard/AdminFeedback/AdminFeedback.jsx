@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 const AdminFeedback = () => {
   const [dataId, setDataId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -25,7 +24,10 @@ const AdminFeedback = () => {
            sessionStorage.clear();
             navigate('/');
       }
-    fetchFeedbacks();
+      setTimeout(() => {
+        fetchFeedbacks();
+      }, 2000);
+   
   }, []);
   
 

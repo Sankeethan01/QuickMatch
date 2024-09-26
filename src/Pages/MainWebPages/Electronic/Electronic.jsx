@@ -10,13 +10,15 @@ import CenterPage from "../CenterPage/CenterPage";
 import electronic_img from "../../../assets/electronic.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logo from '../../../assets/logo.png';
+
 const Electronic = () => {
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,8 +27,11 @@ const Electronic = () => {
       navigate("/");
       return;
     }
-
-    fetchData();
+    setTimeout(() => {
+      setLoading(false);
+      fetchData();
+    }, 2000);
+   
   }, [navigate]);
 
   const electronicWorks = [
@@ -78,6 +83,15 @@ const Electronic = () => {
     setFilteredUsers(filtered);
     setSearchPerformed(true);
   };
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <img src={logo} alt="" />
+        <h4>Loading......</h4>
+      </div>
+    );
+  }
 
   return (
     <div className="construction">

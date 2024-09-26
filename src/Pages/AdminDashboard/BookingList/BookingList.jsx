@@ -24,7 +24,10 @@ const BookingList = () => {
            sessionStorage.clear();
             navigate('/');
       }
-    fetchBookings();
+      setTimeout(()=>{
+        fetchBookings();
+      },2000)
+  
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 
@@ -32,7 +35,7 @@ const fetchBookings = async () => {
   try{
    const response = await axios.get('http://localhost/quickmatch_api/getAllBookings.php?action=getAll');
    console.log('Raw data: ',response.data);
-   setLoading(false)
+   setLoading(false);
 
 
    const transformedData = response.data.map((booking,index)=>(

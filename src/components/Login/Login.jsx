@@ -58,7 +58,7 @@ const Login = ({ loginClose, signupClose }) => {
         }, 3000);
       }
      else{
-      toast.error(response.data.message);
+      toast.error("Incorrect email or password..");
      }
       
       
