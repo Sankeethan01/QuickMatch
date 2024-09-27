@@ -19,6 +19,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChatIcon from "@mui/icons-material/Chat";
 import userAvatar from "../../../assets/user-3.png";
 import ModalView from "../../AdminDashBoardComponents/Modal/Modal";
+import { toast, ToastContainer } from "react-toastify";
 
 const ProviderNav = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -116,6 +117,7 @@ const ProviderNav = () => {
         providerId,
         status: newStatus === "online" ? "1" : "0",
       });
+      toast.warn("Your active status is changed..");
     } catch (error) {
       console.error("Failed to update status:", error);
     }
@@ -267,6 +269,7 @@ const ProviderNav = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </>
   );
 };

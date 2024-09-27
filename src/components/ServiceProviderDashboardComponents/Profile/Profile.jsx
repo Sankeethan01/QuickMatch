@@ -195,16 +195,18 @@ const ProfilePage = () => {
         formData
       );
       if (response.data.success) {
+        toast.success("Profile updated Successfully...");
         setProfile({ ...form });
         setIsEditing(false);
-        toast.success("Profile updated Successfully...");
+      
       } else {
+        toast.error("Error while updating profile");
         setError(response.data.message || "Failed to update profile");
       }
     } catch (error) {
       setError("Failed to update profile");
       console.error("Failed to update profile:", error);
-      toast.error("Error while updating profile");
+     
     } finally {
       setLoading(false);
     }

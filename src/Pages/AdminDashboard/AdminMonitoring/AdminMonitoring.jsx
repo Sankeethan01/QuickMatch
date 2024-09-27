@@ -5,6 +5,9 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import logo from '../../../assets/logo.png';
+import customerimg from '../../../assets/customer_monitorimg.jpg';
+import providerimg from '../../../assets/provider monitor.jpg'
+import Footer from "../../../components/Footer/Footer";
 
 const AdminMonitoring = () => {
   const navigate = useNavigate();
@@ -42,18 +45,20 @@ const AdminMonitoring = () => {
   }
 
   return (
+    <>
     <div className="admin-monitoring">
       <AdminNavbar />
-
       <PageTitle heading="Monitoring Section" />
       <div className="cards-container">
         <Card className="monitoring-card">
           <Card.Body>
             <Card.Title>Customer Zone</Card.Title>
+            <img src={customerimg} />
             <Card.Text>
               Switch to the customer view to ensure the customer dashboard is
               functioning correctly.
             </Card.Text>
+           
             <Button
               variant="primary"
               onClick={() => {
@@ -70,10 +75,12 @@ const AdminMonitoring = () => {
         <Card className="monitoring-card">
           <Card.Body>
             <Card.Title>Provider Dashboard</Card.Title>
+            <img src={providerimg} />
             <Card.Text>
               Switch to the provider view to ensure the provider dashboard is
               functioning correctly.
             </Card.Text>
+            
             <Button
               variant="primary"
               onClick={() => {
@@ -88,6 +95,8 @@ const AdminMonitoring = () => {
         </Card>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

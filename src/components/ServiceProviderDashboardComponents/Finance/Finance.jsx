@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Finance.css";
+import financeImg from '../../../assets/finance_img.jpg'
+import { toast, ToastContainer } from "react-toastify";
 
 const FinancePage = () => {
   const [payments, setPayments] = useState([]);
@@ -54,6 +56,7 @@ const FinancePage = () => {
       );
 
       if (response.data.success) {
+        toast.success("Finance added successfully..");
         const newPayment = {
           payment_id: response.data.payment_id, // assuming backend returns the new payment ID
           customer_name: form.customerName,
@@ -69,9 +72,11 @@ const FinancePage = () => {
           service: "",
         });
       } else {
+        toast.error("Error while adding finance..")
         console.error("Failed to add finance:", response.data.message);
       }
     } catch (error) {
+      toast.error("Unknown error occured...")
       console.error(
         "Error adding finance:",
         error.response ? error.response.data : error.message
@@ -81,7 +86,9 @@ const FinancePage = () => {
 
   return (
     <div className="finance-container">
-      <h2>Finance Page</h2>
+      
+      <div className="finance-content">
+      
       <div className="report-section">
         <h3>Financial Report</h3>
         <div className="report-summary">
@@ -168,6 +175,12 @@ const FinancePage = () => {
           ))}
         </ul>
       </div>
+      </div>
+      <div className="finance-img">
+      <h2>Finance Section</h2>
+        <img src={financeImg} />
+      </div>
+     <ToastContainer />
     </div>
   );
 };

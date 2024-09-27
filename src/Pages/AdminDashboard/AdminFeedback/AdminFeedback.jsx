@@ -10,6 +10,7 @@ import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../../components/Footer/Footer";
 
 const AdminFeedback = () => {
   const [dataId, setDataId] = useState(null);
@@ -140,6 +141,7 @@ const AdminFeedback = () => {
   ];
 
   return (
+    <>
     <div className="admin-feedback">
       <AdminNavbar />
       {modalOpen && selectedRowData && (
@@ -171,6 +173,8 @@ const AdminFeedback = () => {
       </div>
       <ToastContainer />
     </div>
+    <Footer />
+    </>
   );
 };
 

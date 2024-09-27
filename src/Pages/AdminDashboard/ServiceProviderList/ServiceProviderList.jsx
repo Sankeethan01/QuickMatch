@@ -9,6 +9,7 @@ import AdminNavbar from '../../../components/AdminDashBoardComponents/AdminNavba
 import axios from 'axios';
 import logo from '../../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../../components/Footer/Footer';
 
 const ServiceProviderList = () => {
 
@@ -141,6 +142,7 @@ const ServiceProviderList = () => {
 
    
   return (
+    <>
     <div className='service-provider-list'>
            <AdminNavbar />
            {modalOpen && selectedRowData && (<PopupProvider data={selectedRowData}  onclose={handleclosePopup}/>)}
@@ -169,6 +171,8 @@ const ServiceProviderList = () => {
       />
     </div> 
     </div>
+    <Footer />
+    </>
   )
 }
 

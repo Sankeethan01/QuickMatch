@@ -65,6 +65,7 @@
    margin: 5px 5px;
    gap: 1px;
    border-bottom: 1px solid black;
+   text-align: center;
   }
 
   .popup-verify .popup-box .body .small-head{
@@ -94,13 +95,13 @@
 
 
   
-   .popup-box .footer-btn button {
+   .popup-verify .footer-btn button {
     width: 100px;
     height: 40px;
     margin: 5px;
     border: none;
     color: white;
-    background-color: darkblue;
+    background-color: #060b26;
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;

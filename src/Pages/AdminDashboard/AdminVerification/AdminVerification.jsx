@@ -11,6 +11,7 @@ import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../../components/Footer/Footer";
 
 const AdminVerification = () => {
   const [dataId, setDataId] = useState(null);
@@ -152,6 +153,7 @@ const handleDelete = async (id) => {
   ];
 
   return (
+    <>
     <div className="admin-verify">
       <AdminNavbar />
       {modalOpen && selectedRowData && (<PopupVerification data={selectedRowData}  onclose={handleclosePopup}/>)}
@@ -182,6 +184,8 @@ const handleDelete = async (id) => {
           </div>
           <ToastContainer />
     </div>
+    <Footer />
+    </>
   );
 };
 

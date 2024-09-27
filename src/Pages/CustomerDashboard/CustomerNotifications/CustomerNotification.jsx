@@ -43,7 +43,6 @@ if (loading) {
         <img src={notificImg}/>
       </div>
      </div>
-     
      <Footer />
     </>
   )

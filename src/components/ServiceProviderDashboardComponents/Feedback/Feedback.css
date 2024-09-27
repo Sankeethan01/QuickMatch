@@ -1,5 +1,9 @@
 .feedback-container {
-    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -9,7 +13,29 @@
     margin-top: 120px;
 }
 
+.review-img {
+    flex: 1; /* Makes the image section take less space */
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.review-img img {
+    max-width: 100%; /* Ensures the image resizes properly */
+    height: auto;
+    border-radius: 10px; /* Optional: Adds rounded corners to the image */
+}
+
+.review-content {
+    padding: 10px;
+    flex: 1; /* Makes the content section take more space */
+}
+
 .feedback-item {
+    background-color: #fff;
     padding: 1rem;
     border-bottom: 1px solid #eee;
 }
@@ -21,6 +47,8 @@
 .feedback-title {
     text-align: center;
     color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
 }
 
 .customer-name {
@@ -36,45 +64,22 @@
     color: #ffb400;
 }
 
-@media (max-width:900px) {
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
     .feedback-container {
-        max-width: 600px;
-
+        flex-direction: column; /* Stacks content and image vertically */
+        text-align: center;
     }
-}
 
-/* src/components/Feedback.css */
-.feedback-container {
-    padding: 20px;
-}
+    .review-img {
+        margin-bottom: 20px; /* Adds spacing between image and content */
+    }
 
-.feedback-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+    .feedback-title {
+        font-size: 24px;
+    }
 
-.feedback-item {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.customer-name {
-    font-weight: bold;
-}
-
-.star-rating {
-    color: gold;
-}
-
-.review-text {
-    margin-top: 5px;
-}
-
-.no-feedback {
-    text-align: center;
-    font-size: 18px;
-    color: #888;
-    margin-top: 20px;
+    .review-text, .customer-name, .star-rating {
+        font-size: 1em;
+    }
 }

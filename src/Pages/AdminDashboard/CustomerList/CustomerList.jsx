@@ -9,6 +9,7 @@ import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavba
 import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { useNavigate } from "react-router-dom";
+import Footer from "../../../components/Footer/Footer";
 
 const CustomerList = () => {
  
@@ -137,6 +138,7 @@ const fetchCustomers = async () => {
   ];
 
   return (
+    <>
     <div className="customer-list">
       <AdminNavbar />
       {modalOpen && selectedRowData && (
@@ -166,6 +168,8 @@ const fetchCustomers = async () => {
         />
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

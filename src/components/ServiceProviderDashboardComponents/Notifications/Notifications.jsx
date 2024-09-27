@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Notifications.css';
 import { Button, Modal } from 'react-bootstrap';
+import { toast,ToastContainer } from 'react-toastify';
 
 const ProviderNotification = () => {
   const [requests, setRequests] = useState([]);
@@ -47,14 +48,17 @@ const ProviderNotification = () => {
             console.log("Server Response:", response.data); // Add this line to inspect the response
 
             if (response.data.success) {
+              toast.success("Service request accepted");
                 setRequests(requests.map(request => 
                     request.booking_id === selectedBookingId ? { ...request, booking_status: 'Accepted' } : request
                 ));
                 setShowActionModal(false);
             } else {
+              toast.error("Error occured")
                 console.error("Failed to update booking status:", response.data.message || "Unknown error");
             }
         } catch (error) {
+          toast.error("Error...");
             console.error("Error updating booking status:", error);
         }
     }
@@ -75,14 +79,17 @@ const ProviderNotification = () => {
         });
 
         if (response.data.success) {
+          toast.warn("Service request declined");
           setRequests(requests.map(request => 
             request.booking_id === selectedBookingId ? { ...request, booking_status: 'Declined-provider' } : request
           ));
           setShowActionModal(false);
         } else {
+          toast.error("Error occured...");
           console.error("Failed to update booking status:", response.data.message);
         }
       } catch (error) {
+        toast("Unknown error...");
         console.error("Error updating booking status:", error);
       }
     }
@@ -165,6 +172,7 @@ const ProviderNotification = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </>
   );
 };

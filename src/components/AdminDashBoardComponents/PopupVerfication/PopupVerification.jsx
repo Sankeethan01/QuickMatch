@@ -23,6 +23,8 @@ const PopupVerification = ({ data, onclose }) => {
 
     checkVerificationStatus();
   }, [data.id]);
+
+
     const handleVerify = async () => {
       try {
         console.log(data.id);
@@ -33,11 +35,11 @@ const PopupVerification = ({ data, onclose }) => {
         );
         console.log(response.data);
         if (response.data.success) {
-          toast.success(response.data.message);
+          toast.success("Provider verified successfully");
           onclose(false);
           
         } else {
-          toast.error( response.data.message);
+          toast.error( "Error occured..");
           onclose(false);
         }
       } catch (error) {
@@ -84,7 +86,7 @@ const PopupVerification = ({ data, onclose }) => {
           </p>
         </div>
         <div className="footer-btn">
-          <button onClick={handleVerify} id='veryfyBtn'>Verify</button>
+          <button onClick={handleVerify} >Verify</button>
           <span id="verificationStatus" style={{display:'none',color:'green',marginRight:'10px',fontSize:'1.3rem'}}>Verified</span>
           <button onClick={onclose} id="cancelBtn">
             Cancel

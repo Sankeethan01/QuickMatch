@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './CustomerNotific.css';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Notification = () => {
   const [requests, setRequests] = useState([]);
@@ -42,13 +43,16 @@ const Notification = () => {
       });
 
       if (response.data.success) {
+        toast.success("Service delivered...");
         setRequests(requests.map(request => 
           request.booking_id === id ? { ...request, booking_status: 'Completed' } : request
         ));
       } else {
+        toast.error("Error occurred..")
         console.error("Failed to update booking status:", response.data.message);
       }
     } catch (error) {
+      toast.error("Error occurred..")
       console.error("Error updating booking status:", error);
     }
   };
@@ -67,14 +71,18 @@ const Notification = () => {
         });
 
         if (response.data.success) {
+          toast.warn("Service Request Cancelled...");
           setRequests(requests.map(request => 
             request.booking_id === selectedBookingId ? { ...request, booking_status: 'Declined-customer' } : request
           ));
-          setShowCancelModal(false);
+            setShowCancelModal(false);
+          
         } else {
+          toast.error("Error occured...");
           console.error("Failed to update booking status:", response.data.message);
         }
       } catch (error) {
+        toast.error("Error occured...");
         console.error("Error updating booking status:", error);
       }
     }
@@ -147,6 +155,7 @@ const Notification = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </>
   );
 };

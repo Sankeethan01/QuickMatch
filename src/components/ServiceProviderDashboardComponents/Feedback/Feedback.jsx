@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Feedback.css';
+import reviewImg from '../../../assets/customerReview_img.jpg'
 
 const Feedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -29,7 +30,12 @@ const Feedback = () => {
   return (
     <>
       <div className="feedback-container">
+        <div className='review-img'>
         <h2 className="feedback-title">Customer Feedback</h2>
+        <img src={reviewImg} alt="" />
+        </div>
+        
+        <div className='review-content'>
         {feedbacks.length > 0 ? (
           feedbacks.map((feedback) => (
             <div className="feedback-item" key={feedback.id}>
@@ -41,6 +47,8 @@ const Feedback = () => {
         ) : (
           <p className="no-feedback">No feedbacks available.</p>
         )}
+        </div>
+       
       </div>
       
     </>

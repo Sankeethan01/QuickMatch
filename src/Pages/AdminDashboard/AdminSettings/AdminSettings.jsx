@@ -12,6 +12,7 @@ import userAvatar from "../../../assets/user-3.png"; // Import userAvatar if it'
 import { useNavigate } from "react-router-dom";
 import logo from '../../../assets/logo.png'
 import { ToastContainer, toast } from "react-toastify";
+import Footer from "../../../components/Footer/Footer";
 
 const AdminSettings = () => {
   const [inputs, setInputs] = useState({
@@ -117,6 +118,7 @@ const AdminSettings = () => {
     : inputs.profile_image;
 
   return (
+    <>
     <div className="admin-settings">
       <AdminNavbar />
       <PageTitle heading="Profile Settings" />
@@ -222,6 +224,8 @@ const AdminSettings = () => {
       </div>
       <ToastContainer />
     </div>
+    <Footer />
+    </>
   );
 };
 

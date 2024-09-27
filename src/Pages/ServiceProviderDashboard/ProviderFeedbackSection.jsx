@@ -5,7 +5,9 @@ import '../CustomerDashboard/CustomerFeedbackSection/CustomerFeedbackSection.css
 import axios from 'axios';
 import Footer from '../../components/Footer/Footer';
 import ProviderNav from '../../components/ServiceProviderDashboardComponents/ProviderNavbar/ProviderNav';
-
+import feebackImg from '../../assets/feedback_section.jpg';
+import { toast, ToastContainer } from 'react-toastify';
+import logo from '../../assets/logo.png';
 
 const ProviderFeedbackSection = () => {
     const [showModal, setShowModal] = useState(false);
@@ -14,6 +16,8 @@ const ProviderFeedbackSection = () => {
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -30,7 +34,11 @@ const ProviderFeedbackSection = () => {
       setUserId(userId || '');
       setEmail(email || '');
       if (userId) {
-        fetchFeedbacks(userId);
+        setTimeout(() => {
+          setLoading(false);
+          fetchFeedbacks(userId);
+        }, 2000);
+       
     }
     }
   }, [navigate]);
@@ -50,13 +58,16 @@ const ProviderFeedbackSection = () => {
       });
   
       if (response.data.success) {
+        toast.success("Feedback submitted");
         fetchFeedbacks(userId);
         setFeedback("");
         handleClose();
       } else {
+        toast.error("Error while submiting feedback");
         console.error("Failed to submit feedback:", response.data.message);
       }
     } catch (error) {
+      toast.error("Error occurred");
       console.error("Error submitting feedback:", error);
     }
   };
@@ -81,13 +92,24 @@ const ProviderFeedbackSection = () => {
 
 
 
+if (loading) {
+  return (
+    <div className="loading">
+      <img src={logo} alt="" />
+      <h4>Loading......</h4>
+    </div>
+  );
+}
     
 
   return (
     <>
      <ProviderNav />
-
      <div className="container feedback-container">
+     <div className='image-section'>
+          <img src={feebackImg} />
+        </div>
+        <div className='feedback-content'>
         <h2>Provider Feedback Section</h2>
         <Button variant="primary" onClick={handleShow}>
           Write Feedback
@@ -134,9 +156,11 @@ const ProviderFeedbackSection = () => {
                         </div>
                     ))}
         </div>
+        </div>
       </div>
      
      <Footer />
+     <ToastContainer />
     </>
   )
 }

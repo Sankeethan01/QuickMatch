@@ -8,6 +8,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import logo from '../../../assets/logo.png';
 import { useNavigate } from "react-router-dom";
+import Footer from "../../../components/Footer/Footer";
 
 const BookingList = () => {
 
@@ -132,6 +133,7 @@ if(loading){
 
   
   return (
+    <>
     <div className="booking-list">
       <AdminNavbar />
       {modalOpen && selectedRowData && (
@@ -161,6 +163,8 @@ if(loading){
         />
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

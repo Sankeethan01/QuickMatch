@@ -69,6 +69,7 @@
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid black;
+    text-align: center;
   }
   .popup-feedback .popup-box .body .info{
    display: flex;

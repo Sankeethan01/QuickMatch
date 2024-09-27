@@ -3,6 +3,7 @@ import { Button, Form, Col, Row, Modal } from "react-bootstrap";
 import "./PaymentMethod.css";
 import visaImg1 from "../../../assets/visaImg1.png";
 import masterImg2 from "../../../assets/masterImg2.jpg";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const PaymentMethod = ({ onPaymentSuccess }) => {
@@ -31,7 +32,7 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
 
   // Validate CVV
   if (cvv.length !== 3) {
-      alert("Enter a valid CVV");
+      toast.warn("Enter a valid CVV");
       return;
   }
     // Validate payment method and card details
@@ -44,9 +45,10 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
 
   const confirmPayment = () => {
     // Simulate payment processing
+    toast.success("Payment Successfull...");
     setTimeout(() => {
       onPaymentSuccess();
-    }, 1000); // Simulating async payment process
+    }, 2000); // Simulating async payment process
 
     setShowModal(false); // Close the modal
   };
@@ -235,6 +237,7 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };

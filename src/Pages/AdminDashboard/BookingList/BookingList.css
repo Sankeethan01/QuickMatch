@@ -8,7 +8,7 @@
 .booking-table {
     height: 535px;
     overflow: hidden;
-    margin: 15px 65px;
+    margin: 35px 65px;
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
@@ -143,11 +143,11 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f0f0f0; /* Adjust as needed */
+    background-color: #f8f9fa; /* Adjust as needed */
   }
   
   .loading img {
-    width: 150px; /* Adjust the size as needed */
+    width: 250px; /* Adjust the size as needed */
     margin-bottom: 20px;
   }
   
@@ -163,10 +163,10 @@
   }
   
   .loading h4 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-family: 'Courier New', Courier, monospace;
     color: #333;
-    animation: typing 2s steps(8) infinite; /* Adjust timing */
+    animation: typing .8s steps(5) infinite; /* Adjust timing */
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid; /* Simulate a typing cursor */

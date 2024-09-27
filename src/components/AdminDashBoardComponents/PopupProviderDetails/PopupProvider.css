@@ -66,9 +66,11 @@
  margin: 10px 5px;
  gap: 1px;
  border-bottom: 1px solid black;
+
 }
 .body-more{
   border-bottom: 1px solid black;
+  text-align: center;
 }
 .body-more .small-head{
   text-align: center;

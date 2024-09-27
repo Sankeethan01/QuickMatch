@@ -27,7 +27,7 @@ const PopupProvider = ({ data, onclose }) => {
   
       if (response.data.success) {
         console.log(`Status successfully updated to: ${newStatus}`);
-        toast.success(`Provider status successfully changed : ${newStatus}`);
+        toast.warn(`Customer status  changed : ${newStatus}`);
         setIsDisabled(!isDisabled);  
         data.status = newStatus;     
       } else {

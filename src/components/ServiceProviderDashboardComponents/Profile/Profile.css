@@ -2,122 +2,123 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 10px 5px #060b26;
-    font-family: Arial, sans-serif;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
     margin-top: 120px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-.profile-container h2{
-    font-family: "Varela Round", sans-serif;
-    color: #060b26;
+
+.profile-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.profile-container h2 {
+    font-family: "Poppins", sans-serif;
+    color: #333;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
 }
 
 /* Profile card styling */
 .profile-card {
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
     text-align: left;
+    transition: all 0.3s;
 }
 
 /* Profile picture styling */
 .profile-picture {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     display: block;
     margin: 0 auto;
-    /* Center profile picture */
 }
 
-/* Profile details styling */
-.profile-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.profile-details p {
-    margin: 0.5rem 0;
-}
-
-.profile-details strong {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Form label styling */
+/* Form label and input styling */
 .profile-form label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
     color: #555;
+    font-weight: 500;
+    font-size: 1.1rem;
 }
 
-/* Form input styling */
 .profile-form input,
 .profile-form textarea,
 .profile-form select {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.8rem;
     margin-top: 0.3rem;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    transition: border-color 0.3s;
 }
 
-.profile-form textarea {
-    resize: vertical;
-    min-height: 100px;
+.profile-form input:focus,
+.profile-form textarea:focus,
+.profile-form select:focus {
+    border-color: #060b26;
+    outline: none;
 }
 
-/* Form input file styling */
-.profile-form input[type="file"] {
-    margin-top: 0.5rem;
-}
-
-/* Save button styling */
-.save-button,.cancel-button,
-.edit-button {
+/* Save and edit button styling */
+.save-button, .cancel-button, .edit-button {
     background-color: #060b26;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.save-button:hover,
-.edit-button:hover {
-    background-color: #060b26;
+.save-button:hover, .edit-button:hover {
+    background-color: #1a1a4b;
 }
 
-/* Save button specific */
-.save-button {
-    margin-top: 1rem;
-    align-self: flex-start;
-    /* Align Save button to the right */
-}
-.cancel-button{
-    margin-top: 1rem;
-   margin-left: 30px !important;
+.cancel-button {
+    background-color: #ff4c4c;
+    margin-left: 20px;
 }
 
-/* Edit button specific */
-.edit-button {
-    align-self: flex-end;
+.cancel-button:hover {
+    background-color: #ff1a1a;
 }
 
-/* Certificate images styling */
+/* Animations for buttons */
+.save-button:hover, .edit-button:hover, .cancel-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Text styling */
+.profile-details p {
+    margin: 0.5rem 0;
+    color: #444;
+    font-size: 1rem;
+}
+
+.profile-details strong {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Miscellaneous */
 .certificate-images {
     display: flex;
     gap: 10px;
@@ -128,22 +129,15 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.status-head{
- margin: 20px;
- font-size: 30px;
+
+.status-head {
+    margin: 20px;
+    font-size: 1.8rem;
 }
-.status-head .status{
-    background: transparent;
-    border: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight: 500;
-}
-.status-head .status:focus{
-    border: none;
-}
+
 .radio-group {
     display: flex;
     align-items: flex-start;

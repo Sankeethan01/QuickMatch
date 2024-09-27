@@ -80,6 +80,8 @@ const HomeNavBar = () => {
 
    
     navigate('/adminmonitoring');
+   
+    
 };
 
   return (

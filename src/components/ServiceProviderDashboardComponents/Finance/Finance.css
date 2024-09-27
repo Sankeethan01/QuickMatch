@@ -1,5 +1,9 @@
 .finance-container {
-    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px; /* Increased the width to accommodate the image */
     margin: 30px auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -8,12 +12,45 @@
     margin-top: 120px;
 }
 
+.finance-content {
+    flex: 1; /* Makes the content take up more space */
+    padding-right: 50px; /* Adds some spacing between content and image */
+}
+
+.finance-img {
+    margin-top: 150px;
+    flex: 1; /* Makes the image take up less space */
+    text-align: right; /* Ensures the image aligns to the right */
+}
+
+.finance-img img {
+    max-width: 100%; /* Ensures the image resizes appropriately */
+    height: auto;
+    border-radius: 10px; /* Optional: adds rounded corners to the image */
+}
+
+/* Responsive styling for small screens */
+@media (max-width: 768px) {
+    .finance-container {
+        flex-direction: column; /* Stack content and image on top of each other */
+    }
+
+    .finance-content {
+        padding-right: 0;
+    }
+
+    .finance-img {
+        text-align: center; /* Centers the image in the column layout */
+        margin-top: 20px;
+    }
+}
+
 .finance-container h2 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 25px;
-    font-family: 'Arial, sans-serif';
-    font-size: 2em;
+    font-family: 'Poppins';
+    font-size: 3em;
 }
 
 .finance-container .payments-section,
