@@ -230,6 +230,9 @@
   .User-container  .details p {
     font-size: 0.9rem;
   }
+  .User-container h2{
+    font-size: medium;
+  }
 }
 
 @media (max-width: 990px) {
@@ -239,6 +242,9 @@
     color: #091a70;
     margin-bottom: 10px;
     margin-top: 50px;
+  }
+  .User-container h2{
+    font-size: medium;
   }
   .User-container .header-section .profile-img{
     margin-top: 5px;;

@@ -3,13 +3,13 @@ import "./AdminCharts.css";
 import {
   LineChart,
   Line,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
   BarChart,
   Bar,
+  XAxis,
   PieChart,
   Pie,
+  Tooltip,
+  CartesianGrid,
   Cell,
   ResponsiveContainer,
 } from "recharts";
@@ -156,7 +156,7 @@ const AdminCharts = () => {
         <ResponsiveContainer width="100%" aspect={2 / 1}>
           <BarChart data={incomeData}>
             <XAxis dataKey="month" stroke="#5550bd" />
-            <Bar dataKey="income" fill="#82ca9d" />
+            <Bar dataKey="income" fill="#008000" />
             <Tooltip />
             <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />
           </BarChart>
@@ -174,7 +174,7 @@ const AdminCharts = () => {
               cx="50%"
               cy="50%"
               outerRadius={100}
-              fill="#8884d8"
+              fill="#000080"
               label
             >
               {customerProviderRatioData.map((entry, index) => (
@@ -195,7 +195,7 @@ const AdminCharts = () => {
         <ResponsiveContainer width="100%" aspect={2 / 1}>
           <BarChart data={servicePerformanceData}>
             <XAxis dataKey="service_name" stroke="#5550bd" />
-            <Bar dataKey="income" fill="#ffc658" />
+            <Bar dataKey="income" fill="#FFA500" />
             <Tooltip />
             <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />
           </BarChart>

@@ -85,3 +85,22 @@
   font-size: 1rem;
   padding: 0.5rem 1.5rem;
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .monitoring-card {
+    flex: 1 1 100%; /* Full width for small screens */
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .monitoring-card {
+    width: 100%; /* Full width */
+  }
+}

@@ -37,7 +37,7 @@ const Review = () => {
               <div className="user-info">
                 <img src={user_1} alt="" />
                 <div>
-                  <h3>Rajeepan</h3>
+                  <h3>Raveendran Rajeepan</h3>
                   <span>Jaffna, Sri Lanka</span>
                 </div>
               </div>
@@ -56,8 +56,8 @@ const Review = () => {
               <div className="user-info">
                 <img src={user_2} alt="" />
                 <div>
-                  <h3>Thanujan</h3>
-                  <span>Jaffna, Sri Lanka</span>
+                  <h3>Anura Kumara Dissanayaka</h3>
+                  <span>Anuradapura, Sri Lanka</span>
                 </div>
               </div>
               <p>
@@ -71,8 +71,8 @@ const Review = () => {
               <div className="user-info">
                 <img src={user_3} alt="" />
                 <div>
-                  <h3>Ainkaran</h3>
-                  <span>Jaffna, Sri Lanka</span>
+                  <h3>Harini Abayasinha</h3>
+                  <span>Colombu, Sri Lanka</span>
                 </div>
               </div>
               <p>
@@ -86,12 +86,46 @@ const Review = () => {
               <div className="user-info">
                 <img src={user_4} alt="" />
                 <div>
-                  <h3>Manula</h3>
-                  <span>Jaffna, Sri Lanka</span>
+                  <h3>Manula Alahakone</h3>
+                  <span>Kandy, Sri Lanka</span>
                 </div>
               </div>
               <p>
               "Using QuickMatch was a breeze. I found a dependable cleaner within minutes and booked instantly. The service was excellent and the app is very user-friendly. Definitely recommend for anyone needing reliable services."
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div className="slide">
+              <div className="user-info">
+                <img src={user_4} alt="" />
+                <div>
+                  <h3>Ravindu Dilshan</h3>
+                  <span>Galle, Sri Lanka</span>
+                </div>
+              </div>
+              <p>
+              "Cannot wait to access many more services from QuickMatch. Its so helpful for me to find a suitable person.I am so happy to share this review with all.Thank You...."
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div className="slide">
+              <div className="user-info">
+                <img src={user_4} alt="" />
+                <div>
+                  <h3>Deluxshana Amalathas</h3>
+                  <span>Jaffna, Sri Lanka</span>
+                </div>
+              </div>
+              <p>
+              "QuickMatch made finding a reliable service provider so easy!
+                The app is user-friendly, and I loved reading real customer
+                reviews before booking. The entire process was seamless, and the
+                service I received was excellent. I highly recommend QuickMatch
+                for anyone looking for quality services effortlessly."
               </p>
             </div>
           </li>

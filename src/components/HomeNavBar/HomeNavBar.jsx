@@ -39,13 +39,13 @@ const HomeNavBar = () => {
     const user_type = sessionStorage.getItem("user_type");
 
     if (user_id && user_type) {
-      fetchData(user_id,user_type);
-      
+      fetchData(user_id, user_type);
+
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchData = async (user_id,user_type) => {
+  const fetchData = async (user_id, user_type) => {
     try {
       const response = await axios.get(
         `http://localhost/quickmatch_api/getCustomerDetail.php?user_id=${user_id}`
@@ -67,22 +67,24 @@ const HomeNavBar = () => {
     }
   };
   const handleLogout = () => {
-
+   if(sessionStorage.getItem('previous_user_type')){
     const adminSession = sessionStorage.getItem('previous_user_type');
     const id = sessionStorage.getItem('user_id');
     sessionStorage.clear()
 
 
     if (adminSession) {
-        sessionStorage.setItem('user_type', adminSession);
-        sessionStorage.setItem('user_id', id);
+      sessionStorage.setItem('user_type', adminSession);
+      sessionStorage.setItem('user_id', id);
     }
 
-   
+
     navigate('/adminmonitoring');
-   
-    
-};
+  }else{
+    sessionStorage.clear();
+  navigate('/');
+  }
+  };
 
   return (
     <>
@@ -115,8 +117,8 @@ const HomeNavBar = () => {
                 >
                   My Account
                 </Dropdown.Item>
-                <Dropdown.Item style={{ textAlign: 'center' }}  onClick={handleLogout}>
-                  <Link to="/" className="nav-link">Logout</Link>
+                <Dropdown.Item style={{ textAlign: 'center' }} onClick={handleLogout}>
+                  Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -141,21 +143,22 @@ const HomeNavBar = () => {
             <Dropdown.Header className="drop-head">
               <WorkIcon />&nbsp;&nbsp;Services
             </Dropdown.Header>
-            <Dropdown.Item eventKey="2" className="service-link">
-              <ElectricBoltIcon className="symbol" />&nbsp;
-              <Link to="/electric" className="nav-link">Electric</Link>
+            <Dropdown.Item eventKey="2" className="service-link" as={Link} to="/electric">
+              <ElectricBoltIcon className="symbol" />
+              Electric
             </Dropdown.Item>
-            <Dropdown.Item eventKey="3" className="service-link">
+
+            <Dropdown.Item eventKey="3" className="service-link" as={Link} to='/electronic'>
               <CableIcon className="symbol" />&nbsp;
-              <Link to="/electronic" className="nav-link">Electronic</Link>
+              Electronic
             </Dropdown.Item>
-            <Dropdown.Item eventKey="4" className="service-link">
+            <Dropdown.Item eventKey="4" className="service-link" as={Link} to='/construction'>
               <ConstructionIcon className="symbol" />&nbsp;
-              <Link to="/construction" className="nav-link">Construction</Link>
+              Construction
             </Dropdown.Item>
-            <Dropdown.Item eventKey="5" className="service-link">
+            <Dropdown.Item eventKey="5" className="service-link" as={Link} to='/eventmanagement'>
               <FestivalOutlinedIcon className="symbol" />&nbsp;
-              <Link to="/eventmanagement" className="nav-link">Event Management</Link>
+              Event Management
             </Dropdown.Item>
           </Dropdown>
           <li className="nav-text">
@@ -186,7 +189,7 @@ const HomeNavBar = () => {
             </Link>
           </li>
 
-          <li className="nav-text"  onClick={handleLogout}>
+          <li className="nav-text" onClick={handleLogout}>
             <Link to="/">
               <LogoutIcon />
               <span>Logout</span>

@@ -87,14 +87,14 @@ const AdminNavbar = () => {
                 <span className="topIconBadge">2</span>
               </Dropdown.Toggle>
               <Dropdown.Menu className="menu">
-                <Dropdown.Item>
-                  <Link to="/adminverification" className="drop-link">1 verifications</Link>
+                <Dropdown.Item className="drop-link" as={Link} to='/adminverification'>
+                  verifications
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/adminfeedbacks" className="drop-link">3 feedbacks</Link>
+                <Dropdown.Item className="drop-link" as={Link} to='/adminfeedbacks'>
+                  feedbacks
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/adminmessages" className="drop-link">4 messages</Link>
+                <Dropdown.Item className="drop-link" as={Link} to='/adminmessages'>
+                  messages
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -110,7 +110,7 @@ const AdminNavbar = () => {
                 </Dropdown.ItemText>
                 <Dropdown.Item style={{textAlign:'center'}} onClick={() => setModalOpen(true)}>My Account</Dropdown.Item>
                 <Dropdown.Item style={{textAlign:'center'}}  onClick={handleLogout}>
-                  <Link to="/" className="nav-link">Logout</Link>
+                  Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

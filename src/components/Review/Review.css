@@ -1,100 +1,131 @@
-.review{
+.review {
     margin: 5%;
     padding: 0 80px;
     position: relative;
+    background: linear-gradient(135deg, #f4f4f9, #e0e0e9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
-.review .next-btn, .back-btn{
+
+.review .next-btn, .back-btn {
     position: absolute;
     top: 50%;
-    right: 0;
     transform: translateY(-50%);
-    padding: 15px;
-    width: 50px;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    background:#212EA0;
-}
-.review .back-btn{
-    right: auto;
-    left: 0;
-}
-.review .slider{
-    overflow: hidden;
-    margin-right: 5%;
+    background: #007bff;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.5);
+    transition: transform 0.3s ease;
 }
 
-.review .slider ul{
+.review .next-btn:hover, .back-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.review .back-btn {
+    left: 10px;
+}
+
+.review .next-btn {
+    right: 10px;
+}
+
+.review .slider {
+    overflow: hidden;
+    margin: 0;
+}
+
+.review .slider ul {
     display: flex;
     width: 200%;
-    overflow-x: hidden;
-    transition: .5s;
-}
-.review .slider ul li{
-    list-style: none;
-    width: 50%;
-    padding: 20px;
-}
-.review .slide{
-    box-shadow: 2px 4px 10px 5px #060b26;
-    padding: 40px;
-    border-radius: 10px;
-    color: #676767;
-    line-height: 1.4;
-}
-.review .slide:hover{
-    transform: scale(1.1);
-    
-}
-.review .slide img{
-    width: 65px;
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 4px solid #212EA0;
+    height: 450px;
+    transition: transform 0.6s ease-in-out;
 }
 
-.review .user-info{
+.review .slider ul li {
+    list-style: none;
+    width: 25%;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.review .slide {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.review .slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.review .slide img {
+    width: 70px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 4px solid #007bff;
+}
+
+.review .user-info {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    font-size: 15px;
-}
-.review .user-info h3{
-    color: #212EA0;
+    font-size: 16px;
 }
 
-@media (max-width:800px){
-    .review{
+.review .user-info h3 {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.review p {
+    color: #555;
+    line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+    .review {
         padding: 0 40px;
     }
-    .review .next-btn, .back-btn{
-        padding: 10px;
-        width: 35px;
+    .review .next-btn, .back-btn {
+        width: 30px;
+        height: 30px;
     }
-    .review ul li{
-        padding: 10px;
+    .review .slide {
+        padding: 20px;
     }
-    .review .slide{
-        padding: 10px;
-
+    .review .slider ul li {
+        width: 50%;
     }
-   
-    .review .slide img{
-        width: 50px;
-        border: 3px solid #212EA0;
+    .review .slide img {
+        width: 60px;
     }
 }
 
-@media (max-width:600px){
-    .review .user-info{
-        display: block;
-        margin-bottom: 10px;
-        font-size: 12px;
+@media (max-width: 600px) {
+    .review {
+        padding: 0 20px;
     }
-    .review .user-info h3{
+    .review .slider ul li {
+        width: 100%;
+    }
+    .review .user-info {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .review .user-info h3 {
         font-size: 16px;
     }
-    .review .slider p{
-        font-size: 12px;
+    .review p {
+        font-size: 14px;
     }
 }
-

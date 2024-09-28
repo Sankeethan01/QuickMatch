@@ -1,21 +1,44 @@
 .admin-charts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 20px 30px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between chart items */
+  margin: 20px;
+}
+
+.admin-chart-item {
+  flex: 1 1 45%; /* Default to two charts per row on larger screens */
+  min-width: 300px; /* Minimum width for each chart item */
+}
+
+.chartTitle {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
   .admin-chart-item {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 100%; /* Full width on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-chart-item {
+    flex: 1 1 100%; /* Full width on smaller screens */
+    margin: 10px 0; /* Margin between charts on smaller screens */
   }
   
   .chartTitle {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
+    font-size: 1.25rem; /* Smaller title font size */
   }
-  
+}
+
+@media (max-width: 480px) {
+  .admin-charts {
+    margin: 10px; /* Reduced margin on mobile */
+  }
+
+  .chartTitle {
+    font-size: 1rem; /* Even smaller title font size */
+  }
+}
