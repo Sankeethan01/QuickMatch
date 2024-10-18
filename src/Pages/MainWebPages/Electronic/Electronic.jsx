@@ -122,6 +122,9 @@ const Electronic = () => {
           city={selectedUser.address}
           service_name={selectedUser.service_name}
           exp={selectedUser.description}
+          charge={selectedUser.charge_per_day}
+          services={selectedUser.services}
+          qualification={selectedUser.qualification}
           profile={selectedUser.profile_image}
           email={selectedUser.email}
           phone={selectedUser.phone}

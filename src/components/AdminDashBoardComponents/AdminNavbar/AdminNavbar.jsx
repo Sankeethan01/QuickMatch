@@ -7,7 +7,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import logo from "../../../assets/logo.png";
 import { Dropdown } from "react-bootstrap";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Modal from "../Modal/Modal";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PersonIcon from "@mui/icons-material/Person";
@@ -39,6 +38,7 @@ const AdminNavbar = () => {
     if (user_id) {
       fetchData(user_id);
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = async (user_id) => {
@@ -81,29 +81,10 @@ const AdminNavbar = () => {
             </Link>
           </div>
           <div className="topRight">
-            <Dropdown className="notific">
-              <Dropdown.Toggle className="menu-drop">
-                <NotificationsNoneIcon className="notific-icon" />
-                <span className="topIconBadge">2</span>
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="menu">
-                <Dropdown.Item className="drop-link" as={Link} to='/adminverification'>
-                  verifications
-                </Dropdown.Item>
-                <Dropdown.Item className="drop-link" as={Link} to='/adminfeedbacks'>
-                  feedbacks
-                </Dropdown.Item>
-                <Dropdown.Item className="drop-link" as={Link} to='/adminmessages'>
-                  messages
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
             <Dropdown>
               <Dropdown.Toggle variant="success" className="menu-drop">
                 <img src={admin.avatar} alt="User Icon" className="topAvatar" />
               </Dropdown.Toggle>
-
               <Dropdown.Menu className="menu" style={{width:'180px'}}>
                 <Dropdown.ItemText className="admin-name">
                   <img src={admin.avatar} alt="User Icon" className="topAvatar" /> {admin.name}

@@ -5,7 +5,6 @@
 }
 .provider-card:hover{
     transform: translateY(-20px);
-    box-shadow: 2px 4px 10px 5px #060b26;
 }
 .provider-card .root-card{
     border: 1px solid rgb(244, 232, 232);

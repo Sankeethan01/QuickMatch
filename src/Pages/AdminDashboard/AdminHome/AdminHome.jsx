@@ -9,6 +9,7 @@ import PageTitle from "../../../components/AdminDashBoardComponents/PageTitle/Pa
 import AdminNavbar from "../../../components/AdminDashBoardComponents/AdminNavbar/AdminNavbar";
 import { useNavigate } from "react-router-dom";
 import logo from '../../../assets/logo.png';
+import Footer from "../../../components/Footer/Footer";
 
 const AdminHome = () => {
 
@@ -24,9 +25,7 @@ const AdminHome = () => {
               navigate('/');
         }
     }, 2000);
-    
-   
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return (
@@ -49,6 +48,7 @@ const AdminHome = () => {
         <NewProvider />
       </div>
       <LatestBookings />
+      <Footer />
     </div>
   );
 };

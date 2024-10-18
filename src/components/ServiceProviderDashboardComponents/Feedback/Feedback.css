@@ -64,13 +64,19 @@
     color: #ffb400;
 }
 
+@media (max-width: 1000px){
+    .review-content{
+        width: 100%;
+    }
+}
+
 /* Responsive layout for smaller screens */
 @media (max-width: 768px) {
     .feedback-container {
         flex-direction: column; /* Stacks content and image vertically */
         text-align: center;
     }
-
+    
     .review-img {
         margin-bottom: 20px; /* Adds spacing between image and content */
     }

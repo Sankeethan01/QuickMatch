@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./Profile.css"; // Import the CSS file
+import "./Profile.css"; 
 import axios from "axios";
 import userAvatar from "../../../assets/user-3.png";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const districts = [
+  "",
   "Ampara",
   "Anuradhapura",
   "Badulla",
@@ -171,13 +172,15 @@ const ProfilePage = () => {
     setLoading(true);
     setError(null);
 
+    const location = form.location || profile.location;
+
     const formData = new FormData();
     formData.append("user_id", profile.user_id);
     formData.append("provider_id", profile.provider_id);
     formData.append("name", form.name || "");
     formData.append("username", form.username || "");
     formData.append("contactNumber", form.contactNumber || "");
-    formData.append("location", form.location || "");
+    formData.append("location", location);
     formData.append("nationalId", form.nationalId || "");
     formData.append("status", form.status || "");
     formData.append("bio", form.bio || "");
@@ -195,10 +198,9 @@ const ProfilePage = () => {
         formData
       );
       if (response.data.success) {
-        toast.success("Profile updated Successfully...");
-        setProfile({ ...form });
+        setProfile({ ...form, location });
         setIsEditing(false);
-      
+        toast.success("Profile updated Successfully...");
       } else {
         toast.error("Error while updating profile");
         setError(response.data.message || "Failed to update profile");
@@ -206,7 +208,7 @@ const ProfilePage = () => {
     } catch (error) {
       setError("Failed to update profile");
       console.error("Failed to update profile:", error);
-     
+
     } finally {
       setLoading(false);
     }
@@ -217,186 +219,188 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-container">
-      <h2>Profile Settings</h2>
-      <div className="profile-card">
-        <img src={profile.avatar} alt="Profile" className="profile-picture" />
+    <>
+      <div className="profile-container">
+        <h2>Profile Settings</h2>
+        <div className="profile-card">
+          <img src={profile.avatar} alt="Profile" className="profile-picture" />
 
-        {isEditing ? (
-          <form className="profile-form" onSubmit={handleFormSubmit}>
-            <label>
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleInputChange}
-              />
-            </label>
+          {isEditing ? (
+            <form className="profile-form" onSubmit={handleFormSubmit}>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleInputChange}
+                />
+              </label>
 
-            <label>
-              Username :
-              <input
-                type="text"
-                name="username"
-                value={form.username}
-                onChange={handleInputChange}
-              />
-            </label>
+              <label>
+                Username :
+                <input
+                  type="text"
+                  name="username"
+                  value={form.username}
+                  onChange={handleInputChange}
+                />
+              </label>
 
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleInputChange}
-                readOnly
-              />
-            </label>
-            <label>
-              Contact Number:
-              <input
-                type="text"
-                name="contactNumber"
-                value={form.contactNumber}
-                onChange={handleInputChange}
-                maxLength={10}
-              />
-            </label>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleInputChange}
+                  readOnly
+                />
+              </label>
+              <label>
+                Contact Number:
+                <input
+                  type="text"
+                  name="contactNumber"
+                  value={form.contactNumber}
+                  onChange={handleInputChange}
+                  maxLength={10}
+                />
+              </label>
 
-            <label>
-              City:
-              <input
-                type="text"
-                name="city"
-                value={form.city}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              District:
-              <select
-                name="district"
-                value={form.district}
-                onChange={handleInputChange}
+              <label>
+                City:
+                <input
+                  type="text"
+                  name="city"
+                  value={form.city}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                District:
+                <select
+                  name="district"
+                  value={form.district}
+                  onChange={handleInputChange}
+                >
+                  {districts.map((district, index) => (
+                    <option key={index} value={district}>
+                      {district}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Bio:
+                <textarea
+                  name="bio"
+                  value={form.bio}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Services:
+                <textarea
+                  name="services"
+                  value={form.services}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                National ID:
+                <input
+                  type="text"
+                  name="nationalId"
+                  value={form.nationalId}
+                  onChange={handleInputChange}
+                  maxLength={12}
+                />
+              </label>
+              <label>
+                Charges Per Day: {form.chargesPerDay}
+                <input
+                  type="text"
+                  name="chargesPerDay"
+                  value={form.chargesPerDay}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Qualifications:
+                <textarea
+                  name="qualifications"
+                  value={form.qualifications}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Profile Picture:
+                <input
+                  type="file"
+                  name="profilePic"
+                  onChange={handleProfilePicChange}
+                />
+              </label>
+
+              <button type="submit" className="save-button">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="cancel-button"
               >
-                {districts.map((district, index) => (
-                  <option key={index} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Bio:
-              <textarea
-                name="bio"
-                value={form.bio}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Services:
-              <textarea
-                name="services"
-                value={form.services}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              National ID:
-              <input
-                type="text"
-                name="nationalId"
-                value={form.nationalId}
-                onChange={handleInputChange}
-                maxLength={12}
-              />
-            </label>
-            <label>
-              Charges Per Day: {form.chargesPerDay}
-              <input
-                type="text"
-                name="chargesPerDay"
-                value={form.chargesPerDay}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Qualifications:
-              <textarea
-                name="qualifications"
-                value={form.qualifications}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Profile Picture:
-              <input
-                type="file"
-                name="profilePic"
-                onChange={handleProfilePicChange}
-              />
-            </label>
+                Cancel
+              </button>
+            </form>
+          ) : (
+            <div>
+              <p>
+                <strong>Name :</strong> {profile.name}
+              </p>
+              <p>
+                <strong>Username :</strong> {profile.username}
+              </p>
+              <p>
+                <strong>Email :</strong> {profile.email}
+              </p>
+              <p>
+                <strong>Contact Number :</strong> {profile.contactNumber}
+              </p>
+              <p>
+                <strong>Description :</strong> {profile.bio}
+              </p>
+              <p>
+                <strong>Service Category :</strong>{" "}
+                {serviceTypeMapping[profile.serviceType] || "Unknown Service"}
+              </p>
+              <p>
+                <strong>Services :</strong> {profile.services}
+              </p>
+              <p>
+                <strong>Address :</strong> {profile.location}
+              </p>
+              <p>
+                <strong>National ID :</strong> {profile.nationalId}
+              </p>
+              <p>
+                <strong>Charge per Day :</strong> {profile.chargesPerDay}
+              </p>
+              <p>
+                <strong>Qualifications :</strong> {profile.qualifications}
+              </p>
 
-            <button type="submit" className="save-button">
-              Save Changes
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsEditing(false)}
-              className="cancel-button"
-            >
-              Cancel
-            </button>
-          </form>
-        ) : (
-          <div>
-            <p>
-              <strong>Name :</strong> {profile.name}
-            </p>
-            <p>
-              <strong>Username :</strong> {profile.username}
-            </p>
-            <p>
-              <strong>Email :</strong> {profile.email}
-            </p>
-            <p>
-              <strong>Contact Number :</strong> {profile.contactNumber}
-            </p>
-            <p>
-              <strong>Description :</strong> {profile.bio}
-            </p>
-            <p>
-              <strong>Service Category :</strong>{" "}
-              {serviceTypeMapping[profile.serviceType] || "Unknown Service"}
-            </p>
-            <p>
-              <strong>Services :</strong> {profile.services}
-            </p>
-            <p>
-              <strong>Address :</strong> {profile.location}
-            </p>
-            <p>
-              <strong>National ID :</strong> {profile.nationalId}
-            </p>
-            <p>
-              <strong>Charge per Day :</strong> {profile.chargesPerDay}
-            </p>
-            <p>
-              <strong>Qualifications :</strong> {profile.qualifications}
-            </p>
-
-            <button onClick={handleEditClick} className="edit-button">
-              Edit Profile
-            </button>
-          </div>
-        )}
+              <button onClick={handleEditClick} className="edit-button">
+                Edit Profile
+              </button>
+            </div>
+          )}
+        </div>
+        {error && <div className="error-message">{error}</div>}
       </div>
-      {error && <div className="error-message">{error}</div>}
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

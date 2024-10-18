@@ -25,8 +25,8 @@ const ProviderNav = () => {
   const [sidebar, setSidebar] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalViewOpen, setModalViewOpen] = useState(false);
-  const [status, setStatus] = useState("offline"); // Initial status
-  const [providerId,setProviderId] = useState('');
+  const [status, setStatus] = useState("offline");
+  const [providerId, setProviderId] = useState('');
   const [user, setUser] = useState({
     name: "",
     type: "",
@@ -39,14 +39,13 @@ const ProviderNav = () => {
   const showSidebar = () => setSidebar(!sidebar);
 
   useEffect(() => {
-    // Retrieve user data from storage
     const user_id =
       sessionStorage.getItem("user_id");
 
     if (user_id) {
       fetchData(user_id);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = async (user_id) => {
@@ -67,62 +66,67 @@ const ProviderNav = () => {
             ? `http://localhost/quickmatch_api/profile_images/${data.profile_image}`
             : userAvatar,
         });
-        switch(data.status){
-          case 1 :
+
+        switch (data.status) {
+          case 1:
             setStatus('online');
             break;
 
-            case 2:
-              setStatus('ofline');
-              break;
+          case 2:
+            setStatus('offline');
+            break;
 
-              default:
-                setStatus("");
-                break
+          default:
+            setStatus('offline');
+            break;
         }
-        
         setProviderId(data.provider_id);
       }
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
   };
-  const handleLogout = () => {
 
+  const handleLogout = () => {
     const adminSession = sessionStorage.getItem('previous_user_type');
     const id = sessionStorage.getItem('user_id');
-    sessionStorage.clear()
-
+    sessionStorage.clear();
 
     if (adminSession) {
-        sessionStorage.setItem('user_type', adminSession);
-        sessionStorage.setItem('user_id', id);
+      sessionStorage.setItem('user_type', adminSession);
+      sessionStorage.setItem('user_id', id);
     }
-
-   
     navigate('/adminmonitoring');
-};
+  };
 
   const handleStatusChange = async () => {
-    const newStatus = status === "online" ? "offline" : "online";
-    setStatus(newStatus); 
-  
+    const newStatus = (status === "online" ? "offline" : "online");
+    setStatus(newStatus);
+
     try {
       console.log("Sending status update:", {
         providerId,
         status: newStatus === "online" ? "1" : "0",
       });
-  
-      await axios.post("http://localhost/quickmatch_api/setOnlineStatus.php", {
+
+      const response = await axios.post("http://localhost/quickmatch_api/setOnlineStatus.php", {
         providerId,
         status: newStatus === "online" ? "1" : "0",
       });
-      toast.warn("Your active status is changed..");
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setModalOpen(false);
+      }
+      else {
+        toast.error(response.data.message);
+        setModalOpen(false);
+      }
     } catch (error) {
       console.error("Failed to update status:", error);
     }
   };
-  
+
 
   return (
     <>
@@ -139,12 +143,12 @@ const ProviderNav = () => {
           <div className="topRight">
             <Dropdown>
               <Dropdown.Toggle variant="success" className="menu-drop">
-                <img src={user.avatar} alt="" className="topAvatar" />
+                <img src={user.avatar} alt="user avatar" className="topAvatar" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="menu" style={{ width: '180px' }}>
                 <Dropdown.ItemText className="admin-name">
-                  <img src={user.avatar} alt="" className="topAvatar" />{" "}
+                  <img src={user.avatar} alt="user avatar" className="topAvatar" />
                   {user.username}
                 </Dropdown.ItemText>
                 <Dropdown.Item style={{ textAlign: 'center' }}
@@ -157,10 +161,8 @@ const ProviderNav = () => {
                 <Dropdown.Item style={{ textAlign: 'center' }} onClick={() => setModalOpen(true)}>
                   My Status
                 </Dropdown.Item>
-                <Dropdown.Item style={{ textAlign: 'center' }} onClick={handleLogout}>
-                  <Link to="/" className="nav-link">
-                    Logout
-                  </Link>
+                <Dropdown.Item as={Link} to="/" style={{ textAlign: 'center' }} onClick={handleLogout}>
+                  Logout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -187,7 +189,7 @@ const ProviderNav = () => {
               <span>Service Requests</span>
             </Link>
           </li>
-         
+
 
           <li className="nav-text">
             <Link to="/providerfeedback">
@@ -254,11 +256,11 @@ const ProviderNav = () => {
         <Modal.Body>
           <p>Toggle between online and offline status:</p>
           <ToggleButton
-           type="checkbox"
-           variant={status === "online" ? "success" : "secondary"}
-           checked={status === "online"}
-           value="1"
-           onClick={handleStatusChange}  // Ensure this is properly linked
+            type="checkbox"
+            variant={status === "online" ? "success" : "secondary"}
+            checked={status === "online"}
+            value="1"
+            onClick={handleStatusChange}  // Ensure this is properly linked
           >
             {status === "online" ? "Online" : "Offline"}
           </ToggleButton>

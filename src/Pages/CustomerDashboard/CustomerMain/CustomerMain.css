@@ -29,6 +29,8 @@
     flex-basis: 60%;
     padding-left: 1rem;
   }
+
+
   
   /* Responsive Layout */
   @media (max-width: 768px) {
@@ -43,8 +45,8 @@
       margin-bottom: 1.5rem;
     }
   
-    .profileImage-section img {
-      width: 100%;
+    .profileImage-section  {
+      display: none;
     }
   }
   

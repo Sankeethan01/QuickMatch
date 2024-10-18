@@ -85,9 +85,9 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
     );
   };
 
-  const handleSubmit = async (e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!selectedServices || !serviceCategory || !proof || !description) {
       toast.error("Please fill in all fields.");
       return;
@@ -106,25 +106,24 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
 
     try {
       const response = await axios.post(
-          "http://localhost/quickmatch_api/addVerification.php",
-          formData
+        "http://localhost/quickmatch_api/addVerification.php",
+        formData
       );
       console.log(response.data);
-      if(response.data.success)
-       {
-          toast.success("Provider Reegistration successfull, wait until you got verified..");
-          setTimeout(() => {
-              window.location.reload();
-              openFinalReg(false);
-          }, 3000);
-        }
-        else{
-          toast.error(response.data.message);
-        }
-  } catch (error) {
+      if (response.data.success) {
+        toast.success("Provider Reegistration successfull, wait until you got verified..");
+        setTimeout(() => {
+          window.location.reload();
+          openFinalReg(false);
+        }, 3000);
+      }
+      else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
       console.log(error.response.data); // Log the error response for debugging
       toast.error("Registration failed.");
-  }
+    }
   };
 
   return (
@@ -135,50 +134,59 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
             <div className="form">
               <form onSubmit={handleSubmit}>
                 <h2>Filling Essentials</h2>
-                
+
                 <div className="input_box">
-                    <select
-                      id="serviceCategory"
-                      name="serviceCategory"
-                      value={serviceCategory}
-                      onChange={(e) => setServiceCategory(e.target.value)}
-                    >
-                      <option value="">Select Service Category</option>
-                      <option value="S01">Electric Services</option>
-                      <option value="S02">Electronic Services</option>
-                      <option value="S03">Construction Services</option>
-                      <option value="S04">Event Management Services</option>
-                    </select>
-                    <SettingsSuggestIcon className="icon" />
+                  <select
+                    id="serviceCategory"
+                    name="serviceCategory"
+                    value={serviceCategory}
+                    onChange={(e) => setServiceCategory(e.target.value)}
+                  >
+                    <option value="">Select Service Category</option>
+                    <option value="S01">Electric Services</option>
+                    <option value="S02">Electronic Services</option>
+                    <option value="S03">Construction Services</option>
+                    <option value="S04">Event Management Services</option>
+                  </select>
+                  <SettingsSuggestIcon className="icon" />
                 </div>
 
                 {serviceCategory && categories[serviceCategory] && (
                   <div className="input_box">
-                    <DropdownButton id="dropdown" title="Select Services" className="drop-down">
-                      <Form className="menu-item">
+                    <DropdownButton id="dropdown" title="Select Services" className="drop-down custom-dropdown">
+                      <Form className="menu-item p-2">
                         {categories[serviceCategory].map(service => (
-                          <Form.Check 
+                          <Form.Check
                             key={service}
                             type="checkbox"
                             id={service}
                             label={service}
                             value={service}
                             onChange={handleServiceChange}
+                            className="menu-item-check mb-2"
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                            }}
                           />
                         ))}
-                        <label>If other service you provide, update that in your profile</label>
+                        <label className="mt-2 d-block text-muted"
+                          style={{
+                            fontSize: '0.85rem',
+                            textAlign: 'center',
+                          }}>If other service you provide, update that in your profile</label>
                       </Form>
                     </DropdownButton>
                     <MiscellaneousServicesIcon className="icon" />
                   </div>
                 )}
                 <div className="input_box">
-                    <input
-                      className="input_proof"
-                      type="file"
-                      onChange={handleFileChange}
-                      required
-                    />
+                  <input
+                    className="input_proof"
+                    type="file"
+                    onChange={handleFileChange}
+                    required
+                  />
                 </div>
 
                 <div className="input_box">

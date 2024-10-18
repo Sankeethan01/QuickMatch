@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Instruction.css";
 import ProviderRegistration from "../ProviderRegistration/ProviderRegistration";
 import inst_img from '../../assets/inst.jpg'
+import { toast,ToastContainer } from "react-toastify";
 
 const Instruction = ({ closeInstruct, providerData }) => {
   const [finalRegis, setFinalRegis] = useState(false);
@@ -10,6 +11,17 @@ const Instruction = ({ closeInstruct, providerData }) => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  const passInstruct = () => {
+    if(isChecked)
+    {
+      setFinalRegis(true);
+    }
+    else{
+       toast.warn("You have to agree the terms and conditions")
+    }
+    
+  }
 
   return (
     <>
@@ -54,10 +66,9 @@ const Instruction = ({ closeInstruct, providerData }) => {
             </button>
             <button
               className="button"
-              disabled={!isChecked}
-              onClick={() => {
-                setFinalRegis(true);
-              }}
+              onClick={
+                passInstruct
+              }
             >
               Next
             </button>
@@ -66,6 +77,7 @@ const Instruction = ({ closeInstruct, providerData }) => {
         </div>
       </div>
       {finalRegis && <ProviderRegistration providerData={providerData} openFinalReg={setFinalRegis} />}
+      <ToastContainer />
     </>
   );
 };

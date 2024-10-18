@@ -104,16 +104,16 @@ const CustomerFeedbackSection = () => {
       <HomeNavBar />
       <div className="container feedback-container">
         <div className='image-section'>
-          <img src={feebackImg} />
+          <img src={feebackImg} alt='feedbackimg'/>
         </div>
         <div className='feedback-content'>
-        <h2>Feedback Section</h2>
+        <h2 style={{textAlign:"center", }}>Feedback Section</h2>
         <Button variant="primary" onClick={handleShow}>
           Write Feedback
         </Button>
 
         {/* Feedback Modal */}
-        <Modal show={showModal} onHide={handleClose}>
+        <Modal show={showModal} onHide={handleClose} className='feedback-modal'>
           <Modal.Header closeButton>
             <Modal.Title>Write Feedback</Modal.Title>
           </Modal.Header>

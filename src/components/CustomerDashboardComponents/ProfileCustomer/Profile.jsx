@@ -121,12 +121,14 @@ const ProfilePage = () => {
     setLoading(true);
     setError(null);
 
+    const location = form.location || profile.location;
+
     const formData = new FormData();
     formData.append('user_id',form.user_id);
     formData.append('name', form.name);
     formData.append('username', form.username);
     formData.append('contactNumber', form.contactNumber);
-    formData.append('location', form.location);
+    formData.append('location', location);
     formData.append('nationalId', form.nationalId);
 
     if (profilePicFile) {
@@ -136,14 +138,13 @@ const ProfilePage = () => {
     try {
       const response = await axios.post("http://localhost/quickmatch_api/updateCustomerProfile.php", formData);
       if (response.data.success) {
-        setProfile({ ...form });
+        toast.success(response.data.message);
+        setProfile({ ...form ,location});
           setIsEditing(false);
-          toast.success("Profile updated successfully...");
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
-      
       toast.error("Failed to update profile:", error);
     } finally {
       setLoading(false);
@@ -153,6 +154,7 @@ const ProfilePage = () => {
 
 
   return (
+    <>
     <div className="profile-container">
       <h2>Profile Settings</h2>
       <div className="profile-card">
@@ -197,6 +199,7 @@ const ProfilePage = () => {
                 name="contactNumber"
                 value={form.contactNumber}
                 onChange={handleInputChange}
+                maxLength={10}
               />
             </label>
             <label>
@@ -229,6 +232,7 @@ const ProfilePage = () => {
                 name="nationalId"
                 value={form.nationalId}
                 onChange={handleInputChange}
+                maxLength={12}
               />
             </label>
             <label>
@@ -267,8 +271,9 @@ const ProfilePage = () => {
         )}
         {error && <div className="error-message">{error}</div>}
       </div>
-      <ToastContainer />
     </div>
+    <ToastContainer />
+    </>
   );
 };
 

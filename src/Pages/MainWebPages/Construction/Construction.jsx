@@ -125,7 +125,10 @@ const Construction = () => {
           name={selectedUser.name}
           city={selectedUser.address}
           service_name={selectedUser.service_name}
+          services={selectedUser.services}
           exp={selectedUser.description}
+          charge={selectedUser.charge_per_day}
+          qualification={selectedUser.qualification}
           profile={selectedUser.profile_image}
           email={selectedUser.email}
           phone={selectedUser.phone}

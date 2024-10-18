@@ -86,7 +86,7 @@ const PopupVerification = ({ data, onclose }) => {
           </p>
         </div>
         <div className="footer-btn">
-          <button onClick={handleVerify} >Verify</button>
+          <button id='veryfyBtn' onClick={handleVerify} >Verify</button>
           <span id="verificationStatus" style={{display:'none',color:'green',marginRight:'10px',fontSize:'1.3rem'}}>Verified</span>
           <button onClick={onclose} id="cancelBtn">
             Cancel

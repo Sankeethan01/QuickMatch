@@ -1,117 +1,131 @@
- .instructions{
-  position: fixed;
-  top: 0 ;
-  left: 0;
-  margin: 0;
-  background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
-  width: 100%;
-  height: 100%;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+ .instructions {
+   position: fixed;
+   top: 0;
+   left: 0;
+   margin: 0;
+   backdrop-filter: blur(8px);
+   background: rgba(0, 0, 0, 0.6);
+   width: 100%;
+   height: 100%;
+   z-index: 50;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
  }
- .inst{
-  width: 950px;
-  display: flex;
-  background: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 12px 12px 12px 12px;
+
+ .inst {
+   width: 950px;
+   display: flex;
+   background: white;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   border-radius: 12px 12px 12px 12px;
  }
- .inst-img{
-  width: 450px;
-  
+
+ .inst-img {
+   width: 450px;
+
 
  }
- .inst-img img{
-  width: 455px;
-  margin-top: 70px;
-  border-right: 2px solid black;
-  
+
+ .inst-img img {
+   width: 455px;
+   margin-top: 70px;
+   border-right: 2px solid black;
+
  }
-.instruction-container{
-    width: 450px;
-    height: 600px;
-    margin-right: 30px;
-    background-color: white;
-    margin-left: 30px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    
-    
-}
-.instruction-container p{
-  margin-top: 20px;
-  text-align: justify;
-  width: 400px;
-  margin-right: 20px;
-  margin-left: -5px;
-  
-}
-.cancel-btn{
-    cursor: pointer;
-    font-size: 2rem;
-    
-  }
-  .instruction-container  .button-div .button {
-    background: #060b26;
-    margin-top: 0px;
-    width: 100%;
-    padding: 10px 0;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    color: white;
-  }
-  .instruction-container  .button-div .button:hover{
-    background: white;
-    color: #060b26;
-    font-weight: bold;
-    border: 2px solid #060b26;
-  }
 
-  .instruction-container .button-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    padding:20px;
-  }
+ .instruction-container {
+   width: 450px;
+   height: 600px;
+   margin-right: 30px;
+   background-color: white;
+   margin-left: 30px;
+   display: flex;
+   flex-direction: column;
+   padding: 25px;
 
-  @media (max-width:970px)
-  {
-    .inst{
-      width: 450px;
-      background: none;
-      
-    }
-    .inst-img{
-      display: none;
-    }
-    .instruction-container{
-      width: 450px !important;
-      border-radius: 12px;
-    }
-  }
 
-  @media (max-width:550px){
-    .inst{
-      width: 350px;
-      background: none;
-      margin-left: -10x;
-    }
-    .instruction-container{
-      width: 350px !important;
-    }
-      .instruction-container div p{
-        width: 310px;
-        font-size: .85rem;
-        text-align: justify;
-        margin-left: 5px;
-      }
-      .instruction-container div h3,h6{
-          margin-left: 5px;
-      }
-  }
+ }
+
+ .instruction-container p {
+   margin-top: 20px;
+   text-align: justify;
+   width: 400px;
+   margin-right: 20px;
+   margin-left: -5px;
+
+ }
+
+ .cancel-btn {
+   cursor: pointer;
+   font-size: 2rem;
+
+ }
+
+ .instruction-container .button-div .button {
+   background: #060b26;
+   margin-top: 0px;
+   width: 100%;
+   padding: 10px 0;
+   border-radius: 10px;
+   outline: none;
+   border: none;
+   color: white;
+ }
+
+ .instruction-container .button-div .button:hover {
+   background: white;
+   color: #060b26;
+   font-weight: bold;
+   border: 2px solid #060b26;
+ }
+
+ .instruction-container .button-div {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 5px;
+   padding: 20px;
+ }
+
+ @media (max-width:970px) {
+   .inst {
+     width: 450px;
+     background: none;
+
+   }
+
+   .inst-img {
+     display: none;
+   }
+
+   .instruction-container {
+     width: 450px !important;
+     border-radius: 12px;
+   }
+ }
+
+ @media (max-width:550px) {
+   .inst {
+     width: 350px;
+     background: none;
+     margin-left: -10x;
+   }
+
+   .instruction-container {
+     width: 350px !important;
+   }
+
+   .instruction-container div p {
+     width: 310px;
+     font-size: .85rem;
+     text-align: justify;
+     margin-left: 5px;
+   }
+
+   .instruction-container div h3,
+   h6 {
+     margin-left: 5px;
+   }
+ }

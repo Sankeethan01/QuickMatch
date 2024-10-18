@@ -38,7 +38,7 @@ const CenterPage = (props) => {
         }
       })
       .catch((error) => {
-        console.error("Error fetching reviews:", error);
+        console.error("No feedbacks for the provider.");
         setCustomerReviews([]); // Handle error scenario
       });
     // Fetching the customer details using the user ID stored in sessionStorage
@@ -67,6 +67,7 @@ const CenterPage = (props) => {
   const handleReviewChange = (e) => {
     const { name, value } = e.target;
     setNewReview({ ...newReview, [name]: value });
+    
   };
 
   const handleReviewSubmit = (e) => {
@@ -80,8 +81,8 @@ const CenterPage = (props) => {
       .post("http://localhost/quickmatch_api/addCustomerReview.php", reviewData)
       .then((response) => {
         if (response.data.success) {
-          // Update the customerReviews state with the new review data
           toast.success("Review added successfully...");
+          
           const newCustomerReview = {
             reviewer: newReview.reviewer,
             comment: newReview.comment,
@@ -90,9 +91,10 @@ const CenterPage = (props) => {
           };
   
           setCustomerReviews([...customerReviews, newCustomerReview]);
-  
-          // Clear the form fields including the rating field
-          setNewReview({ reviewer: "", comment: "", rating: 0 });
+
+
+          setNewReview({ reviewer: newReview.reviewer, comment: "", rating: 0 });
+
         } else {
           console.error("Error: ", response.data.message);
           toast.error("Error while adding review...");
@@ -148,10 +150,16 @@ const CenterPage = (props) => {
                 </p>
                 <h3>Languages</h3>
                 <p>English, Tamil, Sinhala</p>
+                <h3>Services</h3>
+                <p>{props.services}</p>
                 <h3>Experience</h3>
                 <p>{props.exp}</p>
+                <h3>Charges</h3>
+                <p>{props.charge}</p>
+                <h3>Qualification</h3>
+                <p>{props.qualification}</p>
               </div>
-              <h3 className="review">Customer Reviews</h3>
+              <h3 style={{textAlign:"center", marginTop:"20px" ,fontSize:"2rem" ,fontWeight:"bold"}}>Customer Reviews</h3>
               <div className="cardreview">
                 <Carousel className="reviews-section mb-4" interval={2000}>
                   {Array.isArray(customerReviews) &&

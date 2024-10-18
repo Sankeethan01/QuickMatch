@@ -29,6 +29,12 @@
     border-radius: 10px; /* Optional: adds rounded corners to the image */
 }
 
+@media (max-width: 1000px){
+    .finance-content{
+        width: 100%;
+    }
+}
+
 /* Responsive styling for small screens */
 @media (max-width: 768px) {
     .finance-container {

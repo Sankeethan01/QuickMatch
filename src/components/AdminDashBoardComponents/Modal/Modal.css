@@ -1,7 +1,7 @@
 .modalBackground {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.6); 
   position: fixed;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   top: 0;
   margin: 0;
   z-index: 50;
-  backdrop-filter: blur(8px); /* Adds a blur effect behind the modal */
+  backdrop-filter: blur(8px); 
 }
 
 .modalContainer {
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth opening animation */
+  transition: transform 0.3s ease, opacity 0.3s ease; 
   transform: translateY(-20px);
   opacity: 0;
   animation: fadeIn 0.4s forwards;
@@ -43,7 +43,7 @@
 }
 
 .modalContainer .cancel-btn:hover {
-  color: crimson; /* Hover effect on cancel button */
+  color: crimson; 
 }
 
 .modalContainer .title {

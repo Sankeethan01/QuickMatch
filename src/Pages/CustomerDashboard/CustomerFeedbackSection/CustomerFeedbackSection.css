@@ -29,7 +29,7 @@
 
 .feedback-content {
   flex: 1;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .feedback-content h2 {
@@ -54,6 +54,11 @@
   color: #0b1b53;
   background-color: #fff;
   border: 1px solid #0b1b53;
+}
+
+.feedback-content .feedback-modal{
+  backdrop-filter: blur(8px); 
+    background: rgba(0, 0, 0, 0.6);
 }
 
 /* Modal Styles */
@@ -137,10 +142,7 @@
   }
 
   .image-section {
-    margin-bottom: 2rem;
-    flex: none;
-    width: 100%;
-    text-align: center;
+    display: none;
   }
 
   .feedback-content {

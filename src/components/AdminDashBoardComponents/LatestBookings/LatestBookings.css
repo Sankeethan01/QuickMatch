@@ -53,22 +53,22 @@
   }
   
   .widgetLgButton.Accepted{
-      background-color: #d1ece0;
-      color: #0ed260;
+      background-color: #28a745;
+      color: white;
   }
   .widgetLgButton.Declined-provider,  .widgetLgButton.Declined-customer{
-      background-color: #d31723;
+      background-color: #dc3545;
       color: #ffffff;
   
   }
   .widgetLgButton.Pending{
-      background-color: #ebf1fe;
-      color: #0a74f6;
+      background-color: #ffc107;
+      color: white;
   
   }
 
   .widgetLgButton.Completed{
-    background-color: hsla(131, 86%, 25%, 0.842);
+    background-color: #ffc107;
     color: #ffffff;
 
 }

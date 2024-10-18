@@ -25,7 +25,6 @@ const Signup = ({ signupClose, loginClose }) => {
   const [openInstruct, setOpenInstruct] = useState(false);
   const [providerData, setProviderData] = useState({});
 
-
   const districts = [
     '', 'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
     'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala',

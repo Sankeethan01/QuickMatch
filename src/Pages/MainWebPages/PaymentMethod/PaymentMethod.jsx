@@ -19,7 +19,7 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
 
   const handlePayment = () => {
 
-    if (cardNumber.length !== 19) { // Length 19 includes spaces
+    if (cardNumber.length !== 19) { 
       setCardNumberError("Enter a valid card number");
       return;
   }
@@ -223,7 +223,7 @@ const PaymentMethod = ({ onPaymentSuccess }) => {
       )}
 
       {/* Confirmation Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} className="confirm-booking" backdropClassName="custom-booking-backdrop">
         <Modal.Header closeButton>
           <Modal.Title>Confirm Booking</Modal.Title>
         </Modal.Header>

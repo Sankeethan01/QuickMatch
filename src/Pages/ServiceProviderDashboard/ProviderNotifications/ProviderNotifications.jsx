@@ -3,8 +3,6 @@ import ProviderNav from '../../../components/ServiceProviderDashboardComponents/
 import Footer from '../../../components/Footer/Footer'
 import { useNavigate } from 'react-router-dom'
 import ProviderNotification from '../../../components/ServiceProviderDashboardComponents/Notifications/Notifications'
-import notificImg from '../../../assets/notific_image.jpg';
-import '../../CustomerDashboard/CustomerNotifications/CustomerNotification.css';
 import logo from '../../../assets/logo.png';
 
 const ProviderNotifications = () => {
@@ -36,15 +34,7 @@ const ProviderNotifications = () => {
   return (
     <>
        <ProviderNav />
-       <div className='notification-section'>
-      <div className='notification-content'>
       <ProviderNotification />
-      </div>
-      <div className='notification-image'>
-        <img src={notificImg}/>
-      </div>
-     </div>
-       
        <Footer />
     </>
   )

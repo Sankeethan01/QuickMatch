@@ -36,3 +36,8 @@
     border-radius: 20px;
     
   }
+
+  .Paymentpage .custom-booking-backdrop{
+    backdrop-filter: blur(15px); 
+    background: rgba(0, 0, 0, 0.4);
+  }

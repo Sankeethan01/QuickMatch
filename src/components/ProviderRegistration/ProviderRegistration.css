@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   margin: 0;
-  background: linear-gradient(90deg, rgba(2, 0, 36, 0.95) 0%, rgba(6, 11, 38, 0.95) 35%, rgba(125, 110, 119, 0.95) 100%);
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   z-index: 50;
@@ -57,8 +58,7 @@
 }
 
 .register-container .input_box input,
-.register-container .input_box select
- {
+.register-container .input_box select {
   width: 100%;
   padding: 10px 40px;
   font-size: 14px;
@@ -67,7 +67,8 @@
   margin: 15px 0;
   transition: all 0.3s;
 }
-.register-container .input_box .drop-down{
+
+.register-container .input_box .drop-down {
   width: 100%;
   padding: 10px 40px;
   font-size: 14px;
@@ -78,17 +79,29 @@
 }
 
 .register-container .input_box select,
-.register-container .input_box .drop-down
-{
+.register-container .input_box .drop-down {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-.register-container .input_box .drop-down .menu-item{
- background-color: white;
- border-color: 1px solid #060b26;
- width: 100%;
+
+.register-container .input_box .drop-down .menu-item {
+  background-color: white !important;
+  border-color: 1px solid #060b26;
+  width: 100%;
 }
+
+.register-container .input_box .drop-down .menu-item .menu-item-check {
+  width: 80%;
+}
+
+.register-container .custom-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+  color: inherit !important;
+  padding-top: 2px;
+}
+
 
 .register-container .input_box input:focus {
   border-color: #060b26;
@@ -96,13 +109,13 @@
 
 .register-container .icon {
   position: absolute;
-top: 70%;
-font-size: 22px;
-color: #707070;
-left: 5px;
+  top: 70%;
+  font-size: 22px;
+  color: #707070;
+  left: 5px;
 }
 
-.register-container .input_box input:focus ~ .icon {
+.register-container .input_box input:focus~.icon {
   color: #060b26;
 }
 
@@ -171,11 +184,11 @@ left: 5px;
     width: 400px !important;
     height: auto;
   }
-  
+
   .register-container .provider_img {
     display: none;
   }
-  
+
   .register-container .provider-form {
     border: none;
   }

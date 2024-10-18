@@ -110,7 +110,7 @@ const HomeNavBar = () => {
                 <Dropdown.ItemText className="admin-name">
                   <img src={user.avatar} alt="User Avatar" className="topAvatar" /> {user.username}
                 </Dropdown.ItemText>
-                <Dropdown.Item style={{ textAlign: 'center' }}
+                <Dropdown.Item style={{ textAlign: 'center'}}
                   onClick={() => {
                     setModalOpen(true);
                   }}

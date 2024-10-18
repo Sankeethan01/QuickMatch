@@ -1,10 +1,10 @@
-.popup-verify{
+.popup-verify {
   position: fixed;
-  top: 0 ;
+  top: 0;
   left: 0;
   margin: 0;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(6,11,38,0.8) 35%, rgba(125,110,119,0.8) 100%);
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   z-index: 50;
@@ -12,11 +12,12 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  
-    
+
+
 }
-.popup-verify .popup-box{
-     
+
+.popup-verify .popup-box {
+
   width: 440px;
   height: 700px;
   border-radius: 12px;
@@ -27,86 +28,88 @@
   padding: 20px;
 }
 
-.popup-verify .popup-box .cancel-btn{
-    cursor: pointer;
-    font-size: 1.8rem;
-  }
-  .popup-verify  .popup-box .title {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    flex: 40%;
-    border-bottom: 1px solid black;
-  }
+.popup-verify .popup-box .cancel-btn {
+  cursor: pointer;
+  font-size: 1.8rem;
+}
 
-  .popup-verify .popup-box .title p{
-    padding-top: 0px;
-  }
+.popup-verify .popup-box .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  flex: 40%;
+  border-bottom: 1px solid black;
+}
 
-
-  .popup-verify .titleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .popup-verify .titleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-  }
-  
-  .popup-verify .popup-box .body {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   margin: 5px 5px;
-   gap: 1px;
-   border-bottom: 1px solid black;
-   text-align: center;
-  }
-
-  .popup-verify .popup-box .body .small-head{
-    color: rgb(97, 97, 107);
-    font-size: .8rem;
-  }
-  .popup-verify .popup-box .body .info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
+.popup-verify .popup-box .title p {
+  padding-top: 0px;
+}
 
 
-  .popup-verify .popup-box .body .info p{
-      
-      margin-bottom: 2px;
-  }
+.popup-verify .titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .popup-verify .popup-box .footer-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+.popup-verify .titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.popup-verify .popup-box .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 5px;
+  gap: 1px;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.popup-verify .popup-box .body .small-head {
+  color: rgb(97, 97, 107);
+  font-size: .8rem;
+}
+
+.popup-verify .popup-box .body .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
 
 
-  
-   .popup-verify .footer-btn button {
-    width: 100px;
-    height: 40px;
-    margin: 5px;
-    border: none;
-    color: white;
-    background-color: #060b26;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .popup-verify #cancelBtn {
-    background-color: crimson;
-  }
+.popup-verify .popup-box .body .info p {
+
+  margin-bottom: 2px;
+}
+
+.popup-verify .popup-box .footer-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+
+.popup-verify .footer-btn button {
+  width: 100px;
+  height: 40px;
+  margin: 5px;
+  border: none;
+  color: white;
+  background-color: #060b26;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup-verify #cancelBtn {
+  background-color: crimson;
+}

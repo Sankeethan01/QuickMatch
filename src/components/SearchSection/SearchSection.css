@@ -71,6 +71,7 @@
 }
 
 
+
 .search-section .search-input {
     position: relative;
 }
@@ -121,6 +122,9 @@
 
 @media (max-width:900px)
 {
+    .search-input{
+        width: 100%;
+    }
     .search-section .search-img{
         flex-basis: 100%;
     }

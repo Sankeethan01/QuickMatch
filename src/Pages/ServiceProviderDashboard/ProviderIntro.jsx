@@ -12,6 +12,8 @@ import logo from '../../assets/logo.png';
 
 const ProviderIntro = () => {
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -24,7 +26,7 @@ const ProviderIntro = () => {
     
   })
 
-  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
 
   if (loading) {

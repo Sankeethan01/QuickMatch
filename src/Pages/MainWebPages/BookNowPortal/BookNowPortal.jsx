@@ -5,6 +5,7 @@ import PaymentMethod from "../PaymentMethod/PaymentMethod";
 import axios from "axios";
 import './BookNowPortal.css';
 import { ToastContainer, toast } from "react-toastify";
+import logo from '../../../assets/logo.png'
 
 const BookNowPortal = (props) => {
   const [showPayment, setShowPayment] = useState(false);
@@ -51,14 +52,16 @@ const BookNowPortal = (props) => {
 };
 
 
+
+
   const handlePaymentSuccess = async () => {
     try {
       const response = await axios.post("http://localhost/quickmatch_api/createBooking.php", bookingDetails);
       if (response.data.success) {
         setShowPayment(false);
-        toast.success("Service booked successfully.");
         setBookingDetails(null);
         props.onHide();
+        toast.success("Service booked successfully.");
       } else {
         setError("Failed to submit booking. Please try again later.");
         toast.error("Booking failed...")
@@ -75,6 +78,13 @@ const BookNowPortal = (props) => {
       setShowPayment(false);
       setBookingDetails(null);
       props.onHide(); 
+  };
+
+  const getTomorrowDate = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
   };
 
   return (
@@ -138,7 +148,9 @@ const BookNowPortal = (props) => {
                 Service Date
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="date" name="date" required />
+                <Form.Control type="date" name="date" required 
+                min={getTomorrowDate()}
+                />
               </Col>
             </Form.Group>
 

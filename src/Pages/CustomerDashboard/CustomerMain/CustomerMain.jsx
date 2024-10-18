@@ -42,7 +42,6 @@ if (loading) {
         <Profile />
         </div>
       </div>
-      
       <Footer />
     </>
   );
