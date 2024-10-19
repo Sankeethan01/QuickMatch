@@ -23,6 +23,7 @@ const Login = ({ loginClose, signupClose }) => {
   const [otp, setOtp] = useState("");
   const [checkOTP,setCheckOTP] = useState("");
 
+  //Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email.includes('@gmail.com')) {
