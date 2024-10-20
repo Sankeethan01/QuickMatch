@@ -88,15 +88,22 @@ const ProviderNav = () => {
   };
 
   const handleLogout = () => {
-    const adminSession = sessionStorage.getItem('previous_user_type');
-    const id = sessionStorage.getItem('user_id');
-    sessionStorage.clear();
 
-    if (adminSession) {
-      sessionStorage.setItem('user_type', adminSession);
-      sessionStorage.setItem('user_id', id);
+    if(sessionStorage.getItem('previous_user_type')){
+      const adminSession = sessionStorage.getItem('previous_user_type');
+      const id = sessionStorage.getItem('user_id');
+      sessionStorage.clear()
+  
+  
+      if (adminSession) {
+        sessionStorage.setItem('user_type', adminSession);
+        sessionStorage.setItem('user_id', id);
+      } 
+      navigate('/adminmonitoring');
+    }else{
+      sessionStorage.clear();
+    navigate('/');
     }
-    navigate('/adminmonitoring');
   };
 
   const handleStatusChange = async () => {
@@ -161,7 +168,7 @@ const ProviderNav = () => {
                 <Dropdown.Item style={{ textAlign: 'center' }} onClick={() => setModalOpen(true)}>
                   My Status
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/" style={{ textAlign: 'center' }} onClick={handleLogout}>
+                <Dropdown.Item style={{ textAlign: 'center' }} onClick={handleLogout}>
                   Logout
                 </Dropdown.Item>
               </Dropdown.Menu>

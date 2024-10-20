@@ -46,32 +46,29 @@ const Signup = ({ signupClose, loginClose }) => {
     }
 
     const usernameRegex = /.*\d.*/;
-    if(!usernameRegex.test(username))
-    {
+    if (!usernameRegex.test(username)) {
       toast.error("Username must contain at least one number.");
       return;
     }
-    if(!email.includes('@gmail.com'))
-      {
-        toast.error("Please enter valid email..");
-        return;
-      }
+    if (!email.includes('@gmail.com')) {
+      toast.error("Please enter valid email..");
+      return;
+    }
     if (password !== confirmPassword) {
       toast.error("Passwords do not match.");
       return;
     }
-    
+
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
-    if(!passwordRegex.test(password))
-    {
+    if (!passwordRegex.test(password)) {
       toast.error("Password must be at least 6 characters long and include at least one uppercase letter, one special character, and one number.");
       return;
     }
 
     const fullName = `${firstName} ${lastName}`;
     const fullAddress = `${city} | ${district}`;
-   
+
     try {
       const response = await axios.post("http://localhost/quickmatch_api/customersignup.php", {
         fullName,
@@ -90,14 +87,16 @@ const Signup = ({ signupClose, loginClose }) => {
         toast.error("Registration failed. Please check your credentials and try again.");
       }
     } catch (error) {
-      toast.error("Sign up failed.");
+      toast.error("Customer email is already exists.");
       setTimeout(() => {
         window.location.reload();
       }, 3000);
     }
   };
 
-  const handleProviderRegister = (e) => {
+
+
+  const handleProviderRegister = async (e) => {
     e.preventDefault();
     if (!firstName || !lastName || !city || !district || !username || !email || !password || !confirmPassword) {
       toast.error("Please fill in all fields.");
@@ -111,38 +110,31 @@ const Signup = ({ signupClose, loginClose }) => {
     }
 
     const usernameRegex = /.*\d.*/;
-    if(!usernameRegex.test(username))
-    {
+    if (!usernameRegex.test(username)) {
       toast.error("Username must contain at least one number.");
       return;
     }
-    if(!email.includes('@gmail.com'))
-      {
-        toast.error("Please enter valid email..");
-        return;
-      }
-      
-      if (password !== confirmPassword) {
-        toast.error("Passwords do not match.");
-        return;
-      }
-      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
-  
-      if(!passwordRegex.test(password))
-      {
-        toast.error("Password must be at least 6 characters long and include at least one uppercase letter, one special character, and one number.");
-        return;
-      }
-  
-      const fullName = `${firstName} ${lastName}`;
-      const fullAddress = `${city} | ${district}`;
-  
-  
-     
-      setProviderData({ fullName,fullAddress, username, email, password });
-      setOpenInstruct(true);
+    if (!email.includes('@gmail.com')) {
+      toast.error("Please enter valid email..");
+      return;
+    }
 
-      
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      toast.error("Password must be at least 6 characters long and include at least one uppercase letter, one special character, and one number.");
+      return;
+    }
+
+    const fullName = `${firstName} ${lastName}`;
+    const fullAddress = `${city} | ${district}`;
+
+    setProviderData({ fullName, fullAddress, username, email, password });
+    setOpenInstruct(true);
   };
 
   return (
@@ -186,7 +178,7 @@ const Signup = ({ signupClose, loginClose }) => {
                   </div>
                 </div>
 
-                 {/* Username */}
+                {/* Username */}
                 <div className="input_box">
                   <input
                     type="text"

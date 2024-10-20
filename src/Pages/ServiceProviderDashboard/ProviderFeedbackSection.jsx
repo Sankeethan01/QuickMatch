@@ -37,7 +37,7 @@ const ProviderFeedbackSection = () => {
         setTimeout(() => {
           setLoading(false);
           fetchFeedbacks(userId);
-        }, 2000);
+        }, 1000);
 
       }
     }

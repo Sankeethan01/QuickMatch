@@ -24,7 +24,7 @@ const AdminHome = () => {
              sessionStorage.clear();
               navigate('/');
         }
-    }, 2000);
+    }, 1000);
   }, [navigate]);
 
   if (loading) {

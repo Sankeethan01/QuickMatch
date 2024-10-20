@@ -157,6 +157,7 @@ const ProfilePage = () => {
     <>
     <div className="profile-container">
       <h2>Profile Settings</h2>
+      <p></p>
       <div className="profile-card">
         <img
           src={profile.avatar}
@@ -245,8 +246,8 @@ const ProfilePage = () => {
             </label>
             <button
               type="submit"
-  
-              className="save-button"
+
+             className="save-button"
               disabled={loading}
             >
               Save
