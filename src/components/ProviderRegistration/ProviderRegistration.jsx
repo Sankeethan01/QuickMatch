@@ -180,6 +180,13 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
                     <MiscellaneousServicesIcon className="icon" />
                   </div>
                 )}
+
+
+                <div style={{marginBottom:"-40px",marginTop:"40px",marginLeft:"15px"}}>
+                  <p>Proof:</p>
+                </div>
+
+                
                 <div className="input_box">
                   <input
                     className="input_proof"
