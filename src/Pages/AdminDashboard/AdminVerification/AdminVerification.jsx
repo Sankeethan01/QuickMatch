@@ -30,7 +30,7 @@ const AdminVerification = () => {
       }
       setTimeout(() => {
         fetchVerifications();
-      }, 2000);
+      }, 1000);
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[]);
 

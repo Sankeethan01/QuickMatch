@@ -60,8 +60,8 @@ const BookNowPortal = (props) => {
       if (response.data.success) {
         setShowPayment(false);
         setBookingDetails(null);
-        props.onHide();
         toast.success("Service booked successfully.");
+        props.onHide();
       } else {
         setError("Failed to submit booking. Please try again later.");
         toast.error("Booking failed...")

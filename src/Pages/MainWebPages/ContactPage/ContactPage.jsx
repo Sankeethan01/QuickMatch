@@ -16,7 +16,7 @@ const ContactPage = () => {
              sessionStorage.clear();
               navigate('/');
         }
-    }, 1500);
+    }, 1000);
     
   })
 
