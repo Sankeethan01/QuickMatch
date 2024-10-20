@@ -46,7 +46,7 @@ const AdminSettings = () => {
     if (user_id) {
       setTimeout(() => {
         fetchData(user_id);
-      }, 2000);
+      }, 1000);
       
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -41,7 +41,7 @@ const Eventmanagement = () => {
     setTimeout(() => {
       setLoading(false);
       fetchData();
-    }, 2000);
+    }, 1000);
    
   }, [navigate]);
   const fetchData = async () => {

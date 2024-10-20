@@ -20,7 +20,7 @@ const HomePage = () => {
              sessionStorage.clear();
               navigate('/');
         }
-    }, 1500);
+    }, 1000);
     
   })
 
