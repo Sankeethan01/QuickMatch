@@ -180,6 +180,10 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
                     <MiscellaneousServicesIcon className="icon" />
                   </div>
                 )}
+              
+                <div style={{ marginBottom: "-40px", marginTop: "40px", marginLeft: "15px" }}>
+                  Proofs:
+                </div>
                 <div className="input_box">
                   {/* <label style={{width:"80px"}}>Attach Proof</label> */}
                   <input
@@ -190,7 +194,6 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
                     
                   />
                 </div>
-
                 <div className="input_box">
                   <input
                     type="text"
