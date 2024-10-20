@@ -25,27 +25,30 @@ const PopupVerification = ({ data, onclose }) => {
   }, [data.id]);
 
 
-    const handleVerify = async () => {
-      try {
-        console.log(data.id);
-        const response = await axios.post('http://localhost/quickmatch_api/providerSignup.php?',
-          {
-            verify_id: data.id,
+  const handleVerify = async () => {
+    try {
+      console.log(data.id);
+      const response = await axios.post('http://localhost/quickmatch_api/providerSignup.php?',
+        {
+          verify_id: data.id,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
           }
-        );
-        console.log(response.data);
-        if (response.data.success) {
-          toast.success("Provider verified successfully");
-          onclose(false);
-          
-        } else {
-          toast.error( "Error occured..");
-          onclose(false);
         }
-      } catch (error) {
-       toast.error('Error verifying provider:', error);
+      );
+      console.log(response.data);
+      if (response.data.success) {
+        toast.success(response.data.message)
+      } else {
+        toast.error("Error occured..");
+        onclose(false);
       }
-    };
+    } catch (error) {
+      toast.error('Error verifying provider:', error);
+    }
+  };
 
 
   return (
@@ -68,10 +71,10 @@ const PopupVerification = ({ data, onclose }) => {
             <p>Registered: {data.date}</p>
           </div>
         </div>
-        
+
         <div className="body">
           <p className="small-head">Additional Details</p>
-         
+
           <p>Description: {data.description}</p>
           <p>Services: {data.services}</p>
           <p>
@@ -87,7 +90,7 @@ const PopupVerification = ({ data, onclose }) => {
         </div>
         <div className="footer-btn">
           <button id='veryfyBtn' onClick={handleVerify} >Verify</button>
-          <span id="verificationStatus" style={{display:'none',color:'green',marginRight:'10px',fontSize:'1.3rem'}}>Verified</span>
+          <span id="verificationStatus" style={{ display: 'none', color: 'green', marginRight: '10px', fontSize: '1.3rem' }}>Verified</span>
           <button onClick={onclose} id="cancelBtn">
             Cancel
           </button>

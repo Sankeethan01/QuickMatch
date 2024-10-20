@@ -37,7 +37,7 @@ const CustomerFeedbackSection = () => {
           fetchFeedbacks(userId);
         }
       }
-    }, 2000);
+    }, 1000);
     
   }, [navigate]);
 
