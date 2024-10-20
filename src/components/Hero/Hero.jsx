@@ -32,6 +32,7 @@ const Hero = () => {
 
   return (
     <>
+    {/* carousel section */}
     <div className='carousel'>
       <Carousel fade interval={3000} controls={false}>
         <Carousel.Item >

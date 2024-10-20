@@ -23,6 +23,7 @@ const Login = ({ loginClose, signupClose }) => {
   const [otp, setOtp] = useState("");
   const [checkOTP,setCheckOTP] = useState("");
 
+  //Handle login 
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email.includes('@gmail.com')) {
@@ -72,7 +73,7 @@ const Login = ({ loginClose, signupClose }) => {
 
     }
   };
-
+// Handle forgot password
   const handleForgotPassword = async () => {
     if (!forgotPasswordEmail.includes('@gmail.com')) {
       toast.error("Please enter valid email..");
@@ -157,6 +158,7 @@ const Login = ({ loginClose, signupClose }) => {
       }
     }
   }
+  // login page
 
   return (
     <>
