@@ -36,7 +36,7 @@ if (loading) {
       <HomeNavBar />
       <div className="profile-section">
         <div className="profileImage-section">
-          <img src={profileImg}/>
+          <img src={profileImg} alt="profile-img"/>
         </div>
         <div className="profile-content">
         <Profile />

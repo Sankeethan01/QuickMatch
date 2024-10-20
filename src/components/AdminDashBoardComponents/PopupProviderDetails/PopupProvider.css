@@ -7,7 +7,7 @@
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
-  height: 150%;
+  height: 175%;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -131,8 +131,25 @@
   background-color: crimson;
 }
 
-@media (max-width:560px) {
+@media (max-width:500px) {
   .popup-provider .popup-box {
-    width: 420px;
+    width: 390px;
+    height: 1200px;
+  }
+  .popup-provider {
+    position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  bottom: 0;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 200%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './IntroPage.css'
 import NavigationBar from '../../components/NavBar/NavBar'
 import Hero from '../../components/Hero/Hero'

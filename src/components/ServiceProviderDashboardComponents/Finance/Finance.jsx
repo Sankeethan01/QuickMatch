@@ -178,7 +178,7 @@ const FinancePage = () => {
       </div>
       <div className="finance-img">
       <h2>Finance Section</h2>
-        <img src={financeImg} />
+        <img src={financeImg} alt="finance-img"/>
       </div>
      <ToastContainer />
     </div>

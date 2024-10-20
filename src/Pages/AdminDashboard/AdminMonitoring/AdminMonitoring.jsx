@@ -53,7 +53,7 @@ const AdminMonitoring = () => {
         <Card className="monitoring-card">
           <Card.Body>
             <Card.Title>Customer Zone</Card.Title>
-            <img src={customerimg} />
+            <img src={customerimg} alt="cus-img"/>
             <Card.Text>
               Switch to the customer view to ensure the customer dashboard is
               functioning correctly.
@@ -75,7 +75,7 @@ const AdminMonitoring = () => {
         <Card className="monitoring-card">
           <Card.Body>
             <Card.Title>Provider Dashboard</Card.Title>
-            <img src={providerimg} />
+            <img src={providerimg} alt="prov-img"/>
             <Card.Text>
               Switch to the provider view to ensure the provider dashboard is
               functioning correctly.
