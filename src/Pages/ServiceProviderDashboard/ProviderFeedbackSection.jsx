@@ -112,7 +112,7 @@ const ProviderFeedbackSection = () => {
       <ProviderNav />
       <div className="container feedback-container">
         <div className='image-section'>
-          <img src={feebackImg} />
+          <img src={feebackImg} alt='feedbackimg'/>
         </div>
         <div className='feedback-content'>
           <h2 style={{ textAlign: "center" }}>Provider Feedback Section</h2>

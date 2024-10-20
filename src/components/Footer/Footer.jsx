@@ -23,7 +23,7 @@ const Footer = () => {
           <FacebookIcon className='foot-icon'/>
           <TwitterIcon className='foot-icon'/>
           <InstagramIcon className='foot-icon'/>
-          <YouTubeIcon className='foor-icon'/>
+          <YouTubeIcon className='foot-icon'/>
         </div>
         </div>
       <div className='foot-right'>

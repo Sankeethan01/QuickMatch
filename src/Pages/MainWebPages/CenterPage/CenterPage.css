@@ -11,16 +11,16 @@
 }
 
 .User-container {
-  padding: 20px;
-
+  padding: 5px;
 }
 
 .User-container .header-section {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
   padding: 10px;
+  height: 120px;
   border-radius: 8px;
   color: white;
-  position: relative;
+  position: fixed;
 }
 
 .User-container .header-section {
@@ -40,13 +40,13 @@
 }
 
 .User-container .header-section .profile-img {
-  width: 150px;
-
+  width: 150px !important;
+  height: 150px !important;
   border-radius: 50%;
   border: 4px solid white;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 70px;
+  top: 260px;
   transform: translateX(-50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -55,6 +55,7 @@
 .User-container .info-section {
   margin-top: 20px;
   padding: 30px;
+  padding-top: 50px;
   background: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 4px 17px 9px rgba(0, 0, 0, 0.1);
@@ -229,6 +230,11 @@
     flex-direction: column;
     align-items: center;
   }
+  .User-container .header-section {
+    height: 150px;
+  }
+  
+  
 
   .User-container .details p {
     font-size: 0.9rem;
@@ -250,7 +256,7 @@
   }
 
   .User-container .header-section h2 {
-    font-size: 30px;
+    font-size: 24nppx;
   }
 
   .User-container .header-section .profile-img {

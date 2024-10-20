@@ -145,11 +145,17 @@ const ProviderNotification = () => {
               {request.booking_status === 'Accepted' && (
                 <span className="status accepted">Service Request Accepted</span>
               )}
+              {request.booking_status === 'Declined-customer' && (
+                <span style={{color: 'red'}}>Service Request cancelled by Customer</span>
+              )}
+              {request.booking_status === 'Completed' && (
+                <span className="status accepted">Service Delivered</span>
+              )}
             </div>
           </div>
         )):
           <div className="requests-list">
-              <h1>No such notifications here</h1>
+              <h1>Notifications not found</h1>
           </div>
         }
       </div>

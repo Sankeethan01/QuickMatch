@@ -5,7 +5,6 @@ import PaymentMethod from "../PaymentMethod/PaymentMethod";
 import axios from "axios";
 import './BookNowPortal.css';
 import { ToastContainer, toast } from "react-toastify";
-import logo from '../../../assets/logo.png'
 
 const BookNowPortal = (props) => {
   const [showPayment, setShowPayment] = useState(false);

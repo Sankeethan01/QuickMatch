@@ -28,8 +28,8 @@ const AdminFeedback = () => {
       setTimeout(() => {
         fetchFeedbacks();
       }, 2000);
-   
-  }, []);
+   //react-hooks/exhaustive-deps
+  }, [navigate]);
   
 
   const fetchFeedbacks = async () => {

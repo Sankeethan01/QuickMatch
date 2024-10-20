@@ -128,14 +128,17 @@ const Notification = () => {
                 <span className="status accepted">Service Delivered</span>
               )}
               {request.booking_status === 'Declined-customer' && (
-                <span style={{color: 'red'}}>Service Booking canceled</span>
+                <span style={{color: 'red'}}>Service Booking cancelled</span>
+              )}
+               {request.booking_status === 'Declined-provider' && (
+                <span style={{color: 'red'}}>Service Booking cancelled by Provider</span>
               )}
             </div>
           </div>
          
         )):
          <div className='request-item'>
-          <h1 style={{textAlign:'center'}}>No such Notifications found</h1>
+          <h1 style={{textAlign:'center'}}>Notifications not found</h1>
          </div>
         }
       </div>

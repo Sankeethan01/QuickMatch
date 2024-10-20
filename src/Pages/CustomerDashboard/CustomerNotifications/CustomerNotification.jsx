@@ -4,7 +4,6 @@ import Notification from '../../../components/CustomerDashboardComponents/Custom
 import HomeNavBar from '../../../components/HomeNavBar/HomeNavBar'
 import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
-import notificImg from '../../../assets/notific_image.jpg';
 
 
 const CustomerNotification = () => {

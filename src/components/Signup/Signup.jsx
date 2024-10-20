@@ -12,6 +12,7 @@ import registerimg from "../../assets/register.png";
 import Instruction from "../ProviderInstructions/Instruction";
 import PersonIcon from '@mui/icons-material/Person';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Button, Modal } from "react-bootstrap";
 
 const Signup = ({ signupClose, loginClose }) => {
   const [firstName, setFirstName] = useState("");
@@ -24,6 +25,9 @@ const Signup = ({ signupClose, loginClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [openInstruct, setOpenInstruct] = useState(false);
   const [providerData, setProviderData] = useState({});
+  const [otpModalVisible, setOtpModalVisible] = useState(false);
+  const [enteredOtp, setEnteredOtp] = useState("");
+  const [sentOtp, setSentOtp] = useState("");
 
   const districts = [
     '', 'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
@@ -31,6 +35,89 @@ const Signup = ({ signupClose, loginClose }) => {
     'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa',
     'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
   ];
+
+  const sendOTP = async (email) => {
+    try {
+      const response = await axios.post("http://localhost/quickmatch_api/emailValidationOTP.php", {
+        email
+      });
+
+      if (response.data.success) {
+        toast.success("OTP sent to your email. Please check your inbox.");
+        console.log(response.data.otp);
+        setSentOtp(response.data.otp);
+        setOtpModalVisible(true);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Error sending OTP. Please try again.");
+    }
+  };
+
+  const handleOtpSubmit = async () => {
+    if (parseInt(enteredOtp) === parseInt(sentOtp)) {
+      toast.success("OTP verified successfully.");
+      setOtpModalVisible(false);
+      await registerCustomer();
+    } else {
+      toast.error("OTP verification failed. Please try again.");
+    }
+  };
+
+
+  const handleOtpSubmitProvider = async () => {
+    if (parseInt(enteredOtp) === parseInt(sentOtp)) {
+      toast.success("OTP verified successfully.");
+      setTimeout(() => {
+        setOtpModalVisible(false);
+      }, 1000);
+      await registerProvider();
+    } else {
+      toast.error("OTP verification failed. Please try again.");
+    }
+  };
+
+  const registerCustomer = async () => {
+    const fullName = `${firstName} ${lastName}`;
+    const fullAddress = `${city} | ${district}`;
+
+    try {
+      const response = await axios.post("http://localhost/quickmatch_api/customersignup.php", {
+        fullName,
+        fullAddress,
+        username,
+        email,
+        password,
+      });
+      if (response.data.message) {
+        toast.success("Registered Successfully, You can login now...");
+        setTimeout(() => {
+          signupClose(false);
+          loginClose(true);
+        }, 3000);
+      } else {
+        toast.error("Registration failed. Please check your credentials and try again.");
+      }
+    } catch (error) {
+      toast.error("Customer email already exists.");
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
+  };
+
+  const registerProvider = async () => {
+
+
+    const fullName = `${firstName} ${lastName}`;
+    const fullAddress = `${city} | ${district}`;
+
+    setProviderData({ fullName, fullAddress, username, email, password });
+    setOpenInstruct(true);
+
+
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -66,32 +153,7 @@ const Signup = ({ signupClose, loginClose }) => {
       return;
     }
 
-    const fullName = `${firstName} ${lastName}`;
-    const fullAddress = `${city} | ${district}`;
-
-    try {
-      const response = await axios.post("http://localhost/quickmatch_api/customersignup.php", {
-        fullName,
-        fullAddress,
-        username,
-        email,
-        password,
-      });
-      if (response.data.message) {
-        toast.success("Registered Successfully, You can login now...");
-        setTimeout(() => {
-          signupClose(false);
-          loginClose(true);
-        }, 3000);
-      } else {
-        toast.error("Registration failed. Please check your credentials and try again.");
-      }
-    } catch (error) {
-      toast.error("Customer email is already exists.");
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    }
+    await sendOTP(email);
   };
 
 
@@ -130,11 +192,7 @@ const Signup = ({ signupClose, loginClose }) => {
       return;
     }
 
-    const fullName = `${firstName} ${lastName}`;
-    const fullAddress = `${city} | ${district}`;
-
-    setProviderData({ fullName, fullAddress, username, email, password });
-    setOpenInstruct(true);
+    await sendOTP(email);
   };
 
   return (
@@ -284,6 +342,57 @@ const Signup = ({ signupClose, loginClose }) => {
           </div>
         </div>
       </div>
+
+      {/* OTP Modal */}
+      <Modal show={otpModalVisible} onHide={() => setOtpModalVisible(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>OTP Verification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Please enter the OTP sent to your email:</p>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter OTP"
+            value={enteredOtp}
+            onChange={(e) => setEnteredOtp(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setOtpModalVisible(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleOtpSubmit}>
+            Verify OTP
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* OTP Modal */}
+      <Modal show={otpModalVisible} onHide={() => setOtpModalVisible(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>OTP Verification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Please enter the OTP sent to your email:</p>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter OTP"
+            value={enteredOtp}
+            onChange={(e) => setEnteredOtp(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setOtpModalVisible(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleOtpSubmitProvider}>
+            Verify OTP
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       {openInstruct && (
         <Instruction closeInstruct={setOpenInstruct} providerData={providerData} />
       )}
