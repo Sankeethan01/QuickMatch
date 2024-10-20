@@ -52,7 +52,7 @@ const NewProvider = () => {
             </div>
             <span className="widgetSmUserTitle">{provider.user_type}</span>
             <button className="widgetSmButton">
-              <Link to="/admincustomerlist" className='link'>
+              <Link to="/adminproviderlist" className='link'>
                 <ZoomInIcon className='zoom-icon' /> View
               </Link>
             </button>

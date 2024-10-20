@@ -22,7 +22,7 @@ const ProviderIntro = () => {
              sessionStorage.clear();
               navigate('/');
         }
-    }, 2000);
+    }, 1000);
     
   })
 

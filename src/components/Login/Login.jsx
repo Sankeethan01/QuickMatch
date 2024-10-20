@@ -111,9 +111,7 @@ const Login = ({ loginClose, signupClose }) => {
         }
         else{
           toast.error("Invalid OTP, Try again later...");
-          setTimeout(() => {
-            setShowForgotPasswordModal(false);
-          }, 1000); 
+           setStep(1); 
         }
       }
       else if(step === 3)
@@ -160,6 +158,7 @@ const Login = ({ loginClose, signupClose }) => {
       }
     }
   }
+  // login page
 
   return (
     <>
