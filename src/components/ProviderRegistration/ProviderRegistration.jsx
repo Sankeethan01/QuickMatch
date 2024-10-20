@@ -111,7 +111,7 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
       );
       console.log(response.data);
       if (response.data.success) {
-        toast.success("Provider Reegistration successfull, wait until you got verified..");
+        toast.success("Provider Registration successfull, wait until you got verified..");
         setTimeout(() => {
           window.location.reload();
           openFinalReg(false);
@@ -180,15 +180,20 @@ const ProviderRegistration = ({ providerData, openFinalReg }) => {
                     <MiscellaneousServicesIcon className="icon" />
                   </div>
                 )}
+              
+                <div style={{ marginBottom: "-40px", marginTop: "40px", marginLeft: "15px" }}>
+                  Proofs:
+                </div>
                 <div className="input_box">
+                  {/* <label style={{width:"80px"}}>Attach Proof</label> */}
                   <input
                     className="input_proof"
                     type="file"
                     onChange={handleFileChange}
                     required
+                    
                   />
                 </div>
-
                 <div className="input_box">
                   <input
                     type="text"
